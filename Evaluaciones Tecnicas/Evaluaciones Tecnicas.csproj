@@ -89,6 +89,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Imagenes\pregunta10.jpg" />
+    <Content Include="Imagenes\pregunta12.jpg" />
+    <Content Include="Imagenes\pregunta21.jpg" />
+    <Content Include="Imagenes\pregunta23.jpg" />
+    <Content Include="Imagenes\Pregunta5.png" />
+    <Content Include="Imagenes\pregunta7.jpg" />
+    <Content Include="Imagenes\pregunta8.jpg" />
+    <Content Include="Imagenes\pregunta9.jpg" />
+    <Content Include="img\avatar 4.jpg" />
+    <Content Include="img\avatar3.png" />
+    <Content Include="img\Check.png" />
+    <Content Include="img\email.png" />
+    <Content Include="img\favicon-TB.png" />
+    <Content Include="img\Fondo %282%29.jpg" />
+    <Content Include="img\fondo 2.jpg" />
+    <Content Include="img\fondo 5.jpg" />
+    <Content Include="img\Fondo Login.jpg" />
+    <Content Include="img\Fondo ok.png" />
+    <Content Include="img\fondo3.jpg" />
+    <Content Include="img\fondo4.jpg" />
+    <Content Include="img\Linkedin-símbolo.png" />
+    <Content Include="img\TB.png" />
+    <Content Include="img\TR.png" />
+    <Content Include="img\Uncheck.png" />
     <Content Include="Video\Video.mp4" />
     <Content Include="Web.config" />
   </ItemGroup>
