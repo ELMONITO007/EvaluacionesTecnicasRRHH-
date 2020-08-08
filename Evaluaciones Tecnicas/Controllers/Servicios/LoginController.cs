@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CaptchaMvc.HtmlHelpers;
-using GreenElectric.Negocio;
+using Negocio;
 
-namespace WebApplication7.Controllers
+namespace Evaluaciones.Controllers
 {
     public class LoginController : Controller
     {

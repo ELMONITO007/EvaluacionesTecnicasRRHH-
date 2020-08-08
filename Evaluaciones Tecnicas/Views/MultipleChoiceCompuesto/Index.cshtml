@@ -1,4 +1,4 @@
-﻿@model GreenElectric.Entities.MultipleChoiceCompuesto
+﻿@model Entities.MultipleChoiceCompuesto
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +13,7 @@
         <br />
         <div>
            @{ int aas =Model.pregunta.Id ;}
-            @foreach (GreenElectric.Entities.Pregunta item in Model.ListaSubPreguntas)
+            @foreach (Entities.Pregunta item in Model.ListaSubPreguntas)
             {
 
                 <h3>  @Html.DisplayFor(modelItem => item.LaPregunta)    </h3>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Evaluaciones.Models;
 using Entities;
-using GreenElectric.Negocio;
+using Negocio;
 
 using System.Collections.Generic;
 using System.Linq;
