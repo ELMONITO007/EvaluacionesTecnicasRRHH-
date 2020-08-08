@@ -1,0 +1,23 @@
+﻿@model GreenElectric.Entities.Pregunta
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+    <link href="~/Content/modern-business.css" rel="stylesheet" />
+ 
+<div class="table-responsive">
+    <h3 class="col-md-10">¿Esta seguro que quiere eliminar la Pregunta @Html.DisplayFor(model => model.Id)? </h3>
+    <hr />
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="submit" value="Eliminar" class="BotonVerde" />
+        </div>
+    }
+</div>

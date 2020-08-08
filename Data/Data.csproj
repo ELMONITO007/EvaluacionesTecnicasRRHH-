@@ -73,10 +73,7 @@
     <Compile Include="Usuario\UsuarioDac.cs" />
     <Compile Include="Usuario\UsuarioParaexamenDAC.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Examen\" />
-    <Folder Include="Informes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

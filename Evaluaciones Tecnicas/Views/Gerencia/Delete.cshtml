@@ -1,0 +1,24 @@
+﻿@model GreenElectric.Entities.Usuario_Examen.Gerencia
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>  <h3>¿Esta seguro de eliminar la Gerencia  <i>"@Html.DisplayFor(model => model.gerencia)"</i>?</h3>
+    <hr />
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="BotonVerde" />
+            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Empresa")'" />
+        </div>
+    }
+</div>

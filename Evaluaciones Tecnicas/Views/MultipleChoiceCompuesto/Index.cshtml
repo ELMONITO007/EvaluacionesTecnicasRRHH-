@@ -1,0 +1,63 @@
+﻿@model GreenElectric.Entities.MultipleChoiceCompuesto
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+    <div>
+        <h2> Lista de Respuesta de la pregunta <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)" </i> </h2>
+        <br />
+        <div>
+           @{ int aas =Model.pregunta.Id ;}
+            @foreach (GreenElectric.Entities.Pregunta item in Model.ListaSubPreguntas)
+            {
+
+                <h3>  @Html.DisplayFor(modelItem => item.LaPregunta)    </h3>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Respuesta
+                        </th>
+                        <th>
+                            ¿Es Correcta?
+                        </th>
+
+                        <th><input type="button" class="BotonVerde " style="float:left" value="Detalles" onclick="location.href='@Url.Action("Details", "SubPregunta",new { id=item.Id,id_Pregunta=aas})'" />  &nbsp  <input type="button" class="BotonVerde " style="float:left" value="Agregar Respuesta" onclick="location.href='@Url.Action("Create", "MultipleChoiceCompuesto",new { id=item.Id,id_Pregunta=aas})'" /></th>
+                    </tr>
+
+                    @foreach (var respuesta in item.ListaMC)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => respuesta.LaRespuesta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => respuesta.Correcta)
+                              
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = respuesta.Id, id_Pregunta = aas }) |
+                                
+                                @Html.ActionLink("Eliminar", "Delete", new { id = respuesta.Id, id_Pregunta = aas })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+
+            }
+        </div>
+       
+        <div>
+
+            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="button" class="BotonVerde " style="float:right" value="Agregar una SubPregunta" onclick="location.href='@Url.Action("create", "SubPregunta",new { id=Model.pregunta.Id})'" />
+        </div>
+
+    </div>

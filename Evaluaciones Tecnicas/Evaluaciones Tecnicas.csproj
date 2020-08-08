@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -1862,9 +1865,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\CategoriaController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceCompuestoController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\NivelController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\OrdenController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\PreguntaCategoriaController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\PreguntasController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\RespuestasController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\SaludPreguntaController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\SubPreguntaController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\TipoPreguntaController.cs" />
+    <Compile Include="Controllers\Servicios\LoginController.cs" />
+    <Compile Include="Controllers\Servicios\RolesController.cs" />
+    <Compile Include="Controllers\Servicios\UsuarioRolesController.cs" />
+    <Compile Include="Controllers\Usuario\DireccionController.cs" />
+    <Compile Include="Controllers\Usuario\EmpresaController.cs" />
+    <Compile Include="Controllers\Usuario\GerenciaController.cs" />
+    <Compile Include="Controllers\Usuario\JefaturaController.cs" />
+    <Compile Include="Controllers\Usuario\SectorController.cs" />
+    <Compile Include="Controllers\Usuario\SedeController.cs" />
+    <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoriaModels.cs" />
+    <Compile Include="Models\PreguntaCategoriaModels.cs" />
+    <Compile Include="Models\PreguntaModels.cs" />
+    <Compile Include="Models\UsuarioModels.cs" />
+    <Compile Include="Models\UsuarioRolesModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2063,6 +2094,118 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\SaludTipoPregunta.cshtml" />
+    <Content Include="Views\Direccion\Create.cshtml" />
+    <Content Include="Views\Direccion\Delete.cshtml" />
+    <Content Include="Views\Direccion\Edit.cshtml" />
+    <Content Include="Views\Direccion\ErrorPage.cshtml" />
+    <Content Include="Views\Direccion\Index.cshtml" />
+    <Content Include="Views\Empresa\Create.cshtml" />
+    <Content Include="Views\Empresa\Delete.cshtml" />
+    <Content Include="Views\Empresa\Edit.cshtml" />
+    <Content Include="Views\Empresa\ErrorPage.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Gerencia\Create.cshtml" />
+    <Content Include="Views\Gerencia\Delete.cshtml" />
+    <Content Include="Views\Gerencia\Edit.cshtml" />
+    <Content Include="Views\Gerencia\ErrorPage.cshtml" />
+    <Content Include="Views\Gerencia\Index.cshtml" />
+    <Content Include="Views\Jefatura\Create.cshtml" />
+    <Content Include="Views\Jefatura\Delete.cshtml" />
+    <Content Include="Views\Jefatura\Edit.cshtml" />
+    <Content Include="Views\Jefatura\ErrorPage.cshtml" />
+    <Content Include="Views\Jefatura\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Usuarios.cshtml" />
+    <Content Include="Views\MultipleChoiceCompuesto\Create.cshtml" />
+    <Content Include="Views\MultipleChoiceCompuesto\Delete.cshtml" />
+    <Content Include="Views\MultipleChoiceCompuesto\Edit.cshtml" />
+    <Content Include="Views\MultipleChoiceCompuesto\Index.cshtml" />
+    <Content Include="Views\MultipleChoice\Create.cshtml" />
+    <Content Include="Views\MultipleChoice\Delete.cshtml" />
+    <Content Include="Views\MultipleChoice\Details.cshtml" />
+    <Content Include="Views\MultipleChoice\Edit.cshtml" />
+    <Content Include="Views\MultipleChoice\Index.cshtml" />
+    <Content Include="Views\Nivel\Create.cshtml" />
+    <Content Include="Views\Nivel\Delete.cshtml" />
+    <Content Include="Views\Nivel\Details.cshtml" />
+    <Content Include="Views\Nivel\Edit.cshtml" />
+    <Content Include="Views\Nivel\Index.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\ErrorCreate.cshtml" />
+    <Content Include="Views\Orden\ErrorEdit.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
+    <Content Include="Views\PreguntaCategoria\Categoria.cshtml" />
+    <Content Include="Views\PreguntaCategoria\Create.cshtml" />
+    <Content Include="Views\PreguntaCategoria\Delete.cshtml" />
+    <Content Include="Views\PreguntaCategoria\Index.cshtml" />
+    <Content Include="Views\Preguntas\Create.cshtml" />
+    <Content Include="Views\Preguntas\Delete.cshtml" />
+    <Content Include="Views\Preguntas\Details.cshtml" />
+    <Content Include="Views\Preguntas\DetailsSubPregunta.cshtml" />
+    <Content Include="Views\Preguntas\Edit.cshtml" />
+    <Content Include="Views\Preguntas\ErrorPage.cshtml" />
+    <Content Include="Views\Preguntas\Index.cshtml" />
+    <Content Include="Views\Respuestas\Respuesta.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\SaludPregunta\Index.cshtml" />
+    <Content Include="Views\SaludPregunta\SaludMultipleChoice.cshtml" />
+    <Content Include="Views\SaludPregunta\SaludMultipleChoiceCompuesto.cshtml" />
+    <Content Include="Views\SaludPregunta\SaludOrdenado.cshtml" />
+    <Content Include="Views\Sector\Create.cshtml" />
+    <Content Include="Views\Sector\Delete.cshtml" />
+    <Content Include="Views\Sector\Edit.cshtml" />
+    <Content Include="Views\Sector\ErrorPage.cshtml" />
+    <Content Include="Views\Sector\Index.cshtml" />
+    <Content Include="Views\Sede\Create.cshtml" />
+    <Content Include="Views\Sede\Delete.cshtml" />
+    <Content Include="Views\Sede\Edit.cshtml" />
+    <Content Include="Views\Sede\ErrorPage.cshtml" />
+    <Content Include="Views\Sede\Index.cshtml" />
+    <Content Include="Views\SubPregunta\Create.cshtml" />
+    <Content Include="Views\SubPregunta\Delete.cshtml" />
+    <Content Include="Views\SubPregunta\Details.cshtml" />
+    <Content Include="Views\SubPregunta\Edit.cshtml" />
+    <Content Include="Views\SubPregunta\ErrorPage.cshtml" />
+    <Content Include="Views\TipoPregunta\Create.cshtml" />
+    <Content Include="Views\TipoPregunta\Delete.cshtml" />
+    <Content Include="Views\TipoPregunta\Details.cshtml" />
+    <Content Include="Views\TipoPregunta\Edit.cshtml" />
+    <Content Include="Views\TipoPregunta\Index.cshtml" />
+    <Content Include="Views\TipoPregunta\SaludTipoPregunta.cshtml" />
+    <Content Include="Views\UsuarioRoles\Create.cshtml" />
+    <Content Include="Views\UsuarioRoles\Details.cshtml" />
+    <Content Include="Views\UsuarioRoles\Edit.cshtml" />
+    <Content Include="Views\UsuarioRoles\Index.cshtml" />
+    <Content Include="Views\UsuarioRoles\Roles.cshtml" />
+    <Content Include="Views\UsuarioRoles\Usuario.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Usuario\ErrorPage.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\TestExamen.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2072,8 +2215,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Controllers\Examen\" />
+    <Folder Include="Controllers\Informes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{5d916822-15d2-416b-aa9e-ef123950b0ea}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{2d836215-bbe5-4dd7-b0a4-2a5e3122c74c}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

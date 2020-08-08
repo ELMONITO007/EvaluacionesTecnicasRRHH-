@@ -1,0 +1,41 @@
+﻿@model GreenElectric.Entities.SubPregunta
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Crear una SubPregunta para la pregunta <i>"@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+
+
+        <div class="col-md-10">
+            <h5 class="text-justify">Pregunta</h5>
+            @Html.EditorFor(model => model.subPregunta.LaPregunta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.subPregunta.LaPregunta, "", new { @class = "text-danger" })
+
+
+            </div>
+      
+            @Html.HiddenFor(model => model.pregunta.Id)
+        </div>
+
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id = Model.pregunta.Id })'" />
+                <input type="submit" value="Crear" class="BotonVerde" />
+            </div>
+        </div>
+    </div>
+}

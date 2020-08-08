@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Evaluaciones.Models.PreguntaCategoriaModels>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive">
+    <div>
+        @using (Html.BeginForm())
+        {
+        <div class="table-responsive">
+            <div>
+                <table class="table table-bordered table-hover">
+                    <tr >
+
+                        <th>
+                            Categoria
+                        </th>
+                        <th style="min-width:250px">
+                            @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
+                        </th>
+                        <td >
+                           Pregunta
+                        </td>
+                        <td style="min-width:250px">
+                            @Html.DropDownList("Pregunta", (SelectList)ViewBag.categoriaPregunta, new { @class = "form-control" })
+                        </td>
+                        <th></th>
+                    </tr>
+
+
+
+
+
+                </table>
+            </div>
+
+            <div class="col-md-12" style="max-width:500px ">
+               
+                @Html.TextBox("preguntaParcial",null, new { @maxlength = "50", @class = "form-control" })
+                <h5>Escribe toda la pregunta, varias palabras o solo una</h5>
+                <br />
+            </div>
+
+        </div>  
+
+
+
+
+                <div class="col-md-10">
+                    <input type="submit" value="Buscar" class="BotonVerde" />
+                    <input type="button" class="BotonVerde " style="float:right" value="Ver todo" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+                </div>
+
+                <br />
+
+                }
+        </div>
+    <table class="table table-bordered table-hover">
+        <tr style="max-width:450px" >
+
+            <th style="max-width:450px">
+                @Html.DisplayNameFor(model => model.Pregunta)
+            </th>
+
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="max-width:450px">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pregunta)
+                </td>
+
+              
+                <td style="min-width:650px">
+                    @Html.ActionLink("Detalles Pregunta", "Details", "Preguntas", new { id = item.ID_Pregunta }, null)|
+                    @Html.ActionLink("Eliminar Pregunta", "Delete", "Preguntas", new { id = item.ID_Pregunta }, null)|
+                    @Html.ActionLink("Ver Categorias", "Categoria", new { id = item.ID_Pregunta })|
+                    @Html.ActionLink("Ver Respuestas", "Respuesta", "Respuestas", new { Id_Pregunta = item.ID_Pregunta }, null)|
+
+                    @if (item.TipoPregunta == "MultipleChoice")
+                    {
+                        @Html.ActionLink("Salud", "SaludMultipleChoice", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                    }
+                    @if (item.TipoPregunta == "Ordenado")
+                    {
+                        @Html.ActionLink("Salud", "SaludOrdenado", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                    }
+                    @if (item.TipoPregunta == "MultipleChoiceCompuesto")
+                    {
+                        @Html.ActionLink("Salud", "SaludMultipleChoiceCompuesto", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                    }
+
+                </td>
+            </tr>
+       
+
+        }
+
+    </table>
+    <div>
+        <p>
+            <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Preguntas")'" />
+        </p>
+    </div>
+</div>

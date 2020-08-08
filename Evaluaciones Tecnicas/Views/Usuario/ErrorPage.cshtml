@@ -1,0 +1,21 @@
+﻿@model GreenElectric.Entities.Usuarios
+
+@{
+    ViewBag.Title = "ErrorPage";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+<div class="table-responsive ">
+    @Html.HiddenFor(Model => Model.Id)
+    <h4>No se puede agregrar o modificar el Usuario <i>"@Html.DisplayFor(model => model.UserName) "</i>.Ya existe  </h4>
+    <hr />
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Usuario")'" />
+    </div>
+</div>

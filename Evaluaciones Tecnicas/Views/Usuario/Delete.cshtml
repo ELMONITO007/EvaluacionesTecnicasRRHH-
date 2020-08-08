@@ -1,0 +1,27 @@
+﻿@model GreenElectric.Entities.Usuarios
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>
+    <h3>¿Esta seguro de eliminar <i> "@Html.DisplayFor(model => model.Email)"</i>?</h3>
+    <hr />
+
+
+   
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Eliminar" class="BotonVerde" />
+    <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Usuario")'" />
+</div>
+    }
+</div>

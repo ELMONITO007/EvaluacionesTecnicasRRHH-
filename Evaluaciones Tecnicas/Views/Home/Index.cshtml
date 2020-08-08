@@ -1,0 +1,301 @@
+﻿
+@{ Layout = null; }
+<!DOCTYPE html>
+
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+    <title>Evaluaciones Tecnicas</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+
+
+    <link href="~/Content/mdb.min.css" rel="stylesheet" />
+    @*<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/Content/css/line-icons.css" rel="stylesheet" />
+
+    @*<link href="~/Content/css/nivo-lightbox.css" rel="stylesheet" />*@
+
+    @*<link href="~/Content/css/magnific-popup.css" rel="stylesheet" />
+        <link href="~/Content/css/animate.css" rel="stylesheet" />*@
+    @*<link href="~/Content/css/menu_sideslide.css" rel="stylesheet" />*@
+
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/responsive.css">
+
+    <style type="text/css">
+        /* Navigation*/
+        .navbar {
+            background-color: transparent;
+        }
+
+        .scrolling-navbar {
+            transition: background .5s ease-in-out, padding .5s ease-in-out;
+        }
+
+        .top-nav-collapse {
+            background-color: #34456a;
+        }
+
+        footer.page-footer {
+            background-color: #34456a;
+        }
+
+
+        /* Necessary for full page carousel*/
+        html,
+        body,
+        .view {
+            height: 100%;
+        }
+
+        /* Carousel*/
+        .carousel,
+        .carousel-item,
+        .carousel-item.active {
+            height: 100%;
+        }
+
+        .carousel-inner {
+            height: 100%;
+        }
+
+        .carousel .carousel-item video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+   
+
+    <!--Carousel Wrapper-->
+
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+
+        <!--Indicators-->
+        <!--/.Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+          
+            <!--First slide-->
+            <div class="carousel-item active">
+                <!--Mask-->
+                <div class="view ">
+                    <!--Video source-->
+                    <video autoplay loop playsinline muted >
+                        <source src="~/Video/Video.mp4" type="video/mp4" />
+                    </video>
+              
+                    <!-- Carousel content -->
+                    <div class="full-bg-img flex-center mask rgba-indigo-light white-text">
+                        <ul class="animated fadeInUp col-md-12 list-unstyled  " style="background:rgba(128, 128, 128,0.2)">
+                            <li>
+                                <h1 class="font-weight-bold text-uppercase white-text"><b>Bienvenido al sistema de Evaluaciones de Transener  y Transba</b></h1>
+                            </li>
+                            <li>
+                                <h3 class="font-weight-bold text-uppercase white-text"><b>Presione ingresar para comenzar</b></h3>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/account/login" class="btn btn-blue btn-lg btn-rounded " style="font-size:16px">Ingresar</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!--/Mask-->
+            </div>
+            <!--/First slide-->
+
+        </div>
+        <!--/.Slides-->
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!--/.Controls-->
+    </div>
+
+    <!--/.Carousel Wrapper-->
+    <!--Footer-->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <span>Transba</span></h2>
+                <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
+                    Transba S.A. es la concesionaria del servicio de Transporte de Energía Eléctrica por distribución troncal en la Provincia de Buenos Aires. Tiene a su cargo la operación y mantenimiento de la red de 220 kV 132 kV y 66 kV de la provincia , con excepción de las instalaciones ubicadas dentro de la jurisdicción de Edenor S.A., Edesur S.A. y Edelap S.A.
+                    Adicionalmente, opera y mantiene las estaciones transformadoras de 500 kV Olavarría, Bahía Blanca y Campana, en carácter de Transportista Independiente de Transener S.A. (TIBA).
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
+                        <div class="icon">
+                            <i class="lnr lnr-chevron-down"></i>
+                        </div>
+                        <h4>Instalaciones</h4>
+                        <p>Estaciones Transformadoras: 97</p>
+                        <p>Líneas de 220,132 y 66 kV: 6.212.65 km</p>
+                        <p>Capacidad de Transformación Instalada: 5.710 MVA</p>
+                        <p>Conexiones: 617</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.4s">
+                        <div class="icon">
+                            <i class="lnr lnr-home"></i>
+                        </div>
+                        <h4>Abastece una demanda anual de:</h4>
+                        <p>Energía: 15.283 GWh</p>
+                        <p>Potencia máxima: 2.599 MW</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.6s">
+                        <div class="icon">
+                            <i class="lnr lnr-chart-bars"></i>
+                        </div>
+                        <h4>Nuestra Red</h4>
+                        <p>8 empresas distribuidoras<p>
+                        <p>26 cooperativas </p>
+                        <p>21 grandes usuarios</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <span>Transener</span></h2>
+                <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+                <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">
+                    Compañía de Transporte de Energía Eléctrica en Alta Tensión Transener S.A. (Transener) es la empresa líder en el servicio público de transporte de energía eléctrica en extra alta tensión en la República Argentina.
+                    Como operadora de la red nacional, Transener está integrada por casi 12.400 kilómetros de líneas de transmisión, adicionando los 6.228 kilómetros de líneas que componen la red de su controlada, la Empresa de Transporte de Energía Eléctrica por Distribución Troncal de la Provincia de Buenos Aires Sociedad Anónima Transba S.A.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
+                        <div class="icon">
+                            <i class="lnr lnr-chevron-down"></i>
+                        </div>
+                        <h4>Instalaciones</h4>
+                        <p>Estaciones Transformadoras: 50</p>
+                        <p>Líneas de 220,132: 12.000 km</p>
+                        <p>Capacidad de Transformación Instalada: 15.000 MVA</p>
+                        <p>Conexiones: 160</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.4s">
+                        <div class="icon">
+                            <i class="lnr lnr-home"></i>
+                        </div>
+                        <h4>¿Que hacemos?</h4>
+                        <p>Transporte de mas dep 65% de energía electrica generada en el pais</p>
+                        <p>Demanda el recorrido del personal equipos a los largod e 11 millones por año </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="item-boxes wow fadeInDown" data-wow-delay="0.6s">
+                        <div class="icon">
+                            <i class="lnr lnr-chart-bars"></i>
+                        </div>
+                        <h4>Operación</h4>
+                        <p>85% de la operacion y mantenimiento de la red de enérgia Eléctrica<p>
+                        <p>Supervision de los 15% restantes </p>
+                        <p>Transportamos mas del 65% de la energia eléctrica generada en el país</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+    <!-- Footer Section Start -->
+
+    <footer class="container-fluid">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="social-icons wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">
+                        <ul>
+                            <li class="facebook"><a href="mailto:seleccion@transener.com.ar"><img src="~/img/email.png" alt="Email" width="32" height="32" style="margin-bottom:2.5px" /></a></li>
+
+                            <li class="linkedin"><a href="https://www.linkedin.com/company/transener/" target="_blank"><img src="~/img/Linkedin-símbolo.png" alt="Linkedin" width="42" height="26" style="margin-bottom:2.5px; margin-right:1px" /></a></li>
+                            <li class="linkedin"><a href="https://www.transener.com.ar/" target="_blank"><img src="~/img/TR.png" alt="TR" width="32" height="32" /></a></li>
+                            <li class="linkedin"><a href="https://www.transba.com.ar/" target="_blank"><img src="~/img/TB.png" alt="TB" width="32" height="32" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="site-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s">
+                        <p>All copyrights reserved &copy; 2020 - Designed & Developed by <a rel="nofollow" href="https://www.transener.com.ar">Transener-Transba</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="lnr lnr-arrow-up"></i>
+    </a>
+
+    @*<div id="loader">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>*@
+    <!--/.Footer-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+
+    <script src="~/Scripts/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+
+    <script src="~/Scripts/mdb.min.js"></script>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+
+
+</body>
+
+</html>

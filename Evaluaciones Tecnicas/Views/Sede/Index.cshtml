@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GreenElectric.Entities.Usuario_Examen.Sede>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+
+            <tr>
+                <th>
+                    <h5>              @Html.DisplayNameFor(model => model.sede)</h5>
+                </th>
+                <th>
+                    <h5>  @Html.DisplayNameFor(model => model.codigo)</h5>
+                </th>
+                <th>
+                    <h5>  @Html.DisplayNameFor(model => model.empresa.empresa)</h5>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sede)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.empresa.empresa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div>
+            <p>
+                <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Sede")'" />
+            </p>
+        </div>
+    </div>

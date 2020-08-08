@@ -1,0 +1,76 @@
+﻿@model IEnumerable<GreenElectric.Entities.UsuarioRoles>
+
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+<div class="table-responsive">
+    <div>
+        <h4>
+            Lista de usuarios del Rol
+
+            @foreach (var item2 in Model)
+            {
+                <i>"  @Html.DisplayFor(modelItem2 => item2.roles.name) "</i>
+                break;
+            }
+
+
+        </h4>
+    </div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <tr style="background-color:powderblue">
+
+
+            <th>
+                <h5> @Html.DisplayNameFor(model => model.usuarios.UserName)</h5>
+            </th>
+            <th>
+                <h5>  Usuario</h5>
+
+            </th>
+            <th>
+                <h5>   Permiso</h5>
+
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarios.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Ver", "Usuario", new { id = item.usuarios.id }) |
+            @Html.ActionLink("Agregar", "Create", new { id = item.usuarios.id })
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.usuarios.id, idRol = item.roles.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.id, idRol = item.roles.id }) |
+
+        </td>
+    </tr>
+        }
+
+    </table>
+    <div>
+        @foreach (var item in Model)
+        {
+            <p>
+
+                <input type="button" class="BotonVerde " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id = item.usuarios.id })'" />
+
+            </p>
+            break;
+        }
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model GreenElectric.Entities.UsuarioRoles
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive col-md-12">
+    <h4>Detalles del Rol <i>"@Html.DisplayFor(model => model.roles.name)"</i>  del usuario <i>"@Html.DisplayFor(model => model.usuarios.UserName)"</i>  </h4>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarios.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarios.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.roles.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roles.name)
+        </dd>
+
+    </dl>
+    <div> <h5>@Html.ActionLink("Editar", "Edit", new { id_Usuario = Model.usuarios.id, id_Roles = Model.roles.id })</h5></div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioRoles")'" />
+    </div>
+</div>

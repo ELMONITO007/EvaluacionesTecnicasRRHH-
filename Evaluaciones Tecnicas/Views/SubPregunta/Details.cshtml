@@ -1,0 +1,28 @@
+﻿@model GreenElectric.Entities.SubPregunta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="col-md-12">
+    <h4>SubPregunta <i>"@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i></h4>
+    <hr />
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Editar" onclick="location.href='@Url.Action("Edit", "SubPregunta",new { id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
+        <br />
+        <br />
+        <input type="button" class="BotonVerde " style="float:left" value="Eliminar" onclick="location.href='@Url.Action("Delete", "SubPregunta",new {id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
+        <br />
+        <br />
+
+    </div>
+    <div>
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("index", "MultipleChoiceCompuesto",new { id=Model.Id})'" />
+    </div>
+   
+</div>

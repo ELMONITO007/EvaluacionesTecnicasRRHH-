@@ -1,0 +1,31 @@
+﻿@model GreenElectric.Entities.Orden
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>
+    <h3>¿Esta seguro de eliminar la respuesta  <i>"@Html.DisplayFor(model => model.LaRespuesta)"</i>?</h3>
+
+    <br />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-10">
+
+
+            @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly", @style = "display: none;" } })
+            @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
+            <br />
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="BotonVerde" />
+            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Orden",new { id = Model.pregunta.Id })'" />
+        </div>
+
+    }
+</div>

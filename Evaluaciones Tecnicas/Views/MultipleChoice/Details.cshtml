@@ -1,0 +1,46 @@
+﻿@model GreenElectric.Entities.MultipleChoice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive col-md-12">
+    @Html.HiddenFor(Model => Model.pregunta.Id)
+    <h4>Detalles de la respuesta </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pregunta.LaPregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pregunta.LaPregunta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaRespuesta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaRespuesta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correcta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correcta)
+        </dd>
+
+    </dl>
+   
+    <div> <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id })</h5></div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoice",new { id = Model.pregunta.Id })'" />
+    </div>
+</div>
+

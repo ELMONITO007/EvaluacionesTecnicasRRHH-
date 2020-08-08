@@ -1,0 +1,47 @@
+﻿@model Evaluaciones.Models.PreguntaCategoriaModels
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+
+
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+   
+       
+    <div>
+        <h4> Agregar una categoria a la pregunta <i> "@Html.DisplayFor(model => model.Pregunta)"</i></h4>
+        <hr />
+        @Html.HiddenFor(model => model.ID_Pregunta)
+        <div style="max-width:250px">
+            @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista as SelectList, new { @class = "form-control" })
+        </div>
+
+
+        <br />
+        <br />
+        <div>
+            <button type="submit" , class="AzulButton">Agregar</button>
+            <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+        </div>
+
+    </div>
+</form>
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+﻿@model GreenElectric.Entities.Categoria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+<div class="table-responsive col-md-12">
+    <h4>Detalles de La Categoria @Html.DisplayFor(model => model.LaCategoria)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LaCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+    </dl>
+    <div> <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id })</h5></div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Categoria")'" />
+    </div>
+</div>
+

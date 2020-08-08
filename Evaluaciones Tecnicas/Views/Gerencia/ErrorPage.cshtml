@@ -1,0 +1,19 @@
+﻿@model GreenElectric.Entities.Usuario_Examen.Gerencia
+
+@{
+    ViewBag.Title = "ErrorPage";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive ">
+
+    <h4>No se puede crear o actualizar la empresa <i>"@Html.DisplayFor(model => model.gerencia) "</i>.Ya existe  </h4>
+    <hr />
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "gerencia")'" />
+    </div>
+</div>

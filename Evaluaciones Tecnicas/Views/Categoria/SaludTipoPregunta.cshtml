@@ -1,0 +1,166 @@
+﻿@model GreenElectric.Entities.SaludCategoria
+
+@{
+    ViewBag.Title = "SaludTipoPregunta";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>
+    @foreach (var item in Model.ListaPreguntasTotal)
+    {
+        <h4>Salud de la Categoria   <i> "@Html.DisplayFor(modelItem =>item.Pregunta.categoria.LaCategoria)"</i></h4>
+        break;
+    }
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaludCategtoria)
+            <i style="text-decoration:none">&nbsp</i>
+
+            @if (Model.SaludCategtoria == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.SaludCategtoria == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+        <dt style="color:black ; font-size:40px"> Analisis de la pregunta:</dt>
+        &nbsp
+        &nbsp
+        <dt>
+            1. @Html.DisplayNameFor(model => model.TieneMasDe20Preguntas)
+            &nbsp
+            @if (Model.TieneMasDe20Preguntas == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.TieneMasDe20Preguntas == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+
+
+        </dt>
+
+        <dt>
+            2.   @Html.DisplayNameFor(model => model.TieneMasDe20PreguntasConBuenaSalud)
+            &nbsp
+
+
+            @if (Model.TieneMasDe20PreguntasConBuenaSalud == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.TieneMasDe20PreguntasConBuenaSalud == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+        <dt>
+
+            3.   @Html.DisplayNameFor(model => model.CantidadDePreguntas)
+            &nbsp
+
+            @Html.DisplayFor(model => model.CantidadDePreguntas)
+
+        </dt>
+        <br />
+        <dt>
+
+            4.   @Html.DisplayNameFor(model => model.nivelBajo)
+            &nbsp
+
+            @Html.DisplayFor(model => model.nivelBajo)
+
+        </dt>
+        <br />
+        <dt>
+            5.   @Html.DisplayNameFor(model => model.nivelMedio)
+            &nbsp
+
+            @Html.DisplayFor(model => model.nivelMedio)
+
+        </dt>
+        <br />
+        <dt>
+            6.   @Html.DisplayNameFor(model => model.nivelAlto)
+            &nbsp
+
+            @Html.DisplayFor(model => model.nivelAlto)
+
+        </dt>
+        <br />
+    </dl>
+
+    <table class="table table-bordered table-hover">
+        <tr style="max-width:450px">
+
+            <th style="max-width:450px">
+                @Html.DisplayNameFor(model => model.Pregunta.LaPregunta)
+            </th>
+            <th style="min-width:290px">
+                ¿Se puede utilizar?
+            </th>
+
+            <th style="max-width:250px"></th>
+        </tr>
+
+        @foreach (var item in Model.ListaPreguntasTotal)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pregunta.LaPregunta)
+                </td>
+                <td style="min-width:250px; text-align:center">
+
+                    @if (item.SaludCategtoria == true)
+                    {
+                        <img src="~/img/UnCheck.png" width="50" height="50" />
+                    }
+                    @if (item.SaludCategtoria == false)
+                    {
+                        <img src="~/img/check.png" width="50" height="50" />
+                    }
+
+
+                </td>
+
+                <td style="min-width:290px">
+                    @if (item.Pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
+                    {
+                        @Html.ActionLink("Salud Pregunta", "SaludMultipleChoice", "SaludPregunta", new { id = item.Pregunta.Id }, null)
+                    }
+
+                    @if (item.Pregunta.tipoPregunta.TipoDePregunta == "Ordenado")
+                    {
+                        @Html.ActionLink("Salud Pregunta", "SaludOrdenado", "SaludPregunta", new { id = item.Pregunta.Id }, null)
+                    }
+                    @if (item.Pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                    {
+                        @Html.ActionLink("Salud Pregunta", "SaludMultipleChoiceCompuesto", "SaludPregunta", new { id = item.Pregunta.Id }, null)
+                    }
+                </td>
+            </tr>
+
+
+        }
+
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+
+        </div>
+    </div>
+</div>
+

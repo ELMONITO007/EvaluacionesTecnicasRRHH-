@@ -1,0 +1,42 @@
+﻿@model GreenElectric.Entities.Nivel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Editar el Nivel de Pregunta @Html.DisplayFor(model => model.ElNivel)</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+
+        <div class="col-md-10">
+            <h5 class="text-justify">Nivel de Pregunta</h5>
+            @Html.EditorFor(model => model.ElNivel, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ElNivel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+
+        <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
+        <input type="submit" value="Actualizar" class="BotonVerde" />
+    </div>
+        </div>
+</div>
+
+}
+
+
+

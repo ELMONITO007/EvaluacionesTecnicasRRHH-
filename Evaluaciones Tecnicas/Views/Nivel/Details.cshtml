@@ -1,0 +1,29 @@
+﻿@model GreenElectric.Entities.Nivel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive col-md-12">
+    <h4>Detalles del Nivel de Pregunta @Html.DisplayFor(model => model.ElNivel)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ElNivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ElNivel)
+        </dd>
+
+    </dl>
+    <div> <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id })</h5></div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
+    </div>
+</div>
+

@@ -1,0 +1,202 @@
+﻿@model GreenElectric.Entities.Pregunta
+
+
+
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html, body, h1, h2, h3, h4, h5 {
+        font-family: "Open Sans", sans-serif
+    }
+</style>
+<body class="w3-theme-l5">
+
+
+
+
+
+    <!-- Page Container -->
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+        <!-- The Grid -->
+        <div class="w3-row">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+                <!-- Profile -->
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <h4 class="w3-center">Mi Perfil</h4>
+
+                        <p class="w3-center"><img src="~/img/avatar 4.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                        <hr>
+                        <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>Juan.perez@gmail.com</p>
+                        <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>Juan Perez</p>
+                        <p><i class="fa fa-calendar fa-fw w3-margin-right w3-text-theme"></i>@DateTime.Now</p>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+            <!-- Middle Column -->
+            @using (Html.BeginForm())
+            {
+                <div class="w3-col m7">
+                    @{int NumeroPregunta = 1;}
+                    @foreach (GreenElectric.Entities.Pregunta item in Model.ListaPregunta)
+                    {
+                        <div class="w3-container w3-card w3-white w3-round w3-margin">
+                            <br>
+
+                            <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
+                            <br />
+
+                            <hr class="w3-clear">
+                            <h4 style="color:black">
+                                @Html.DisplayFor(model => item.LaPregunta)
+                            </h4>
+                            <div class="w3-row-padding" style="margin:0 -16px">
+                                @if (item.Imagen != "Sin Imagen")
+                                {
+                                    <div class="w3-half">
+
+                                        @{string Imagen = item.Imagen;}
+                                        <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
+                                    </div>
+                                }
+
+
+                            </div>
+
+                            @if (item.tipoPregunta.TipoDePregunta == "MultipleChoice")
+                            {
+
+                                foreach (var MC in item.ListaMC)
+                                {
+
+                                    <h6> @Html.CheckBoxFor(m => MC.RespuestaObtenida) @MC.LaRespuesta   </h6>
+
+                                }
+                                <br />
+                            }
+                            @if (item.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                            {
+                                foreach (var SubPregunta in item.ListaPregunta)
+                                {
+                                    <h5 style="color:black">  @SubPregunta.LaPregunta</h5>
+                                    foreach (var Respuesta in SubPregunta.ListaMC)
+                                    {
+
+                                        <h6>   @Html.CheckBoxFor(m => Respuesta.RespuestaObtenida) @Respuesta.LaRespuesta </h6>
+
+                                    }
+                                    <br />
+                                }
+
+
+                                <br />
+                            }
+                        </div>
+
+
+
+
+                        NumeroPregunta++;
+                        <br />
+
+
+                    }
+
+
+
+
+
+                    <!-- End Middle Column -->
+                </div>
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+            <!-- Right Column -->
+            <div class="w3-col m2">
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <p>Limite entrega examen:</p>
+                        <img src="https://img.icons8.com/color/48/000000/calendar.png" alt="Forest" style="width:18%;">
+                        <p><strong>Fecha</strong></p>
+                        <p>Lunes 24 de julio a las 15:00</p>
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <h3 style="color:black">¿Necesitas Ayuda?</h3>
+                        <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
+                        <br />
+                        <p>aldana.perrota@transener.com.ar</p>
+                        <p>   dolores.conde@transener.com.ar</p>
+                        @*<div class="w3-row w3-opacity">
+                        <div class="w3-half">
+                            <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+                        </div>
+                        <div class="w3-half">
+                            <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></bu
+                            <br>tton>
+                        </div>
+                    </div>*@
+                    </div>
+                </div>
+
+
+
+
+                <!-- End Right Column -->
+            </div>
+            <!-- End Grid -->
+        </div>
+
+        <!-- End Page Container -->
+    </div>
+    <br>
+
+    <!-- Footer -->
+    
+    <footer class="w3-container w3-theme-d5" style="text-align:center">
+        <p>Copyright Transener-Transba © 2020. Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Accordion
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            }
+        }
+
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+</body>
+

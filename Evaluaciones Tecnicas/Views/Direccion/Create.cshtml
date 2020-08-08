@@ -1,0 +1,36 @@
+﻿@model GreenElectric.Entities.Usuario_Examen.Direccion
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Agregar una nueva Dirección</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    <h5> @Html.LabelFor(model => model.direccion, htmlAttributes: new { @class = "control-label col-md-2" })</h5>
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 ">
+        <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Direccion")'" />
+        <input type="submit" value="Crear" class="BotonVerde" />
+    </div>
+</div>
+</div>
+}
+

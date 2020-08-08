@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GreenElectric.Entities.Usuario_Examen.Gerencia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+
+        <tr>
+            <th>
+                <h5>             @Html.DisplayNameFor(model => model.gerencia)</h5>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gerencia)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                   
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Gerencia")'" />
+    </p>
+</div>

@@ -1,0 +1,96 @@
+﻿@model GreenElectric.Entities.SaludPreguntaOrden
+
+@{
+    ViewBag.Title = "SaludOrdenado";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>
+    <h4>Salud de la pregunta   <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaludDeLaPregunta)
+            <i style="text-decoration:none">&nbsp</i>
+
+            @if (Model.SaludDeLaPregunta == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.SaludDeLaPregunta == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+        <dt style="color:black"> Analisis de la pregunta</dt>
+        &nbsp
+        &nbsp
+        <dt>
+            @Html.DisplayNameFor(model => model.MasDeTresElementos)
+            &nbsp
+            @if (Model.MasDeTresElementos == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.MasDeTresElementos == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+
+
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VeriricarElemento)
+            &nbsp
+
+
+            @if (Model.VeriricarElemento == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.VeriricarElemento == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimerElemento)
+            &nbsp
+
+
+            @if (Model.PrimerElemento == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.PrimerElemento == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.TieneCategoria)
+            &nbsp
+
+
+            @if (Model.TieneCategoria == true)
+            {
+                <img src="~/img/UnCheck.png" width="50" height="50" />
+            }
+            @if (Model.TieneCategoria == false)
+            {
+                <img src="~/img/check.png" width="50" height="50" />
+            }
+        </dt>
+
+    </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="button" class="BotonVerde " style="float:right" value="Ver Respuesta" onclick="location.href='@Url.Action("Index", "Orden",new { id=Model.pregunta.Id})'" />
+        </div>
+    </div>
+</div>
+

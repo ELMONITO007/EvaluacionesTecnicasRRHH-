@@ -1,0 +1,19 @@
+﻿@model GreenElectric.Entities.Pregunta
+
+@{
+    ViewBag.Title = "ErrorPage";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+</p>
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive">
+    <h4>La pregunta o subPregunta <i>" @Html.DisplayFor(model => model.LaPregunta) " ya fue creada por favor cree otra pregunta o modifiqueparte de ella </i> </h4>
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+    </div>
+</div>
+

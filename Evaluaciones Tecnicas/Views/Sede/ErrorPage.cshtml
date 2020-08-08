@@ -1,0 +1,20 @@
+﻿@model GreenElectric.Entities.Usuario_Examen.Sede
+
+@{
+    ViewBag.Title = "ErrorPage";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+<div class="table-responsive ">
+    @Html.HiddenFor(Model => Model.Id)
+    <h4>No se puede agregrar o modificar la Sede <i>"@Html.DisplayFor(model => model.sede) "</i>de la empresa <i> "@Html.DisplayFor(model => model.empresa.empresa)"</i>.Ya existe  </h4>
+    <hr />
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Sede",new { id = Model.Id })'" />
+    </div>
+</div>

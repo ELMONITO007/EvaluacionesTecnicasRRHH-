@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GreenElectric.Entities.UsuarioRoles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr style="background-color:powderblue">
+            <th>
+                @Html.DisplayNameFor(model => model.usuarios.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.roles.name)
+            </th>
+            <th>
+                Permiso
+            </th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+
+            if (item.roles.id is null)
+            {
+
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuarios.UserName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.roles.name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modificar Permiso", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.usuarios.Id, idRol = item.roles.id }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.Id, idRol = item.roles.id }) |
+                        @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.Id })
+                    </td>
+                </tr>
+            }
+
+
+        }
+
+
+    </table>
+    @foreach (var item in Model)
+    {
+<div>
+    <input type="button" class="BotonVerde " style="float:left" value="Agregar permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id =item.usuarios.Id})'" />
+   
+</div>
+        break;
+    }
+    </div>

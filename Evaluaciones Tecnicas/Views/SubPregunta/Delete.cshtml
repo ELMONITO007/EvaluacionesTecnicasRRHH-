@@ -1,0 +1,34 @@
+﻿@model GreenElectric.Entities.SubPregunta
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div>
+    <h3>¿Esta seguro de eliminar la pregunta  <i>"@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i>?</h3>
+
+    <br />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-10">
+
+
+            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @readonly = "readonly", @style = "display: none;" } })
+            @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
+            <br />
+        </div>
+        <label hidden>
+            @Html.Label("Id_Pregunta", Model.Id.ToString())
+        </label>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="BotonVerde" />
+            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.Id})'" />
+        </div>
+
+    }
+</div>

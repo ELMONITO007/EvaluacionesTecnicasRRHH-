@@ -1,0 +1,56 @@
+﻿@model GreenElectric.Entities.Orden
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+
+        <tr style="background-color:powderblue">
+            <th>
+                @Html.DisplayNameFor(model => model.LaRespuesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroOrden)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model.listaOrden)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LaRespuesta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroOrden)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+
+                </td>
+            </tr>
+        }
+
+
+    </table>
+    <div>
+
+
+        <p>
+            <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Orden", new { id =Model.pregunta.Id })'" />
+
+        </p>
+
+
+        <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+    </div>
+
+</div>

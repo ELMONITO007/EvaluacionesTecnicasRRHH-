@@ -1,0 +1,21 @@
+﻿@model GreenElectric.Entities.Pregunta
+
+@{
+    ViewBag.Title = "ErrorCreate";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive ">
+    @Html.HiddenFor(Model => Model.Id)
+    <h4>No se puede agregrar mas Respuesta a la pregunta <i>"@Html.DisplayFor(model => model.LaPregunta) "</i>.Se alcanzo el maximo de Respuetas(5)  </h4>
+    <hr />
+
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Orden",new { id = Model.Id })'" />
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model GreenElectric.Entities.Pregunta
+
+@{
+    ViewBag.Title = "DetailsSubPregunta";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+<div class="table-responsive col-md-12">
+    <h4>Detalles de La Pregunta numero @Html.DisplayFor(model => model.Id)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LaPregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaPregunta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nivel.ElNivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nivel.ElNivel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPregunta.TipoDePregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoPregunta.TipoDePregunta)
+        </dd>
+
+
+
+
+    </dl>
+    <div>
+        <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "BotonVerde" })</h5>
+
+    </div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+    </div>
+</div>
+

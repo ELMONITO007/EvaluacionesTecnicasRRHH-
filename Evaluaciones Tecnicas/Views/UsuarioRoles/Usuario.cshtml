@@ -1,0 +1,59 @@
+﻿@model IEnumerable<GreenElectric.Entities.UsuarioRoles>
+
+@{
+    ViewBag.Title = "Usuario";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+<div >
+    <div>   <h4>Lista de Roles del Usuario
+           
+           @foreach (var item2 in Model)
+           {
+                <i>"  @Html.DisplayFor(modelItem2 => item2.usuarios.UserName) "</i>
+               break;
+           }
+
+
+           </h4></div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <tr style="background-color:powderblue ; max-width:300px">
+            <th  >
+                <h5>  @Html.DisplayNameFor(model => model.roles.name)</h5>
+            </th>
+            <th>
+                <h5>Permiso</h5>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="max-width:300px">
+                <td>
+                    @Html.DisplayFor(modelItem => item.roles.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
+                    @Html.ActionLink("Detalle", "Details", "Roles", new { id = int.Parse(item.roles.id) },null) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
+                    @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.id })
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+    <div>
+        <p>
+            @foreach (var item2 in Model)
+            {
+
+                <input type="button" class="BotonVerde " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles",new { id = item2.usuarios.id })'" />
+                <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioRoles")'" />
+                break;
+            }
+        </p>
+    </div>
+</div>

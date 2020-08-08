@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GreenElectric.Entities.Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr style="background-color:powderblue">
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                   
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Ver Roles", "Index", "UsuarioRoles", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        <p>
+            <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Usuario")'" />
+
+        </p>
+    </div>
+</div>
