@@ -2250,6 +2250,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Examen\" />
     <Folder Include="Controllers\Informes\" />
+    <Folder Include="PDF\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">

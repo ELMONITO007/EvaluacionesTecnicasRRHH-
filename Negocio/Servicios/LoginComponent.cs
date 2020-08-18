@@ -22,6 +22,7 @@ namespace Negocio
             }
             else
             {
+
                 return true;
             }
         }

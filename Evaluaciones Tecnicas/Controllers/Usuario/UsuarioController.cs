@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 using Negocio;
 using Entities;
 using System.Web.UI.WebControls;
-
-
+using Negocio.Servicios;
 
 namespace Evaluaciones.Controllers
 {
@@ -20,7 +19,7 @@ namespace Evaluaciones.Controllers
         public ActionResult Index()
         {
             UsuariosComponent usuariosComponent = new UsuariosComponent();
-
+           
             return View(usuariosComponent.Read());
         }
 
