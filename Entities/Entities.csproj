@@ -68,6 +68,7 @@
     <Compile Include="Servicios\Login\LoginError.cs" />
     <Compile Include="Servicios\Login\Roles.cs" />
     <Compile Include="Servicios\Login\UsuarioRoles.cs" />
+    <Compile Include="Servicios\PDF\PDF.cs" />
     <Compile Include="Usuario\Direccion.cs" />
     <Compile Include="Usuario\Empresa.cs" />
     <Compile Include="Usuario\Gerencia.cs" />

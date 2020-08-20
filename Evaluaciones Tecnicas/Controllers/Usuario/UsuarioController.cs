@@ -30,6 +30,8 @@ namespace Evaluaciones.Controllers
         }
         public ActionResult Create()
         {
+
+
             return View();
         }
         // Post: Usuario/Create
@@ -67,7 +69,21 @@ namespace Evaluaciones.Controllers
 
         }
 
-        public ActionResult ErrorPage(String Username)
+
+        public ActionResult UsuarioExamen()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UsuarioExamen(FormCollection collection)
+        {
+            return View();
+
+        }
+
+            public ActionResult ErrorPage(String Username)
         {
             Usuarios usuarios = new Usuarios();
             usuarios.UserName = Username;

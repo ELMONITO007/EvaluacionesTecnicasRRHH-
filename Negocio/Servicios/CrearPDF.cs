@@ -10,11 +10,15 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Web.Hosting;
 using System.Diagnostics;
+using Data.Servicios;
+using Data;
 
 namespace Negocio.Servicios
 {
- public   class CrearPDF
+ public   class CrearPDF :IRepository<PDF>
     {
+        
+
         public bool VerificarExisteArchivo(string path)
         {
             if (File.Exists(path))
@@ -28,10 +32,24 @@ namespace Negocio.Servicios
             
         
         }
-        public void CrearPDFParaUsuarioExamen(UsuarioParaExamen usuarioParaExamen)
+  
+
+            
+
+          
+
+
+        public void AbrirPDF(string email)
         {
-            string ruta = HostingEnvironment.MapPath("~/PDF/" + usuarioParaExamen.usuarios.Email + "2.pdf");
-            string rutaConPass = HostingEnvironment.MapPath("~/PDF/" + usuarioParaExamen.usuarios.Email + ".pdf");
+            Process.Start(HostingEnvironment.MapPath("~/PDF/" + email + ".pdf"));
+
+        }
+
+        public PDF Create(PDF entity)
+        {
+            string ruta = HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + "2.pdf");
+            string rutaConPass = HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + ".pdf");
+            PDF pDF = new PDF();
             if (VerificarExisteArchivo(rutaConPass))
             {
                 AbrirPDF(rutaConPass);
@@ -42,13 +60,13 @@ namespace Negocio.Servicios
                 Document doc = new Document(PageSize.LETTER);
                 // Indicamos donde vamos a guardar el documento
                 PdfWriter writer = PdfWriter.GetInstance(doc,
-                                new FileStream(HostingEnvironment.MapPath("~/PDF/" + usuarioParaExamen.usuarios.Email + "2.pdf"), FileMode.Create));
+                                new FileStream(HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + "2.pdf"), FileMode.Create));
 
-                
+
                 // Se le coloca el título y el autor
 
 
-                doc.AddCreator(usuarioParaExamen.sede.empresa.empresa);
+                doc.AddCreator(entity.unUsuario.sede.empresa.empresa);
 
                 // Abrimos el archivo
                 doc.Open();
@@ -58,7 +76,7 @@ namespace Negocio.Servicios
 
 
                 // Creamos la imagen y le ajustamos el tamaño
-                if (usuarioParaExamen.sede.empresa.empresa == "TB")
+                if (entity.unUsuario.sede.empresa.empresa == "TB")
                 {
                     iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(HostingEnvironment.MapPath("~/img/TB.png"));
                     imagen.BorderWidth = 0;
@@ -80,8 +98,6 @@ namespace Negocio.Servicios
                     // Insertamos la imagen en el documento
                     doc.Add(imagen);
                 }
-
-
 
 
                 // Se escribe el encabezamiento en el documento
@@ -111,8 +127,8 @@ namespace Negocio.Servicios
                 tblPrueba.AddCell(clContraseña);
 
                 // se llena la tabla con información
-                clUsuario = new PdfPCell(new Phrase(usuarioParaExamen.usuarios.Email, _standardFont));
-                clContraseña = new PdfPCell(new Phrase(usuarioParaExamen.usuarios.Password, _standardFont));
+                clUsuario = new PdfPCell(new Phrase(entity.unUsuario.usuarios.Email, _standardFont));
+                clContraseña = new PdfPCell(new Phrase(entity.unUsuario.usuarios.Password, _standardFont));
 
                 // Añadimos las celdas a la tabla
                 tblPrueba.AddCell(clUsuario);
@@ -136,20 +152,51 @@ namespace Negocio.Servicios
                 doc.Close();
                 writer.Close();
                 File.Delete(ruta);
+
+
+                //se guarda la ubicacion del archivo
+                PDFDac pDFDac = new PDFDac();
+          
+                pDF.path = "~/PDF/" +  entity.unUsuario.usuarios.Email + ".pdf";
+                pDF.unUsuario = entity.unUsuario;
+                pDFDac.Create(pDF);
+               
             }
-
-            
-
-           
-        
+            return pDF;
         }
 
-
-        public void AbrirPDF(string email)
+        public List<PDF> Read()
         {
-            Process.Start(HostingEnvironment.MapPath("~/PDF/" + email + ".pdf"));
+            PDFDac pDFDac = new PDFDac();
+            List<PDF> result = new List<PDF>();
+            result = pDFDac.Read();
+            List<PDF> pDFs = new List<PDF>();
+            foreach (PDF item in result)
+            {
+                PDF pDF = new PDF();
+                UsuarioDac usuarioDac = new UsuarioDac();
 
+                pDF.path = item.path;
+                pDF.unUsuario.usuarios = usuarioDac.ReadBy(item.unUsuario.usuarios.Id);
+                pDFs.Add(pDF);
+            }
+            return pDFs;
         }
 
+        public PDF ReadBy(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(PDF entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            PDFDac pDFDac = new PDFDac();
+            pDFDac.Delete(id);
+        }
     }
 }

@@ -40,7 +40,9 @@ namespace Negocio
                 UsuarioParaexamenDAC usuarioParaexamenDAC = new UsuarioParaexamenDAC();
                 usuarioParaexamenDAC.Create(objeto);
                 ;
-                crearPDF.CrearPDFParaUsuarioExamen(objeto);
+                PDF pDF = new PDF();
+                pDF.unUsuario = objeto;
+                crearPDF.Create(pDF);
 
 
             }
@@ -55,8 +57,9 @@ namespace Negocio
                 if (!bloqueado)
                 {
                     usuariosComponent.Desloquear(unusuario.Id);
-                    crearPDF.AbrirPDF(objeto.usuarios.Email);
+                   
                 }
+                crearPDF.AbrirPDF(objeto.usuarios.Email);
 
             }
             return objeto;

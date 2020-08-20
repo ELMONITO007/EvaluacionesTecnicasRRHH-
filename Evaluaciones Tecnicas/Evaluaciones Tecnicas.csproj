@@ -1912,6 +1912,7 @@
     <Compile Include="Controllers\Preguntas y Respuestas\SubPreguntaController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\TipoPreguntaController.cs" />
     <Compile Include="Controllers\Servicios\LoginController.cs" />
+    <Compile Include="Controllers\Servicios\PDFController.cs" />
     <Compile Include="Controllers\Servicios\RolesController.cs" />
     <Compile Include="Controllers\Servicios\UsuarioRolesController.cs" />
     <Compile Include="Controllers\Usuario\DireccionController.cs" />
@@ -2239,6 +2240,9 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\PDF\Index.cshtml" />
+    <Content Include="Views\PDF\Abrir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
