@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Evaluaciones.Controllers.Usuario_Examen
 {
-    [Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+    //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
     public class GerenciaController : Controller
     {
         // GET: Gerencia

@@ -10,7 +10,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 {
     public class JefaturaController : Controller
     {
-        [Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+        //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
         // GET: Jefatura
         public ActionResult Index()
         {

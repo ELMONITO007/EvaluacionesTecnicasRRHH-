@@ -13,27 +13,37 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Agregar una nueva empresa</h4>
-    <hr />
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Crear una nueva empresa</h6>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <h5>
-            @Html.LabelFor(model => model.empresa, htmlAttributes: new { @class = "control-label col-md-2" })
-        </h5>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.empresa, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.empresa, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                    <h5 class="text-justify">Nombre de la empresa</h5>
+                    @Html.EditorFor(model => model.empresa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.empresa, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "empresa")'" />
+
+                <br />
+
+                <input type="submit" value="Crear" class="btn btn-outline-info" />
+
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 ">
-            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Empresa")'" />
-            <input type="submit" value="Crear" class="BotonVerde" />
-        </div>
-    </div>
-</div>
 }
+
 

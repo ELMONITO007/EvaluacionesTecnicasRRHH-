@@ -7,107 +7,82 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-<div class="table-responsive">
-    <div>
-        @using (Html.BeginForm())
-        {
-        <div class="table-responsive">
-            <div>
-                <table class="table table-bordered table-hover">
-                    <tr >
+<div id="content-wrapper" class="d-flex flex-column">
 
-                        <th>
-                            Categoria
-                        </th>
-                        <th style="min-width:250px">
-                            @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
-                        </th>
-                        <td >
-                           Pregunta
-                        </td>
-                        <td style="min-width:250px">
-                            @Html.DropDownList("Pregunta", (SelectList)ViewBag.categoriaPregunta, new { @class = "form-control" })
-                        </td>
-                        <th></th>
-                    </tr>
+    <!-- Main Content -->
+    <div id="content">
 
 
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
 
-
-                </table>
-            </div>
-
-            <div class="col-md-12" style="max-width:500px ">
-               
-                @Html.TextBox("preguntaParcial",null, new { @maxlength = "50", @class = "form-control" })
-                <h5>Escribe toda la pregunta, varias palabras o solo una</h5>
-                <br />
-            </div>
-
-        </div>  
-
-
-
-
-                <div class="col-md-10">
-                    <input type="submit" value="Buscar" class="BotonVerde" />
-                    <input type="button" class="BotonVerde " style="float:right" value="Ver todo" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de Preguntas</h6>
                 </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-                <br />
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Pregunta</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+                                        </tr>
+                                    </thead>
 
-                }
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Pregunta)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Detalles Pregunta", "Details", "Preguntas", new { id = item.ID_Pregunta }, null)|
+                                                    @Html.ActionLink("Eliminar Pregunta", "Delete", "Preguntas", new { id = item.ID_Pregunta }, null)|
+                                                    @Html.ActionLink("Ver Categorias", "Categoria", new { id = item.ID_Pregunta })|
+                                                    @Html.ActionLink("Ver Respuestas", "Respuesta", "Respuestas", new { Id_Pregunta = item.ID_Pregunta }, null)|
+
+                                                    @if (item.TipoPregunta == "MultipleChoice")
+                                                    {
+                                                        @Html.ActionLink("Salud", "SaludMultipleChoice", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                                                    }
+                                                    @if (item.TipoPregunta == "Ordenado")
+                                                    {
+                                                        @Html.ActionLink("Salud", "SaludOrdenado", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                                                    }
+                                                    @if (item.TipoPregunta == "MultipleChoiceCompuesto")
+                                                    {
+                                                        @Html.ActionLink("Salud", "SaludMultipleChoiceCompuesto", "SaludPregunta", new { id = item.ID_Pregunta }, null)
+                                                    }
+
+                                                </td>
+
+
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    <table class="table table-bordered table-hover">
-        <tr style="max-width:450px" >
+        <!-- /.container-fluid -->
 
-            <th style="max-width:450px">
-                @Html.DisplayNameFor(model => model.Pregunta)
-            </th>
-
-            
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr style="max-width:450px">
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pregunta)
-                </td>
-
-              
-                <td style="min-width:650px">
-                    @Html.ActionLink("Detalles Pregunta", "Details", "Preguntas", new { id = item.ID_Pregunta }, null)|
-                    @Html.ActionLink("Eliminar Pregunta", "Delete", "Preguntas", new { id = item.ID_Pregunta }, null)|
-                    @Html.ActionLink("Ver Categorias", "Categoria", new { id = item.ID_Pregunta })|
-                    @Html.ActionLink("Ver Respuestas", "Respuesta", "Respuestas", new { Id_Pregunta = item.ID_Pregunta }, null)|
-
-                    @if (item.TipoPregunta == "MultipleChoice")
-                    {
-                        @Html.ActionLink("Salud", "SaludMultipleChoice", "SaludPregunta", new { id = item.ID_Pregunta }, null)
-                    }
-                    @if (item.TipoPregunta == "Ordenado")
-                    {
-                        @Html.ActionLink("Salud", "SaludOrdenado", "SaludPregunta", new { id = item.ID_Pregunta }, null)
-                    }
-                    @if (item.TipoPregunta == "MultipleChoiceCompuesto")
-                    {
-                        @Html.ActionLink("Salud", "SaludMultipleChoiceCompuesto", "SaludPregunta", new { id = item.ID_Pregunta }, null)
-                    }
-
-                </td>
-            </tr>
-       
-
-        }
-
-    </table>
-    <div>
-        <p>
-            <input type="button" class="BotonVerde " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Preguntas")'" />
-        </p>
     </div>
+    <!-- End of Main Content -->
+
+
 </div>

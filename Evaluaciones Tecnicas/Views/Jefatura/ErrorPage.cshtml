@@ -8,13 +8,29 @@
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
-<div class="table-responsive ">
-    @Html.HiddenFor(Model => Model.Id)
-    <h4>No se puede agregrar o modificar la Jefatura <i>"@Html.DisplayFor(model => model.jefatura) "</i>.Ya existe  </h4>
-    <hr />
+<div id="content-wrapper" class="d-flex flex-column">
 
-    <div>
+    <!-- Main Content -->
+    <div id="content">
 
-        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "Jefatura",new { id = Model.Id })'" />
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- 404 Error Text -->
+            <div class="text-center">
+                <div class="error mx-auto" data-text="Error">Error</div>
+                <p class="lead text-gray-800 mb-5">No se puede crear o actualizar la jefatura <i>"@Html.DisplayFor(model => model.jefatura) "</i>.Ya existe  </h4></p>
+                <p class="text-gray-500 mb-0">Por favor colocar otro nombre</p>
+                <a href="@Url.Action("Index", "jefatura")">← volver al inicio</a>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
     </div>
+    <!-- End of Main Content -->
+
+
 </div>

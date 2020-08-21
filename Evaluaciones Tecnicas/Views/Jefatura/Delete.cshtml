@@ -7,7 +7,7 @@
 
     <link href="~/Content/modern-business.css" rel="stylesheet" />
     <div>
-        <h3>¿Esta seguro de eliminar la Empresa  <i>"@Html.DisplayFor(model => model.jefatura)"</i>?</h3>
+        <h3>¿Esta seguro de eliminar la jefatura  <i>"@Html.DisplayFor(model => model.jefatura)"</i>?</h3>
 
 
         <br />
@@ -17,8 +17,9 @@
             @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="BotonVerde" />
-        <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Jefatura")'" />
+        <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+
+        <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "jefatura")'" />
     </div>
         }
     </div>

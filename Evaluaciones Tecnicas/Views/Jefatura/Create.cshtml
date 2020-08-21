@@ -8,30 +8,41 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Agregar una nueva Jefatura</h4>
-    <hr />
-   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="form-group">
-    <h5>
-        @Html.LabelFor(model => model.jefatura, htmlAttributes: new { @class = "control-label col-md-2" })
-    </h5>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.jefatura, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.jefatura, "", new { @class = "text-danger" })
-        </div>
-</div>
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Crear una Jefatura</h6>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 ">
-            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Jefatura")'" />
-            <input type="submit" value="Crear" class="BotonVerde" />
+
+
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                    <h5 class="text-justify">Nombre de la jefatura</h5>
+                    @Html.EditorFor(model => model.jefatura, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.jefatura, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "jefatura")'" />
+
+                <br />
+
+                <input type="submit" value="Crear" class="btn btn-outline-info" />
+
+            </div>
         </div>
     </div>
-</div>
 }
 

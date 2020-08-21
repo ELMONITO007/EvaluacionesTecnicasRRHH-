@@ -19,24 +19,37 @@
 
 
 <form method="post" enctype="multipart/form-data">
-   
-       
-    <div>
-        <h4> Agregar una categoria a la pregunta <i> "@Html.DisplayFor(model => model.Pregunta)"</i></h4>
-        <hr />
-        @Html.HiddenFor(model => model.ID_Pregunta)
-        <div style="max-width:250px">
-            @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista as SelectList, new { @class = "form-control" })
+
+
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Crear una categoria a la pregunta <i>"@Html.DisplayFor(model => model.Pregunta)"</i></h6>
+
+
+
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                    <h5 class="text-justify">Categoria</h5>
+                    @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista as SelectList, new { @class = "form-control" })
+
+
+                </div>
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+
+                <br />
+
+                <input type="submit" value="Crear" class="btn btn-outline-info" />
+
+            </div>
         </div>
-
-
-        <br />
-        <br />
-        <div>
-            <button type="submit" , class="AzulButton">Agregar</button>
-            <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
-        </div>
-
     </div>
 </form>
 

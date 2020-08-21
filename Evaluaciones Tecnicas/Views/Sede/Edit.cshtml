@@ -11,44 +11,50 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Editar la Sede <i> "@Html.DisplayFor(model => model.sede)"</i> de la empresa <i> "@Html.DisplayFor(model => model.empresa.empresa)"</i></h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        <h5>  @Html.LabelFor(model => model.sede, htmlAttributes: new { @class = "control-label col-md-2" })</h5>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.sede, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
+
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Editar la sede @Html.DisplayFor(model => model.sede)</h6>
+
+                </div>
+
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+
+
+
+
+
+                    <h5 class="text-justify">Nombre de la sede</h5>
+                    @Html.EditorFor(model => model.sede, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
+                    <br />
+
+                    <h5 class="text-justify">Codigo</h5>
+                    @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
+                    <br />
+
+                    <h5 class="text-justify">Empresa</h5>
+                    @Html.DropDownListFor(model => model.empresa.Id, (SelectList)ViewBag.EmpresaLista as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.empresa.Id, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "sede")'" />
+                <br />
+                <input type="submit" value="Guardar" class="btn btn-outline-info" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <h5>
-            @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label col-md-2" })
-        </h5>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <h5>  @Html.LabelFor(model => model.empresa.empresa, htmlAttributes: new { @class = "control-label col-md-2" })</h5>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.empresa.Id, (SelectList)ViewBag.EmpresaLista as SelectList, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.empresa.Id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Sede" )'" />
-            <input type="submit" value="Actualizar" class="BotonVerde" />
-        </div>
-    </div>
-</div>
 }
 

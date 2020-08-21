@@ -5,52 +5,57 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
+<link href="~/Content/modern-business.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Editar la Respuesta <i> "@Html.DisplayFor(model => model.LaRespuesta)"</i></h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
 
-        <div class="col-md-10">
-            <h5 class="text-justify">Respuesta</h5>
-            @Html.EditorFor(model => model.LaRespuesta, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.LaRespuesta, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
 
-        <div class="col-md-10">
-            <h5 class="text-justify">¿Es la correcta?</h5>
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Correcta)
-                @Html.ValidationMessageFor(model => model.Correcta, "", new { @class = "text-danger" })
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Editar la respuesta @Html.DisplayFor(model => model.respuestas)</h6>
+
+                </div>
+
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+
+
+
+
+
+                    <h5 class="text-justify">Respuesta</h5>
+                    @Html.EditorFor(model => model.LaRespuesta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LaRespuesta, "", new { @class = "text-danger" })
+
+
+                    <h5 class="text-justify">Respuesta</h5>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Correcta)
+                        @Html.ValidationMessageFor(model => model.Correcta, "", new { @class = "text-danger" })
+                    </div>
+
+                    <h5 class="text-justify">Numero de Pregunta</h5>
+
+                    @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoice",new { id = Model.pregunta.Id })'" />
+                <br />
+                <input type="submit" value="Guardar" class="btn btn-outline-info" />
             </div>
         </div>
     </div>
-    <div class="form-group">
-
-        <div class="col-md-10">
-            <h5 class="text-justify">Numero de Pregunta</h5>
-
-            @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoice",new { id = Model.pregunta.Id })'" />
-            <input type="submit" value="Actualizar" class="BotonVerde" />
-        </div>
-    </div>
-</div>
-        }
+}

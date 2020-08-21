@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Evaluaciones.Controllers
 {
-    [Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+    //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
 
     public class CategoriaController : Controller
     {

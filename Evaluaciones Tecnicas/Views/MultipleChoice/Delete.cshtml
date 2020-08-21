@@ -17,17 +17,20 @@
     {
         @Html.AntiForgeryToken()
         <div class="col-md-10">
-          
 
-            @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly" ,  @style = "display: none;" } })
+
+            @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly", @style = "display: none;" } })
             @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
-        <br />
+            <br />
+        </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoice",new { id = Model.pregunta.Id })'" />
         </div>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="BotonVerde" />
-            <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoice",new { id = Model.pregunta.Id })'" />
-        </div>
+
+        
 
     }
 </div>

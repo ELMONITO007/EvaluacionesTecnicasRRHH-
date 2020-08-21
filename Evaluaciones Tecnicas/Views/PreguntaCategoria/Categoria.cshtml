@@ -6,52 +6,82 @@
 }
     <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-    <div class="table-responsive col-md-12">
+    <div id="content-wrapper" class="d-flex flex-column">
 
-        <div>
-            @foreach (var item2 in Model)
-            {
-                <h4>Pregunta: @Html.DisplayFor(modelItem => item2.Pregunta)</h4>
-                break;
-            }
-            <br />
+        <!-- Main Content -->
+        <div id="content">
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+
+                            @foreach (var item2 in Model)
+                            {
+                             <h6>   Pregunta: @Html.DisplayFor(modelItem => item2.Pregunta)</h6>
+                                break;
+                            }
+
+
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Categoria</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">
+                                                        @Html.DisplayFor(modelItem => item.Categoria)
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Agregar Categoria", "Create", new { id = item.ID_Pregunta }) |
+                                                       
+                                                        @Html.ActionLink("Eliminar categoria", "Delete", new
+                                                   {
+                                                       id_Pregunta = item.ID_Pregunta,
+                                                       Id_Categoria = item.ID_Categoria
+                                                   })
+
+                                                    </td>
+
+
+                                                </tr>
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
         </div>
-        <table class="table table-bordered table-hover">
-            <tr style="background-color:powderblue">
+        <!-- End of Main Content -->
 
-
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Categoria)
-                </th>
-                <th></th>
-            </tr>
-
-
-
-            @foreach (var item in Model)
-            {
-                <tr>
-
-
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoria)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Agregar Categoria", "Create", new { id=item.ID_Pregunta }) |
-                        @Html.ActionLink("Detalles de la Categoria", "Details", "Categoria", new { id = item.ID_Categoria }, null)|
-                        @Html.ActionLink("Eliminar categoria", "Delete", new { id_Pregunta = item.ID_Pregunta, Id_Categoria = item.ID_Categoria })
-                    </td>
-                </tr>
-            }
-
-        </table>
-
-        <div class="form-actions no-color">
-         
-         
-            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
-        </div>
 
     </div>

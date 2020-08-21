@@ -24,42 +24,43 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                        <thead>
-                                                <tr role="row">
-                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Rol</th>
-                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
-                                           </tr>
-                                                </thead>
-                                       
-                                        <tbody>
 
-                                            @foreach (var item in Model)
-                                            {
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">
-                                                        @Html.DisplayFor(modelItem => item.name)
-                                                    </td>
-                                                    <td>
-                                                        @Html.ActionLink("Editar", "Edit", new { id = int.Parse(item.id) }) |
-                                                        @Html.ActionLink("Detalles", "Details", new { id = int.Parse(item.id) }) |
-                                                        @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.id) }) |
-                                                        @Html.ActionLink("Ver Usuarios", "Roles", "UsuarioRoles", new { id = item.id }, null)
-                                                    </td>
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Rol</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.name)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Editar", "Edit", new { id = int.Parse(item.id) }) |
+                                                    @Html.ActionLink("Detalles", "Details", new { id = int.Parse(item.id) }) |
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.id) }) |
+                                                    @Html.ActionLink("Ver Usuarios", "Roles", "UsuarioRoles", new { id = item.id }, null)
+                                                </td>
 
 
-                                                </tr>
-                                            }
+                                            </tr>
+                                        }
 
-                                            
 
-                                        </tbody>
-                                    </table>
-                                </div>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <input type="button" class="btn btn-outline-primary " style="float:right" value="Crear" onclick="location.href='@Url.Action("create", "roles")'" />
                 </div>
             </div>
 
@@ -68,14 +69,6 @@
 
     </div>
     <!-- End of Main Content -->
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright © Your Website 2020</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+   
 
 </div>

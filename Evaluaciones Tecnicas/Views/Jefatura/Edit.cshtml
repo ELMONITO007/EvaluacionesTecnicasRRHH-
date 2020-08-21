@@ -9,34 +9,44 @@
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Editar la Jefatura <i> "@Html.DisplayFor(model => model.jefatura)"</i></h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            <h5>   @Html.LabelFor(model => model.jefatura, htmlAttributes: new { @class = "control-label col-md-2" })</h5>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.jefatura, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.jefatura, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Editar la Jefatura @Html.DisplayFor(model => model.jefatura)</h6>
+
+                </div>
+
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+
+
+
+
+
+                    <h5 class="text-justify">Nombre de la Gerencia</h5>
+                    @Html.EditorFor(model => model.jefatura, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.jefatura, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "jefatura")'" />
                 <br />
-                <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Jefatura" )'" />
-                <input type="submit" value="Actualizar" class="BotonVerde" />
+                <input type="submit" value="Guardar" class="btn btn-outline-info" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
