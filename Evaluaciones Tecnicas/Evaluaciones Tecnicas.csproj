@@ -1922,6 +1922,7 @@
     <Compile Include="Controllers\Usuario\SectorController.cs" />
     <Compile Include="Controllers\Usuario\SedeController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
+    <Compile Include="EntityBase.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
