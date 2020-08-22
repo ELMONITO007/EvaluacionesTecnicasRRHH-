@@ -16,8 +16,9 @@
             @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="BotonVerde" />
-        <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.id_SubPregunta})'" />
+        <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+
+        <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.id_SubPregunta})'" />
     </div>
         }
     </div>

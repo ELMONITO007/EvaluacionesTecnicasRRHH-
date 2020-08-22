@@ -11,7 +11,7 @@ using Negocio;
 
 namespace Evaluaciones.Controllers
 {
-    [Authorize(Roles = "Administrador,CreadorPreguntas")]//para entrar en admin debe estar logueado y  asignarle el rol
+    //[Authorize(Roles = "Administrador,CreadorPreguntas")]//para entrar en admin debe estar logueado y  asignarle el rol
 
     public class MultipleChoiceCompuestoController : Controller
     {

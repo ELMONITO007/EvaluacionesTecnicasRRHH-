@@ -5,59 +5,91 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
+<link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
-    <div>
-        <h2> Lista de Respuesta de la pregunta <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)" </i> </h2>
-        <br />
-        <div>
-           @{ int aas =Model.pregunta.Id ;}
-            @foreach (Entities.Pregunta item in Model.ListaSubPreguntas)
-            {
-
-                <h3>  @Html.DisplayFor(modelItem => item.LaPregunta)    </h3>
-                <table class="table">
-                    <tr>
-                        <th>
-                            Respuesta
-                        </th>
-                        <th>
-                            ¿Es Correcta?
-                        </th>
-
-                        <th><input type="button" class="BotonVerde " style="float:left" value="Detalles" onclick="location.href='@Url.Action("Details", "SubPregunta",new { id=item.Id,id_Pregunta=aas})'" />  &nbsp  <input type="button" class="BotonVerde " style="float:left" value="Agregar Respuesta" onclick="location.href='@Url.Action("Create", "MultipleChoiceCompuesto",new { id=item.Id,id_Pregunta=aas})'" /></th>
-                    </tr>
-
-                    @foreach (var respuesta in item.ListaMC)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => respuesta.LaRespuesta)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => respuesta.Correcta)
-                              
-                            </td>
-
-                            <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = respuesta.Id, id_Pregunta = aas }) |
-                                
-                                @Html.ActionLink("Eliminar", "Delete", new { id = respuesta.Id, id_Pregunta = aas })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
+<div id="content-wrapper" class="d-flex flex-column">
+          @{ int aas =Model.pregunta.Id ;}
+          <!-- Main Content -->
+        <div id="content">
 
 
-            }
+       <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary"> Lista de Respuesta de la pregunta <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)" </i> </h6>
+                    </div>
+
+                    <div class="card-body">
+                        @foreach (Entities.Pregunta item in Model.ListaSubPreguntas)
+                        {
+
+                            <div class="table-responsive">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary"> Item <i> "@Html.DisplayFor(model => item.LaPregunta)" </i> </h6>
+                                </div>
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                                    <div class="col-sm-12">
+
+                                        <table class="table table-bordered dataTable">
+
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Respuesta</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">¿Es Correcta?</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;"><input type="button" class="btn btn-outline-primary " style="float:left" value="Detalles" onclick="location.href='@Url.Action("Details", "SubPregunta",new { id=item.Id,id_Pregunta=aas})'" />  &nbsp  <input type="button" class="btn btn-outline-primary " style="float:left" value="Agregar Respuesta" onclick="location.href='@Url.Action("Create", "MultipleChoiceCompuesto",new { id=item.Id,id_Pregunta=aas})'" /></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                @foreach (var respuesta in item.ListaMC)
+                                                {
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">
+                                                            @Html.DisplayFor(modelItem => respuesta.LaRespuesta)
+                                                        </td>
+                                                        <td class="sorting_1">
+                                                            @Html.DisplayFor(modelItem => respuesta.Correcta)
+
+                                                        </td>
+
+                                                        <td class="sorting_1">
+                                                            @Html.ActionLink("Editar", "Edit", new { id = respuesta.Id, id_Pregunta = aas }) |
+
+                                                            @Html.ActionLink("Eliminar", "Delete", new { id = respuesta.Id, id_Pregunta = aas })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                </div>
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Crear" onclick="location.href='@Url.Action("create", "SubPregunta", new { id = Model.pregunta.Id })'" />
+                <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            </div>
+              <!-- /.container-fluid -->
+
         </div>
-       
-        <div>
+       <!-- End of Main Content -->
 
-            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
-            <input type="button" class="BotonVerde " style="float:right" value="Agregar una SubPregunta" onclick="location.href='@Url.Action("create", "SubPregunta",new { id=Model.pregunta.Id})'" />
-        </div>
 
     </div>
