@@ -7,77 +7,123 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-<div>
-    <h4>Salud de la pregunta   <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i></h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SaludDeLaPregunta)
-            <i style="text-decoration:none">&nbsp</i>
-
-            @if (Model.SaludDeLaPregunta == true)
-            {
-                <img src="~/img/UnCheck.png" width="50" height="50" />
-            }
-            @if (Model.SaludDeLaPregunta == false)
-            {
-                <img src="~/img/check.png" width="50" height="50" />
-            }
-        </dt>
-        <dt style="color:black"> Analisis de la pregunta</dt>
-        &nbsp
-        &nbsp
-        <dt>
-            1. @Html.DisplayNameFor(model => model.TieneMasDeDosRespuestas)
-            &nbsp
-            @if (Model.TieneMasDeDosRespuestas == true)
-            {
-                <img src="~/img/UnCheck.png" width="50" height="50" />
-            }
-            @if (Model.TieneMasDeDosRespuestas == false)
-            {
-                <img src="~/img/check.png" width="50" height="50" />
-            }
 
 
-        </dt>
-
-        <dt>
-            2.   @Html.DisplayNameFor(model => model.TieneMasDeDosSubpreguntas)
-            &nbsp
 
 
-            @if (Model.TieneMasDeDosSubpreguntas == true)
-            {
-                <img src="~/img/UnCheck.png" width="50" height="50" />
-            }
-            @if (Model.TieneMasDeDosSubpreguntas == false)
-            {
-                <img src="~/img/check.png" width="50" height="50" />
-            }
-        </dt>
-        <dt>
-            3.   @Html.DisplayNameFor(model => model.TienePreguntaCorrecta)
-            &nbsp
+
+<div class="d-flex flex-column" style="align-content:center">
+    <div class="container-fluid">
+        <div class="card shadow mb-4 ">
+            <div class=" card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Salud de la pregunta   <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i>
+                </h6>
 
 
-            @if (Model.TienePreguntaCorrecta == true)
-            {
-                <img src="~/img/UnCheck.png" width="50" height="50" />
-            }
-            @if (Model.TienePreguntaCorrecta == false)
-            {
-                <img src="~/img/check.png" width="50" height="50" />
-            }
-        </dt>
 
-    </dl>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
-            <input type="button" class="BotonVerde " style="float:right" value="Ver Respuesta" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.pregunta.Id})'" />
+            </div>
+            <div class="card-body">
+
+                <dl class="dl-horizontal">
+
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SaludDeLaPregunta)
+                        <i style="text-decoration:none">&nbsp</i>
+
+                        @if (Model.SaludDeLaPregunta == true)
+                        {
+                    <a href="#" class="btn btn-success btn-circle">
+                        <i class="fas fa-check"></i>
+                    </a>
+                        }
+                        @if (Model.SaludDeLaPregunta == false)
+                        {
+                    <a href="#" class="btn btn-danger btn-circle">
+                        <i class="fas fa-cross"></i>
+                    </a>
+                        }
+                    </dt>
+                    <dt style="color:black ; font-size:30px"> Analisis de la pregunta:</dt>
+
+                    &nbsp
+                    &nbsp
+
+                    <dt>
+                        1. @Html.DisplayNameFor(model => model.TieneMasDeDosRespuestas)
+                        &nbsp
+                        @if (Model.TieneMasDeDosRespuestas == true)
+                        {
+                        <a href="#" class="btn btn-success btn-circle">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        }
+                        @if (Model.TieneMasDeDosRespuestas == false)
+                        {
+                    <a href="#" class="btn btn-danger btn-circle">
+                        <i class="fas fa-cross"></i>
+                    </a>
+                        }
+                    </dt>
+                    &nbsp
+                    <dt>
+                        2.   @Html.DisplayNameFor(model => model.TieneMasDeDosSubpreguntas)
+                        &nbsp
+
+
+                        @if (Model.TieneMasDeDosSubpreguntas == true)
+                        {
+                        <a href="#" class="btn btn-success btn-circle">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        
+                        }
+                        @if (Model.TieneMasDeDosSubpreguntas == false)
+                        {
+                          <a href="#" class="btn btn-danger btn-circle">
+                          <i class="fas fa-cross"></i>
+                          </a>
+                        }
+                    </dt>
+                    &nbsp
+                    &nbsp
+                    <dt>
+
+                        3.   @Html.DisplayNameFor(model => model.TienePreguntaCorrecta)
+                        &nbsp
+
+
+                        @if (Model.TienePreguntaCorrecta == true)
+                        {
+                        <a href="#" class="btn btn-success btn-circle">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        }
+                        @if (Model.TienePreguntaCorrecta == false)
+                        {
+                           <a href="#" class="btn btn-danger btn-circle">
+                            <i class="fas fa-cross"></i>
+                             </a>
+                        }
+
+                    </dt>
+
+
+                </dl>
+
+
+
+            </div>
+
+
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Ver Respuesta" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.pregunta.Id})'" />
+
         </div>
+
+
     </div>
 </div>
-</p>

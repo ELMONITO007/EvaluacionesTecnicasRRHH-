@@ -50,8 +50,11 @@
                                                 </td>
                                                 <td>
                                                     @Html.ActionLink("Editar", "Edit", new { id = int.Parse(item.Id.ToString()) }) |
-                                                   
+
                                                     @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
+                                                    @Html.ActionLink("Salud", "SaludTipoPregunta", new { id = int.Parse(item.Id.ToString()) }) |
+
+                                                
 
                                                 </td>
 

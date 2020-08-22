@@ -29,9 +29,20 @@ namespace Negocio
         public override List<Orden> Read()
         {
             List<Orden> result = default(List<Orden>);
+            List<Orden> resultado = default(List<Orden>);
+            PreguntaDAC preguntaDac = new PreguntaDAC();
             var orden = new OrdenDAC();
             result = orden.Read();
-            return result;
+            foreach (Orden item in result)
+            {
+                Pregunta pregunta = new Pregunta();
+                pregunta = preguntaDac.ReadBy(item.pregunta.Id);
+                item.pregunta = pregunta;
+                resultado.Add(item);
+
+            }
+
+            return resultado;
         }
 
 
@@ -62,14 +73,25 @@ namespace Negocio
         }
         public Orden listaRespuestaOrdenAlAzar(int id_pregunta)
         {
-
+            PreguntaDAC preguntaDac = new PreguntaDAC();
 
             Orden result = new Orden();
             PreguntaComponent preguntaComponent = new PreguntaComponent();
             result.pregunta = preguntaComponent.ReadBy(id_pregunta);
             var ordenDAC = new OrdenDAC();
+            List<Orden> ordenes = new List<Orden>();
             result.listaOrden = ordenDAC.listaRespuestaOrdenAlAzar(id_pregunta);
+            foreach (Orden item in result.listaOrden)
+            {
+                Orden orden = new Orden();
+                Pregunta pregunta = new Pregunta();
+                pregunta = preguntaDac.ReadBy(item.pregunta.Id);
+                orden = item;
+                orden.pregunta = pregunta;
+                ordenes.Add(orden);
 
+            }
+            result.listaOrden = ordenes;
             return result;
         }
         public List<int> OrdenDiponible(int id_pregunta)
