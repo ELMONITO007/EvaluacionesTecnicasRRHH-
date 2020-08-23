@@ -24,34 +24,55 @@ namespace Negocio
         }
         public override Pregunta Create(Pregunta objeto)
         {
+            
+
 
             Pregunta result = default(Pregunta);
             var preguntaNivel = new PreguntaDAC();
             objeto.SubPregunta = false;
-            if (objeto.Imagen=="")
+            Pregunta verificar = new Pregunta();
+            verificar = preguntaNivel.ReadByPregunta(objeto.LaPregunta);
+            if (verificar!= null)
             {
-                objeto.Imagen = "Sin imagen";
+                result = null;
+                return result;
             }
             else
+            
             {
-                string ruta = HostingEnvironment.MapPath("~/imagenes/" + objeto.Imagen);
-                if (VerificarExisteArchivo(ruta))
+                if (objeto.File is null)
                 {
-                    objeto.Imagen = ruta;
+                    objeto.Imagen = "Sin imagen";
                 }
                 else
                 {
-                    objeto.Imagen = ruta;
-                    objeto.File.SaveAs(ruta);
+                    string filename = Path.GetFileNameWithoutExtension(objeto.File.FileName);
+                    string FileExtension = Path.GetExtension(objeto.File.FileName);
+                    string ruta = HostingEnvironment.MapPath("~/imagenes/" + filename + FileExtension);
+
+                    if (VerificarExisteArchivo(ruta))
+                    {
+                        objeto.Imagen = "~/imagenes/" + filename + FileExtension;
+                    }
+                    else
+                    {
+                        objeto.Imagen = "~/imagenes/" + filename + FileExtension;
+                        objeto.File.SaveAs(ruta);
+                    }
                 }
+
+                result = preguntaNivel.Create(objeto);
+                return result;
             }
+           
 
 
 
 
-            result = preguntaNivel.Create(objeto);
-            return result;
         }
+
+
+
 
         public bool VerificarExisteArchivo(string path)
         {

@@ -9,46 +9,6 @@
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-    <div class="table-responsive">
-        <h4>Crear una Respuesta para la SubRespuesta <i> "@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i> </h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <h5> @Html.LabelFor(model => model.LaRespuesta, htmlAttributes: new { @class = "control-label col-md-2" })</h5>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LaRespuesta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LaRespuesta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.pregunta.Id)
-
-
-        <div class="form-group">
-
-            <div class="col-md-10">
-                <h5> ¿Respuesta correcta?</h5>
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.Correcta)
-                    @Html.ValidationMessageFor(model => model.Correcta, "", new { @class = "text-danger" })
-                    <div style="display:none">  @Html.Label("id_Pregunta", Model.Id.ToString(), new { htmlAttributes = new { @style = "color: none" } })  </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new {id=Model.Id })'" />
-                <input type="submit" value="Crear" class="BotonVerde" />
-            </div>
-        </div>
-    </div>
-    }*@
 
 
 @using (Html.BeginForm())

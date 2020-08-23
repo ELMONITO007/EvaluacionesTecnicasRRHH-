@@ -6,53 +6,50 @@
 }
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
-<div class="table-responsive col-md-12">
-    <h4>Detalles de La Pregunta numero @Html.DisplayFor(model => model.Id)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LaPregunta)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LaPregunta)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
 
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.nivel.ElNivel)
-        </dt>
+            <div class=" card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles de La Pregunta  @Html.DisplayFor(model => model.LaPregunta)</h6>
 
-        <dd>
-            @Html.DisplayFor(model => model.nivel.ElNivel)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.tipoPregunta.TipoDePregunta)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.tipoPregunta.TipoDePregunta)
-        </dd>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
 
 
 
-    </dl>
-    <div>
-        <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "BotonVerde" })</h5>
-      
-    </div>
-    <div>
 
-        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+
+                <h5 class="text-justify">Pregunta</h5>
+                @Html.DisplayFor(model => model.LaPregunta)
+
+                <br />
+                <br />
+                <h5 class="text-justify">Imagen</h5>
+                @Html.DisplayFor(model => model.Imagen)
+                <br />   <br />
+                <h5 class="text-justify">Nivel</h5>
+
+                @Html.DisplayFor(model => model.nivel.ElNivel)
+
+                <br />   <br />
+                <h5 class="text-justify">Tipo de pregunta</h5>
+                @Html.DisplayFor(model => model.tipoPregunta.TipoDePregunta)
+                <br />
+            </div>
+
+
+
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Editar" onclick="location.href='@Url.Action("edit", "Preguntas",new { id = Model.Id })'" />
+            <br />
+        </div>
     </div>
 </div>
-

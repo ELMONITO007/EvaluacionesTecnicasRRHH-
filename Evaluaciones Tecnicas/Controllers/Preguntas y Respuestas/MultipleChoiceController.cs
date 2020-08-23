@@ -46,13 +46,13 @@ namespace Evaluaciones.Controllers
 
         // POST: MultipleChoice/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection,string id_Pregunta)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
                 MultipleChoice multipleChoice = new MultipleChoice();
-                if (collection.Get("Correcta").Count() == 10)
+                if (collection.Get("correcta").Count()==10)
                 {
                     multipleChoice.Correcta = true;
                 }

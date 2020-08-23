@@ -2183,7 +2183,6 @@
     <Content Include="Views\PreguntaCategoria\Create.cshtml" />
     <Content Include="Views\PreguntaCategoria\Delete.cshtml" />
     <Content Include="Views\PreguntaCategoria\Index.cshtml" />
-    <Content Include="Views\Preguntas\Create2.cshtml" />
     <Content Include="Views\Preguntas\Delete.cshtml" />
     <Content Include="Views\Preguntas\Details.cshtml" />
     <Content Include="Views\Preguntas\DetailsSubPregunta.cshtml" />

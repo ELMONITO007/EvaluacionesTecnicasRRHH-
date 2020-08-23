@@ -88,20 +88,20 @@ namespace Evaluaciones.Controllers
 
         // POST: SubPregunta/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection,string Id_Pregunta)
+        public ActionResult Edit( FormCollection collection)
         {
             try
             {
                 SubPreguntaComponent subPreguntaComponent = new SubPreguntaComponent();
                 SubPregunta subPregunta = new SubPregunta();
-                subPregunta.pregunta.Id = id;
+                subPregunta.pregunta.Id = int.Parse(collection.Get("pregunta.Id"));
                
                 subPregunta.pregunta.LaPregunta = collection.Get("pregunta.LaPregunta");
                 subPreguntaComponent.Update(subPregunta);
 
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index", "MultipleChoiceCompuesto",new { id=int.Parse(Id_Pregunta)});
+                return RedirectToAction("Index", "MultipleChoiceCompuesto",new { id=int.Parse(collection.Get("pregunta.Id")) });
             }
             catch(Exception e)
             {

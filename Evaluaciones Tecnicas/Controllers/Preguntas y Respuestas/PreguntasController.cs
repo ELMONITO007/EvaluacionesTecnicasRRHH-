@@ -93,119 +93,34 @@ namespace Evaluaciones.Controllers
             preguntaError.LaPregunta = pregunta;
             return View(preguntaError);
         }
-        public ActionResult Create2()
-        {
-            CategoriaComponent categoriaComponent = new CategoriaComponent();
-
-            #region Categoria
-            PreguntaModels preguntaModels = new PreguntaModels();
-            Pregunta pregunta = new Pregunta();
-            pregunta.ListaCategoria = categoriaComponent.Read();
-            pregunta.ListaCategoria.Select(y =>
-                                new
-                                {
-                                    Id = y.Id,
-                                    LaCategoria = y.LaCategoria
-                                });
-
-            ViewBag.categoriaLista = new SelectList(preguntaModels.ListaCategoria, "Id", "LaCategoria");
-
-
-            #endregion
-
-
-            #region Nivel
-
-            NivelComponent nivelComponent = new NivelComponent();
-            pregunta.ListaNivel = nivelComponent.Read();
-            pregunta.ListaNivel.Select(w =>
-                                new
-                                {
-                                    Id = w.Id,
-                                    ElNivel = w.ElNivel
-                                });
-            ViewBag.ListaNivel = new SelectList(preguntaModels.ListaNivel, "Id", "ElNivel");
-            #endregion
-
-
-            #region TipoPregunta
-
-            TipoPreguntaComponent tipoPreguntaComponent = new TipoPreguntaComponent();
-            pregunta.ListatipoPregunta = tipoPreguntaComponent.Read();
-            pregunta.ListatipoPregunta.Select(X =>
-                                new
-                                {
-                                    Id = X.Id,
-                                    TipoDePregunta = X.TipoDePregunta
-                                });
-
-            ViewBag.TipoDePreguntaLista = new SelectList(preguntaModels.ListaTipo, "Id", "TipoDePregunta");
-            #endregion
-
-            return View();
-        }
-        // POST: Preguntas/Create
-        [HttpPost]
-        public ActionResult Create2(HttpPostedFileBase file, string LaPregunta, string LaCategoria, string TipoPregunta,string Nivel)
-         {
-            PreguntaComponent preguntaComponent = new PreguntaComponent();
-           
-            if (preguntaComponent.ReadBy(LaPregunta))
-            {
-           
-                return RedirectToAction("ErrorPage",new {pregunta=LaPregunta});
-            }
-            else
-            {
-                try
-                {
-                    string ruta = "";
-                    if (file != null)
-                    {
-
-                        ruta = @"C:\Imagenes\";
-                        ruta += file.FileName;
-                        file.SaveAs(ruta);
-                    }
-                    else
-                    {
-                        ruta = "Sin Imagen";
-                    }
-                    // TODO: Add insert logic here
-                    Pregunta pregunta = new Pregunta(LaPregunta, int.Parse(Nivel), int.Parse(TipoPregunta), int.Parse(LaCategoria), ruta);
-
-
-                    preguntaComponent.Create(pregunta);
-
-                    return RedirectToAction("Index", "PreguntaCategoria");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-           
-        }
-
+      
         [HttpPost]
         public ActionResult Create(FormCollection formCollection,Pregunta _pregunta, HttpPostedFileBase file)
         {
             Pregunta pregunta = new Pregunta();
+            Pregunta result = new Pregunta();
             PreguntaComponent preguntaComponent = new PreguntaComponent();
-            string filename= Path.GetFileNameWithoutExtension(_pregunta.File.FileName);
-            string FileExtension = Path.GetExtension(_pregunta.File.FileName);
-            string  ruta= HostingEnvironment.MapPath("~/imagenes/" + filename + FileExtension);
-            _pregunta.File.SaveAs(ruta);
 
-
-            //pregunta.Imagen = formCollection.Get("File");
-            //pregunta.File = _pregunta.File;
+            if (pregunta.File!=null)
+            {
+                pregunta.File = _pregunta.File;
+            }
+            
             pregunta.LaPregunta = formCollection.Get("LaPregunta");
             pregunta.categoria.Id = int.Parse(formCollection.Get("categoria.Id"));
             pregunta.tipoPregunta.Id = int.Parse(formCollection.Get("tipoPregunta.Id"));
             pregunta.nivel.Id = int.Parse(formCollection.Get("nivel.Id"));
-            preguntaComponent.Create(pregunta);
-            return View();
+            result= preguntaComponent.Create(pregunta);
+
+            if (result is null)
+            {
+                return RedirectToAction("ErrorPage", new { pregunta = pregunta.LaPregunta });
+            }
+            else
+            {
+                return RedirectToAction("index", "preguntacategoria");
+            }
+          
         }
 
         // GET: Preguntas/Edit/5

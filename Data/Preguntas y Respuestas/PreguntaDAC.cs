@@ -161,6 +161,25 @@ namespace Data
             }
             return pregunta;
         }
+        public Pregunta ReadByPregunta(String LaPregunta)
+        {
+            const string SQL_STATEMENT = "select Nivel, tp.TipoPregunta, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta from pregunta as p   inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on np.ID_Nivel = p.ID_Nivel  where p.activo=1 and p.Pregunta=@id and SubPregunta=0";
+            Pregunta pregunta = null;
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.String, LaPregunta);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        pregunta = LoadPregunta(dr);
+                    }
+                }
+            }
+            return pregunta;
+        }
         public void Update(Pregunta entity)
         {
             const string SQL_STATEMENT = "update Pregunta set Pregunta=@Pregunta, Imagen=@Imagen,ID_Nivel=@ID_Nivel,ID_TipoPregunta=@ID_TipoPregunta  where ID_Pregunta=@Id ";

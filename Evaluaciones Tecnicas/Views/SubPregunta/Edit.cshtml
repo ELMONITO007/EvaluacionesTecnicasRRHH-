@@ -7,41 +7,42 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Editar la Subpregunta  @Html.DisplayFor(model => model.pregunta.LaPregunta)</h6>
+
+                </div>
+
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.pregunta.Id)
+                    @Html.HiddenFor(model => model.Id)
 
 
-<div class="d-flex flex-column">
-    <div class="container-fluid">
-        <div class="card shadow mb-4">
 
-            <div class=" card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Editar la Subpregunta  @Html.DisplayFor(model => model.pregunta.LaPregunta)</h6>
 
+
+                    <h5 class="text-justify">Pregunta</h5>
+                    @Html.EditorFor(model => model.pregunta.LaPregunta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pregunta.LaPregunta, "", new { @class = "text-danger" })
+
+             
+
+                </div>
+
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto", new { id = Model.Id })'" />
+                <br />
+                <input type="submit" value="Guardar" class="btn btn-outline-info" />
             </div>
-
-            <div class="card-body">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.Id)
-
-
-
-
-
-
-                <h5 class="text-justify">Pregunta</h5>
-                @Html.EditorFor(model => model.pregunta.LaPregunta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pregunta.LaPregunta, "", new { @class = "text-danger" })
-
-                <label hidden>
-                    @Html.Label("Id_Pregunta", Model.Id.ToString())
-                </label>
-
-            </div>
-
-
-
-            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.Id})'" />
-            <br />
-            <input type="submit" value="Guardar" class="btn btn-outline-info" />
         </div>
     </div>
-</div>
+}
