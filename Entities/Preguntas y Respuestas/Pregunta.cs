@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Entities
 {
-  
-  public   class Pregunta : EntityBase
+
+    public   class Pregunta : EntityBase
     {
+        [Required]
+        [Display(Name = "Supported Files .png | .jpg")]
+      
+        public HttpPostedFileBase File { get; set; }
+
         [DataMember]
         public override int Id { get; set; }
 

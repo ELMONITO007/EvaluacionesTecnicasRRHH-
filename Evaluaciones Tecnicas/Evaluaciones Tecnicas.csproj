@@ -2183,7 +2183,7 @@
     <Content Include="Views\PreguntaCategoria\Create.cshtml" />
     <Content Include="Views\PreguntaCategoria\Delete.cshtml" />
     <Content Include="Views\PreguntaCategoria\Index.cshtml" />
-    <Content Include="Views\Preguntas\Create.cshtml" />
+    <Content Include="Views\Preguntas\Create2.cshtml" />
     <Content Include="Views\Preguntas\Delete.cshtml" />
     <Content Include="Views\Preguntas\Details.cshtml" />
     <Content Include="Views\Preguntas\DetailsSubPregunta.cshtml" />
@@ -2244,6 +2244,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\PDF\Index.cshtml" />
     <Content Include="Views\PDF\Abrir.cshtml" />
+    <Content Include="Views\Preguntas\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

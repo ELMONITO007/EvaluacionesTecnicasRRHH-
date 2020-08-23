@@ -7,22 +7,29 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-<div class="col-md-12">
-    <h4>SubPregunta <i>"@Html.DisplayFor(model => model.pregunta.LaPregunta)"</i></h4>
-    <hr />
 
-    <div>
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
 
-        <input type="button" class="BotonVerde " style="float:left" value="Editar" onclick="location.href='@Url.Action("Edit", "SubPregunta",new { id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
-        <br />
-        <br />
-        <input type="button" class="BotonVerde " style="float:left" value="Eliminar" onclick="location.href='@Url.Action("Delete", "SubPregunta",new {id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
-        <br />
-        <br />
+            <div class=" card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles de la subPregunta @Html.DisplayFor(model => model.pregunta.LaPregunta)</h6>
 
+            </div>
+
+            <div class="card-body">
+
+
+
+            </div>
+
+
+
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Editar" onclick="location.href='@Url.Action("Edit", "SubPregunta",new { id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
+            <br />
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Eliminar" onclick="location.href='@Url.Action("Delete", "SubPregunta",new {id=Model.pregunta.Id,id_Pregunta=Model.Id})'" />
+            <br />
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("index", "MultipleChoiceCompuesto",new { id=Model.Id})'" />
+        </div>
     </div>
-    <div>
-        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("index", "MultipleChoiceCompuesto",new { id=Model.Id})'" />
-    </div>
-   
 </div>

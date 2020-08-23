@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using Data;
 using Entities;
 
@@ -26,9 +28,45 @@ namespace Negocio
             Pregunta result = default(Pregunta);
             var preguntaNivel = new PreguntaDAC();
             objeto.SubPregunta = false;
+            if (objeto.Imagen=="")
+            {
+                objeto.Imagen = "Sin imagen";
+            }
+            else
+            {
+                string ruta = HostingEnvironment.MapPath("~/imagenes/" + objeto.Imagen);
+                if (VerificarExisteArchivo(ruta))
+                {
+                    objeto.Imagen = ruta;
+                }
+                else
+                {
+                    objeto.Imagen = ruta;
+                    objeto.File.SaveAs(ruta);
+                }
+            }
+
+
+
+
             result = preguntaNivel.Create(objeto);
             return result;
         }
+
+        public bool VerificarExisteArchivo(string path)
+        {
+            if (File.Exists(path))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
 
         public override void Delete(int id)
         {
