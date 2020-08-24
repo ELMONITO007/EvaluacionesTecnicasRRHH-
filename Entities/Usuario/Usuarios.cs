@@ -12,7 +12,7 @@ namespace Entities
     {
         [DisplayName("Identificador")]
         public override int Id { get; set; }
-        public LoginError   loginError { get; set; }
+        public LoginError loginError { get; set; }
 
         [DisplayName("Apellido")]
         public string Apellido { get; set; }
@@ -27,7 +27,7 @@ namespace Entities
         [DisplayName("¿Esta Bloquedo?")]
         public bool Bloqueado { get; set; }
 
-       
+
         [DisplayName("Intentos")]
         public int CantidadIntentos { get; set; }
 
@@ -42,7 +42,7 @@ namespace Entities
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
-        public Usuarios (int _Id, string _NombreUsuario ,string _email,string _Password)
+        public Usuarios(int _Id, string _NombreUsuario, string _email, string _Password)
         {
             Id = _Id;
             UserName = _NombreUsuario;
@@ -50,7 +50,7 @@ namespace Entities
             Password = _Password;
         }
 
-        public DigitoVerificadorH    DVH { get; set; }
+        public DigitoVerificadorH DVH { get; set; }
         public Usuarios()
         {
             loginError = new LoginError();

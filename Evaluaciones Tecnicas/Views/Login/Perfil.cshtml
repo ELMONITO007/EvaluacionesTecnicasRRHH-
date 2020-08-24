@@ -1,0 +1,55 @@
+﻿@model Entities.Usuarios
+
+@{
+    ViewBag.Title = "Perfil";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+
+            <div class=" card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Perfil del usuario  @Html.DisplayFor(model => model.Email)</h6>
+
+            </div>
+
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+
+
+
+
+
+                <h5 class="text-justify">Nombre</h5>
+                @Html.DisplayFor(model => model.Nombre)
+
+                <br />
+                <br />
+                <h5 class="text-justify">Apellido</h5>
+                @Html.DisplayFor(model => model.Apellido)
+                <br />   <br />
+                <h5 class="text-justify">Correo electronico</h5>
+
+                @Html.DisplayFor(model => model.Email)
+
+
+            </div>
+
+
+
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "admin")'" />
+            @*<input type="button" class="btn btn-outline-primary " style="float:left" value="Editar" onclick="location.href='@Url.Action("edit", "usuarios",new { id = Model.Id })'" />*@
+            <br />
+        </div>
+    </div>
+</div>
+
+
+

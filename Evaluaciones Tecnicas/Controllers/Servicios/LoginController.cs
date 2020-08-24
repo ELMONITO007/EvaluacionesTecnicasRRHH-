@@ -85,14 +85,17 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Login/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Perfil(string email)
         {
-            return View();
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            return View(usuariosComponent.ReadByEmail(email));
+         
         }
 
         // GET: Login/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
