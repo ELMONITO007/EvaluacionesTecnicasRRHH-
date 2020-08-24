@@ -58,24 +58,26 @@ namespace Evaluaciones.Controllers
                        
 
 
-                        return View();
+                        return RedirectToAction("index","admin");
                     }
 
 
                     else
                     {
+                        ViewBag.ErrorLogin = loginError.error;
                         return View("index");
                     }
 
                 }
                 else
                 {
+                    ViewBag.ErrorLogin = "Error en el usuario o contraseña";
                     return View("index");
                 }
             }
             else
             {
-               
+                ViewBag.ErrorLogin = "Error en el Captcha";
                 return View("index");
             }
 
