@@ -1,6 +1,8 @@
 ﻿
 using Entities;
+using Entities.Servicios.Bitacora;
 using Negocio;
+using Negocio.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,13 +121,17 @@ namespace Negocio
         public LoginError VerificarLogin(Usuarios usuarios)
 
         {
-
+            BitacoraComponent bitacoraComponent = new BitacoraComponent();
+            Bitacora bitacora = new Bitacora();
+            bitacora.usuarios = usuarios;
             bool userName = VeriricarUserName(usuarios);
             LoginError loginError = new LoginError();
             if (userName)
             {
                 UsuariosComponent usuariosComponent = new UsuariosComponent();
                 Usuarios usuarioTabla = new Usuarios();
+               
+
                 usuarioTabla = usuariosComponent.ReadByEmail(usuarios.Email);
                 bool password = VerificarContraseña(usuarioTabla.Id, usuarios);
                 VerificarIntentos(usuarioTabla.Id);
@@ -141,33 +147,45 @@ namespace Negocio
 
                             if (VerificarBloqueado(usuarioTabla.Id))
                             {
+                                bitacora.eventoBitacora.Id = 5;
+                                bitacoraComponent.Create(bitacora);
                                 loginError.error = "";
 
                             }
                             else
                             {
                                 loginError.error = "La cuenta esta Bloqueada. Envie un email con el error a dolores.conde@transener.com.ar ";
+                                bitacora.eventoBitacora.Id = 1;
+                                bitacoraComponent.Create(bitacora);
                             }
                         }
                         else
                         {
                             loginError.error = "Error Critico V. Envie un email con el error a dolores.conde@transener.com.ar";
+                            bitacora.eventoBitacora.Id = 2;
+                            bitacoraComponent.Create(bitacora);
                         }
                     }
                     else
                     {
                         loginError.error = "Error Critico H. Envie un email con el error a dolores.conde@transener.com.ar";
+                        bitacora.eventoBitacora.Id = 3;
+                        bitacoraComponent.Create(bitacora);
                     }
                 }
                 else
                 {
                     loginError.error = "Usuario o Contraseña Invalido";
+                    bitacora.eventoBitacora.Id = 4;
+                    bitacoraComponent.Create(bitacora);
                 }
             }
 
             else
             {
                 loginError.error = "Usuario o Contraseña Invalido";
+                bitacora.eventoBitacora.Id = 4;
+                bitacoraComponent.Create(bitacora);
             }
 
             return loginError;

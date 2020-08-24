@@ -33,7 +33,25 @@ namespace Data.Servicios
 
             throw new NotImplementedException();
         }
+        public EventoBitacora ReadBy(string evento)
+        {
+            const string SQL_STATEMENT = "select * from EventoBitacora   where  EventoBitacora=@Id";
+            EventoBitacora tipoPregunta = null;
 
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.String, evento);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        tipoPregunta = LoadEventoBitacoraD(dr);
+                    }
+                }
+            }
+            return tipoPregunta;
+        }
         public List<EventoBitacora> Read()
         {
             const string SQL_STATEMENT = "select * from EventoBitacora ";
@@ -56,7 +74,7 @@ namespace Data.Servicios
 
         public EventoBitacora ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select *from EventoBitacora  where ID_EventoBitacora=@Id";
+            const string SQL_STATEMENT = "select * from EventoBitacora  where ID_EventoBitacora=@Id";
             EventoBitacora eventoBitacora = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

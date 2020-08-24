@@ -18,7 +18,7 @@ namespace Data.Servicios
             bitacora.Id = GetDataValue<int>(dr, "ID_Bitacora");
             bitacora.usuarios.Id = GetDataValue<int>(dr, "Id");
             bitacora.eventoBitacora.Id = GetDataValue<int>(dr, "ID_EventoBitacora");
-            bitacora.fecha = GetDataValue<DateTime>(dr, "Fecha");
+            bitacora.fecha = GetDataValue<string>(dr, "Fecha");
             bitacora.hora= GetDataValue<string>(dr, "Hora");
 
             return bitacora;
@@ -32,8 +32,8 @@ namespace Data.Servicios
                 db.AddInParameter(cmd, "@id", DbType.Int32, entity.usuarios.Id);
                 db.AddInParameter(cmd, "@ID_EventoBitacora", DbType.Int32, entity.eventoBitacora.Id);
 
-                db.AddInParameter(cmd, "@Fecha", DbType.Date, entity.fecha);
-                db.AddInParameter(cmd, "@Hora", DbType.Time, entity.hora);
+                db.AddInParameter(cmd, "@Fecha", DbType.String, entity.fecha);
+                db.AddInParameter(cmd, "@Hora", DbType.String, entity.hora);
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
             return entity;
@@ -59,15 +59,19 @@ namespace Data.Servicios
                         Bitacora tipoPregunta = LoadBitacora(dr);
                         result.Add(tipoPregunta);
                     }
+
                 }
             }
             return result;
         }
 
+
+
         public Bitacora ReadBy(int id)
         {
             throw new NotImplementedException();
         }
+     
 
         public void Update(Bitacora entity)
         {

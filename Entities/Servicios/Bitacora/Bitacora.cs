@@ -19,7 +19,7 @@ namespace Entities.Servicios.Bitacora
         [Required]
         [DisplayName("Identificador")]
 
-        public DateTime fecha { get; set; }
+        public string fecha { get; set; }
         public string hora { get; set; }
         public Usuarios usuarios { get; set; }
 

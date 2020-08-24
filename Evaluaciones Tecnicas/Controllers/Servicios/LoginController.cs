@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CaptchaMvc.HtmlHelpers;
 using Negocio;
+using Negocio.Servicios;
 
 namespace Evaluaciones.Controllers
 {
@@ -77,6 +78,24 @@ namespace Evaluaciones.Controllers
             }
             else
             {
+                BitacoraComponent bitacoraComponent = new BitacoraComponent();
+                Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
+               
+                UsuariosComponent usuariosComponent = new UsuariosComponent();
+                Usuarios unusuario = new Usuarios();
+                unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
+                if ( unusuario is null)
+                {
+
+                }
+                else
+                {
+                    bitacora.usuarios = unusuario;
+                    bitacora.eventoBitacora.Id = 8;
+                    bitacoraComponent.Create(bitacora);
+                }
+
+
                 ViewBag.ErrorLogin = "Error en el Captcha";
                 return View("index");
             }
