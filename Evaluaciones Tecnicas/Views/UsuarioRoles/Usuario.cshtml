@@ -5,55 +5,88 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <link href="~/Content/modern-business.css" rel="stylesheet" />
-<div >
-    <div>   <h4>Lista de Roles del Usuario
-           
-           @foreach (var item2 in Model)
-           {
-                <i>"  @Html.DisplayFor(modelItem2 => item2.usuarios.UserName) "</i>
-               break;
-           }
 
 
-           </h4></div>
-    <br />
-    <table class="table table-bordered table-hover">
-        <tr style="background-color:powderblue ; max-width:300px">
-            <th  >
-                <h5>  @Html.DisplayNameFor(model => model.roles.name)</h5>
-            </th>
-            <th>
-                <h5>Permiso</h5>
-            </th>
-        </tr>
+<div id="content-wrapper" class="d-flex flex-column">
 
-        @foreach (var item in Model)
-        {
-            <tr style="max-width:300px">
-                <td>
-                    @Html.DisplayFor(modelItem => item.roles.name)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
-                    @Html.ActionLink("Detalle", "Details", "Roles", new { id = int.Parse(item.roles.id) },null) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
-                    @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.id })
-                </td>
+    <!-- Main Content -->
+    <div id="content">
 
 
-            </tr>
-        }
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-    </table>
-    <div>
-        <p>
-            @foreach (var item2 in Model)
-            {
 
-                <input type="button" class="BotonVerde " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles",new { id = item2.usuarios.id })'" />
-                <input type="button" class="BotonVerde " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioRoles")'" />
-                break;
-            }
-        </p>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                   
+
+                        Lista de Roles del Usuario
+
+                        @foreach (var item2 in Model)
+                        {
+                            <i>"  @Html.DisplayFor(modelItem2 => item2.usuarios.UserName) "</i>
+                            break;
+                        }
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Permiso</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.roles.name)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
+                                            
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
+                                                    @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.id })
+                                                </td>
+
+
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach (var item2 in Model)
+                    {
+
+                        <input type="button" class="btn btn-outline-primary " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id = item2.usuarios.Id })'" />
+                        <input type="button" class="btn btn-outline-info " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioRoles")'" />
+                    }
+                    </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
     </div>
+    <!-- End of Main Content -->
+
+
 </div>

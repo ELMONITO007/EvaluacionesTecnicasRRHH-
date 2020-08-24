@@ -8,60 +8,86 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-<div class="table-responsive">
-    <table class="table table-bordered table-hover">
-        <tr style="background-color:powderblue">
-            <th>
-                @Html.DisplayNameFor(model => model.usuarios.UserName)
-            </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.roles.name)
-            </th>
-            <th>
-                Permiso
-            </th>
-        </tr>
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
 
 
-
-        @foreach (var item in Model)
-        {
-
-            if (item.roles.id is null)
-            {
-
-            }
-            else
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.usuarios.UserName)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.roles.name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Modificar Permiso", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
-                        @Html.ActionLink("Detalles", "Details", new { id = item.usuarios.Id, idRol = item.roles.id }) |
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.Id, idRol = item.roles.id }) |
-                        @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.Id })
-                    </td>
-                </tr>
-            }
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
 
-        }
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de sectores</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Email</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Permiso</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.usuarios.Email)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.roles.name)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Modificar Permiso", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
+
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.Id, idRol = item.roles.id }) |
+                                                
+
+                                                  
 
 
-    </table>
-    @foreach (var item in Model)
-    {
-<div>
-    <input type="button" class="BotonVerde " style="float:left" value="Agregar permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id =item.usuarios.Id})'" />
-   
-</div>
-        break;
-    }
+                                                </td>
+
+
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            @foreach (var item in Model)
+                            {
+                                <div>
+                                    <input type="button" class="btn btn-outline-primary " style="float:left" value="Agregar permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id =item.usuarios.Id})'" />
+
+                                </div>
+                                break;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
     </div>
+    <!-- End of Main Content -->
+
+
+</div>

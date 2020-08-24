@@ -8,69 +8,82 @@
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
-<div class="table-responsive">
-    <div>
-        <h4>
-            Lista de usuarios del Rol
-
-            @foreach (var item2 in Model)
-            {
-                <i>"  @Html.DisplayFor(modelItem2 => item2.roles.name) "</i>
-                break;
-            }
 
 
-        </h4>
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Lista de usuarios del Rol
+
+                        @foreach (var item2 in Model)
+                        {
+                            <i>"  @Html.DisplayFor(modelItem2 => item2.roles.name) "</i>
+                            break;
+                        }
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Email</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
+                                        
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.usuarios.Email)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Ver permisos", "Usuario", new { id = item.usuarios.Id }) |
+                                                    @Html.ActionLink("Agregar", "Create", new { id = item.usuarios.Id })|
+                                                    @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
+
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.Id, idRol = item.roles.id })
+                                                </td>
+                                         
+
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-outline-primary " style="float:right" value="Crear" onclick="location.href='@Url.Action("create", "roles")'" />
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
     </div>
-    <br />
-    <table class="table table-bordered table-hover">
-        <tr style="background-color:powderblue">
+    <!-- End of Main Content -->
 
 
-            <th>
-                <h5> @Html.DisplayNameFor(model => model.usuarios.UserName)</h5>
-            </th>
-            <th>
-                <h5>  Usuario</h5>
-
-            </th>
-            <th>
-                <h5>   Permiso</h5>
-
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarios.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Ver", "Usuario", new { id = item.usuarios.id }) |
-            @Html.ActionLink("Agregar", "Create", new { id = item.usuarios.id })
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.id, id_Roles = item.roles.id }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.usuarios.id, idRol = item.roles.id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.id, idRol = item.roles.id }) |
-
-        </td>
-    </tr>
-        }
-
-    </table>
-    <div>
-        @foreach (var item in Model)
-        {
-            <p>
-
-                <input type="button" class="BotonVerde " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id = item.usuarios.id })'" />
-
-            </p>
-            break;
-        }
-    </div>
 </div>

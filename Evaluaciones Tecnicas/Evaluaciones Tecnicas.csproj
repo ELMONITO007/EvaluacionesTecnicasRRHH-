@@ -2219,7 +2219,6 @@
     <Content Include="Views\TipoPregunta\Details.cshtml" />
     <Content Include="Views\TipoPregunta\Edit.cshtml" />
     <Content Include="Views\TipoPregunta\Index.cshtml" />
-    <Content Include="Views\TipoPregunta\SaludTipoPregunta.cshtml" />
     <Content Include="Views\UsuarioRoles\Create.cshtml" />
     <Content Include="Views\UsuarioRoles\Details.cshtml" />
     <Content Include="Views\UsuarioRoles\Edit.cshtml" />
