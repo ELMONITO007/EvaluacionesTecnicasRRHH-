@@ -8,14 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Web.Hosting;
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Evaluaciones.Controllers
 {
-    //[Authorize(Roles = "Administrador,CreadorPreguntas")]//para entrar en admin debe estar logueado y  asignarle el rol
+    
 
     public class PreguntasController : Controller
     {
         // GET: Preguntas
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index()
         {
            
@@ -28,13 +30,15 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Preguntas/Details/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Details(int id)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
             return View(pregunta.ReadBy(id));
         }
-     
+
         // GET: Preguntas/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create()
         {
             CategoriaComponent categoriaComponent = new CategoriaComponent();
@@ -86,7 +90,7 @@ namespace Evaluaciones.Controllers
 
             return View();
         }
-
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult ErrorPage(string pregunta)
         {
             Pregunta preguntaError = new Pregunta();
@@ -95,6 +99,7 @@ namespace Evaluaciones.Controllers
         }
       
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(FormCollection formCollection,Pregunta _pregunta, HttpPostedFileBase file)
         {
             Pregunta pregunta = new Pregunta();
@@ -124,6 +129,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Preguntas/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id)
         {
             PreguntaModels preguntaModels = new PreguntaModels();
@@ -166,6 +172,7 @@ namespace Evaluaciones.Controllers
 
         // POST: Preguntas/Edit/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string Nivel)
         {
             try
@@ -206,6 +213,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Preguntas/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
@@ -214,6 +222,7 @@ namespace Evaluaciones.Controllers
 
         // POST: Preguntas/Delete/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

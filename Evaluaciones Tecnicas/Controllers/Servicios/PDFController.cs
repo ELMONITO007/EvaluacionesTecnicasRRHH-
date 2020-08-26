@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using Negocio.Servicios;
 using System;
@@ -12,6 +13,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Servicios
     public class PDFController : Controller
     {
         // GET: PDF
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             CrearPDF pDF = new CrearPDF();
@@ -19,78 +21,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Servicios
         }
 
         // GET: PDF/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: PDF/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PDF/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PDF/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PDF/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PDF/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PDF/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-       
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Abrir(string email)
         {
             Usuarios usuarios = new Usuarios();
@@ -98,6 +29,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Servicios
            
         }
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Abrir(FormCollection formCollection)
         {
             try

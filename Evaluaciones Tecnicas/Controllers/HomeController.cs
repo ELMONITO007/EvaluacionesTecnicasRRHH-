@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 namespace Evaluaciones.Controllers
 {
+    [ExceptionFilter]
     public class HomeController : Controller
     {
+        [ExceptionFilter]
         public ActionResult TestExamen()
         {
             PreguntaComponent preguntaComponent = new PreguntaComponent();
@@ -19,28 +22,17 @@ namespace Evaluaciones.Controllers
 
             return View(pregunta);
         }
+        [ExceptionFilter]
         [HttpPost]
         public ActionResult TestExamen(FormCollection formCollection)
         {
             return View();
         }
-            public ActionResult Index()
+        [ExceptionFilter]
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

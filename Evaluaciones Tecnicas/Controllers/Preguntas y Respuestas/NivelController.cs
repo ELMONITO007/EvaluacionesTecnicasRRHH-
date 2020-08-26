@@ -4,6 +4,8 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Evaluaciones_Tecnicas.Filter;
+
 namespace Evaluaciones.Controllers
 {
     //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
@@ -11,6 +13,7 @@ namespace Evaluaciones.Controllers
     public class NivelController : Controller
     {
         // GET: Nivel
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Index()
         {
             NivelComponent nivelComponent = new NivelComponent();
@@ -18,6 +21,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Nivel/Details/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Details(int id)
         {
             NivelComponent nivelComponent = new NivelComponent();
@@ -25,12 +29,14 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Nivel/Create
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Nivel/Create
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -50,6 +56,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Nivel/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Edit(int id)
         {
             NivelComponent nivelComponent = new NivelComponent();
@@ -57,6 +64,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Nivel/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -78,6 +86,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Nivel/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Delete(int id)
         {
             NivelComponent nivelComponent = new NivelComponent();
@@ -86,6 +95,7 @@ namespace Evaluaciones.Controllers
 
 
         // POST: Nivel/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
+    <Compile Include="Informes\Informes.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Preguntas y Respuestas\CategoriaComponent.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoiceComponent.cs" />
@@ -91,7 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Examen\" />
-    <Folder Include="Informes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

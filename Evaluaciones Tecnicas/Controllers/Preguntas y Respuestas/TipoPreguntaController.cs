@@ -4,15 +4,16 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Safari.UI.Web.Controllers
 {
-    //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+   
     public class TipoPreguntaController : Controller
     {
 
         // GET: TipoPregunta
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [Route("TipoPregunta", Name = "TipoPreguntaControllerRouteIndex")]
         public ActionResult Index()
         {
@@ -23,6 +24,7 @@ namespace Safari.UI.Web.Controllers
         }
 
         // GET: TipoPregunta/Details/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Details(int id)
         {
 
@@ -31,12 +33,14 @@ namespace Safari.UI.Web.Controllers
         }
 
         // GET: TipoPregunta/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: TipoPregunta/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,6 +62,7 @@ namespace Safari.UI.Web.Controllers
         }
 
         // GET: TipoPregunta/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id)
         {
             TipoPreguntaComponent tipoPreguntaComponent = new TipoPreguntaComponent();
@@ -67,6 +72,7 @@ namespace Safari.UI.Web.Controllers
         }
 
         // POST: TipoPregunta/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -88,6 +94,7 @@ namespace Safari.UI.Web.Controllers
         }
 
         // GET: TipoPregunta/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id)
         {
 
@@ -103,6 +110,7 @@ namespace Safari.UI.Web.Controllers
 
         }
         // POST: TipoPregunta/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

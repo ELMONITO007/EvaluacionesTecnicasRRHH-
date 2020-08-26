@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace Evaluaciones.Controllers.Usuario_Examen
     public class SedeController : Controller
     {
         // GET: Sede
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             SedeComponent sedeComponent = new SedeComponent();
             return View(sedeComponent.Read());
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
 
         // GET: Sede/Details/5
         public ActionResult Details(int id)
@@ -24,6 +27,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sede/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             EmpresaComponent     empresaComponent = new EmpresaComponent();
@@ -40,6 +44,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Sede/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -70,6 +75,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sede/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             EmpresaComponent empresaComponent = new EmpresaComponent();
@@ -87,6 +93,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Sede/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -119,6 +126,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sede/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             SedeComponent sedeComponent = new SedeComponent();
@@ -126,6 +134,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Sede/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -141,6 +150,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
                 return View();
             }
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(string id,string empresa)
         {
             Sede sede = new Sede();

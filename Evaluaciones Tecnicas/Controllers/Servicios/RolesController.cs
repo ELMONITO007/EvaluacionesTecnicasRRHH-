@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Evaluaciones.Controllers
     public class RolesController : Controller
     {
         // GET: Roles
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             RolesComponent roles = new RolesComponent();
@@ -18,6 +20,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Roles/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             RolesComponent roles = new RolesComponent();
@@ -25,12 +28,14 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Roles/Create
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Roles/Create
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -50,6 +55,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Roles/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Edit(int id)
         {
             RolesComponent rolesComponent = new RolesComponent();
@@ -57,6 +63,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Roles/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Edit(string id, FormCollection collection)
         {
@@ -77,6 +84,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Roles/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Delete(int id)
         {
 
@@ -85,6 +93,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Roles/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

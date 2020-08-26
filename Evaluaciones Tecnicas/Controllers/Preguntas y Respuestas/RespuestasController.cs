@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Evaluaciones.Controllers
 
         // POST: Respuestas/Create
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -48,6 +50,7 @@ namespace Evaluaciones.Controllers
             }
         }
         // GET: Respuestas/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Respuesta(int Id_Pregunta)
         {
             PreguntaComponent preguntaComponent = new PreguntaComponent();

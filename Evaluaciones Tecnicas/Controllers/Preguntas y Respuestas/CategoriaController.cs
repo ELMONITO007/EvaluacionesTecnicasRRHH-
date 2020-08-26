@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Evaluaciones.Controllers
 
     public class CategoriaController : Controller
     {
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult SaludTipoPregunta(int id)
         {
             SaludCategoriaComponent saludCategoriaComponent = new SaludCategoriaComponent(id);
@@ -21,6 +23,7 @@ namespace Evaluaciones.Controllers
 
         }
         // GET: Categoria
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Index()
         {
             CategoriaComponent categoriaComponent = new CategoriaComponent();
@@ -29,6 +32,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Categoria/Details/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Details(int id)
         {
             CategoriaComponent categoriaComponent = new CategoriaComponent();
@@ -43,6 +47,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Categoria/Create
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -63,6 +68,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Categoria/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Edit(int id)
         {
             CategoriaComponent categoriaComponent = new CategoriaComponent();
@@ -71,6 +77,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Categoria/Edit/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -92,6 +99,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Categoria/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Delete(int id)
         {
             CategoriaComponent categoriaComponent = new CategoriaComponent();
@@ -100,6 +108,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Categoria/Delete/5
+        [AuthorizerUser(_roles: "Administrador")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

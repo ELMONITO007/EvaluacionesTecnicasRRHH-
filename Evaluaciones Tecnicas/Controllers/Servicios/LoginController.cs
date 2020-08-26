@@ -10,12 +10,15 @@ using System.Web.Mvc;
 using CaptchaMvc.HtmlHelpers;
 using Negocio;
 using Negocio.Servicios;
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Evaluaciones.Controllers
 {
+    [ExceptionFilter]
     public class LoginController : Controller
     {
         // GET: Login
+        [ExceptionFilter]
         public ActionResult Index()
         {
 
@@ -45,8 +48,8 @@ namespace Evaluaciones.Controllers
         [AllowAnonymous]
         public ActionResult Usuarios(Usuarios usuarios)
         {
-            if (this.IsCaptchaValid("Ingrese las letras correctamente"))
-            {
+            //if (this.IsCaptchaValid("Ingrese las letras correctamente"))
+            //{
                 if (ModelState.IsValid)
                 {
 
@@ -55,7 +58,7 @@ namespace Evaluaciones.Controllers
                     loginError = loginComponent.VerificarLogin(usuarios);
                     if (loginError.error == "")
                     {
-                        Session["UserName"] = usuarios.Email;
+                        Session["UserName"] = usuarios;
                        
 
 
@@ -75,30 +78,30 @@ namespace Evaluaciones.Controllers
                     ViewBag.ErrorLogin = "Error en el usuario o contraseña";
                     return View("index");
                 }
-            }
-            else
-            {
-                BitacoraComponent bitacoraComponent = new BitacoraComponent();
-                Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
+            //}
+            //else
+            //{
+            //    BitacoraComponent bitacoraComponent = new BitacoraComponent();
+            //    Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
                
-                UsuariosComponent usuariosComponent = new UsuariosComponent();
-                Usuarios unusuario = new Usuarios();
-                unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
-                if ( unusuario is null)
-                {
+            //    UsuariosComponent usuariosComponent = new UsuariosComponent();
+            //    Usuarios unusuario = new Usuarios();
+            //    unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
+            //    if ( unusuario is null)
+            //    {
 
-                }
-                else
-                {
-                    bitacora.usuarios = unusuario;
-                    bitacora.eventoBitacora.Id = 8;
-                    bitacoraComponent.Create(bitacora);
-                }
+            //    }
+            //    else
+            //    {
+            //        bitacora.usuarios = unusuario;
+            //        bitacora.eventoBitacora.Id = 8;
+            //        bitacoraComponent.Create(bitacora);
+            //    }
 
 
-                ViewBag.ErrorLogin = "Error en el Captcha";
-                return View("index");
-            }
+            //    ViewBag.ErrorLogin = "Error en el Captcha";
+            //    return View("index");
+            //}
 
 
         }

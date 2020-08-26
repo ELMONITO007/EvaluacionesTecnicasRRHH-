@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Evaluaciones.Controllers
     public class SubPreguntaController : Controller
     {
         // GET: SubPregunta
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index()
         {
             return View();
         }
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult ErrorPage(string pregunta)
         {
             Pregunta preguntaError = new Pregunta();
@@ -23,6 +26,8 @@ namespace Evaluaciones.Controllers
             return View(preguntaError);
         }
         // GET: SubPregunta/Details/5
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Details(int id, int id_pregunta)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
@@ -34,6 +39,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: SubPregunta/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(int id)
         {
             SubPregunta subPregunta = new SubPregunta();
@@ -45,6 +51,7 @@ namespace Evaluaciones.Controllers
 
         // POST: SubPregunta/Create
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(FormCollection collection)
         {
             PreguntaComponent preguntaComponent = new PreguntaComponent();
@@ -76,6 +83,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: SubPregunta/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id, int id_pregunta)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
@@ -88,6 +96,7 @@ namespace Evaluaciones.Controllers
 
         // POST: SubPregunta/Edit/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit( FormCollection collection)
         {
             try
@@ -110,6 +119,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: SubPregunta/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id, int id_pregunta)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
@@ -120,6 +130,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: SubPregunta/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection, string Id_Pregunta)
         {

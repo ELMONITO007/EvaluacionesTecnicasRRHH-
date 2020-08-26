@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Evaluaciones.Controllers
     public class OrdenController : Controller
     {
         // GET: Orden
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index(int id)
         {
             OrdenComponent ordenComponent = new OrdenComponent();
@@ -23,6 +25,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Orden/Details/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Details(int id)
         {
             OrdenComponent ordenComponent = new OrdenComponent();
@@ -30,6 +33,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: Orden/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(int id)
         {
             try
@@ -78,6 +82,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Orden/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -99,7 +104,7 @@ namespace Evaluaciones.Controllers
                 return View();
             }
         }
-
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult ErrorCreate(int id)
         {
             PreguntaComponent pregunta = new PreguntaComponent();
@@ -107,6 +112,7 @@ namespace Evaluaciones.Controllers
 
         }
         // GET: Orden/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id)
         {
             OrdenComponent ordenComponent = new OrdenComponent();
@@ -141,6 +147,7 @@ namespace Evaluaciones.Controllers
 
         // POST: Orden/Edit/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -162,9 +169,10 @@ namespace Evaluaciones.Controllers
         }
 
 
-    
-        
+
+
         // GET: Orden/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id)
         {
             OrdenComponent ordenComponent = new OrdenComponent();
@@ -172,6 +180,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: Orden/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

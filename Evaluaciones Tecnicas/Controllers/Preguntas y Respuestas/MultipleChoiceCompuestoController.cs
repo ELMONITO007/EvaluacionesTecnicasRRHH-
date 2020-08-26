@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Negocio;
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Evaluaciones.Controllers
 {
@@ -16,6 +17,7 @@ namespace Evaluaciones.Controllers
     public class MultipleChoiceCompuestoController : Controller
     {
         // GET: MultipleChoiceCompuesto
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index(int id)
         {
             MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent();
@@ -24,12 +26,14 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: MultipleChoiceCompuesto/Details/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: MultipleChoiceCompuesto/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Create(int id,int id_Pregunta)
         {
             PreguntaComponent preguntaComponent = new PreguntaComponent();
@@ -41,6 +45,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: MultipleChoiceCompuesto/Create
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection,string id_Pregunta)
         {
@@ -71,6 +76,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: MultipleChoiceCompuesto/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Edit(int id,int id_Pregunta)
         {
             MultipleChoiceCompuesto multipleChoiceCompuesto = new MultipleChoiceCompuesto();
@@ -83,6 +89,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: MultipleChoiceCompuesto/Edit/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection,int id_Pregunta)
         {
@@ -111,6 +118,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: MultipleChoiceCompuesto/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Delete(int id,int id_Pregunta)
         {
             MultipleChoiceCompuesto multipleChoiceCompuesto = new MultipleChoiceCompuesto();
@@ -124,6 +132,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: MultipleChoiceCompuesto/Delete/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection, int id_Pregunta)
         {

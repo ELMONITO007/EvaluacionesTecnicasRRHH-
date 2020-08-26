@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Evaluaciones.Controllers
 {
@@ -13,6 +14,7 @@ namespace Evaluaciones.Controllers
     public class UsuarioRolesController : Controller
     {
         // GET: UsuarioRoles
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index(int id)
         {
             UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
@@ -30,18 +32,20 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: UsuarioRoles/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id,string idRol)
         {
             UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
             return View(usuarioRolesComponent.ReadBy(idRol,id));
         }
 
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Usuario (int Id)
         {
             UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
             return View(usuarioRolesComponent.ReadByUsuario(Id));
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Roles(String Id)
         {
             UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
@@ -49,6 +53,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: UsuarioRoles/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create(int id)
         {
             UsuarioRolesModels usuarioRoles = new UsuarioRolesModels();
@@ -70,6 +75,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: UsuarioRoles/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -91,6 +97,7 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: UsuarioRoles/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id_Usuario, String id_Roles)
         {
             try
@@ -119,6 +126,7 @@ namespace Evaluaciones.Controllers
         }
 
         // POST: UsuarioRoles/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -141,12 +149,14 @@ namespace Evaluaciones.Controllers
         }
 
         // GET: UsuarioRoles/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(string id_Usuario, String id_Roles)
         {
             return View();
         }
 
         // POST: UsuarioRoles/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

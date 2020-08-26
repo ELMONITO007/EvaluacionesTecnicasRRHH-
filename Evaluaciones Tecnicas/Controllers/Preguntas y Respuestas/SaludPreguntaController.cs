@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 
 using System;
@@ -13,6 +14,7 @@ namespace Evaluaciones.Controllers
     public class SaludPreguntaController : Controller
     {
         // GET: SaludPregunta
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index(int id)
         {
             Pregunta pregunta = new Pregunta();
@@ -32,6 +34,7 @@ namespace Evaluaciones.Controllers
             }
             return View();
         }
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult SaludMultipleChoice(int id)
         {
             SaludPreguntaComponent saludPregunta = new SaludPreguntaComponent();
@@ -42,6 +45,7 @@ namespace Evaluaciones.Controllers
 
             return View(saludPregunta.VerificarSalud(pregunta));
         }
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult SaludMultipleChoiceCompuesto(int id)
         {
             SaludPreguntaComponent saludPregunta = new SaludPreguntaComponent();
@@ -53,6 +57,7 @@ namespace Evaluaciones.Controllers
             return View(saludPregunta.VerificarSalud(pregunta));
         }
         // GET: SaludPregunta/Details/5
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult SaludOrdenado(int id)
         {
             SaludPreguntaComponent saludPregunta = new SaludPreguntaComponent();
@@ -62,75 +67,6 @@ namespace Evaluaciones.Controllers
 
             return View(saludPregunta.VerificarSalud(pregunta));
         }
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SaludPregunta/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SaludPregunta/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SaludPregunta/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SaludPregunta/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SaludPregunta/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: SaludPregunta/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

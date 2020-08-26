@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
     public class EmpresaController : Controller
     {
         // GET: Empresa
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             EmpresaComponent empresa = new EmpresaComponent();
@@ -18,12 +20,14 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Empresa/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Empresa/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             return View();
@@ -31,6 +35,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 
         // POST: Empresa/Create
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -59,6 +64,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Empresa/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             EmpresaComponent empresaComponent = new EmpresaComponent();
@@ -67,6 +73,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 
         // POST: Empresa/Edit/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -93,6 +100,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Empresa/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             EmpresaComponent empresaComponent = new EmpresaComponent();
@@ -100,6 +108,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Empresa/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -115,7 +124,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
                 return View();
             }
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(string id)
         {
             Empresa empresa = new Empresa();

@@ -152,7 +152,7 @@
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             <h7 style="color:red; font-size:10px">@ViewBag.ErrorLogin</h7>
                             <div class="align-content-md-center" style="color:white">
-                                @Html.Captcha("Obtener nuevo Captchat", "Ingrese las letras", 7, null) <br /><p> @ViewBag.ErrorMessage </p>
+                                @*@Html.Captcha(7)*@ <br /><p> @ViewBag.ErrorMessage </p>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" style="font-size:16px">Ingresar</button>
                             <br />

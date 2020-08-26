@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
     public class SectorController : Controller
     {
         // GET: Sector
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             SectorComponent sectorComponent = new SectorComponent();
@@ -19,18 +21,21 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sector/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Sector/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Sector/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,6 +63,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sector/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             SectorComponent sectorComponent = new SectorComponent();
@@ -94,6 +100,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Sector/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             SectorComponent sectorComponent = new SectorComponent();
@@ -101,6 +108,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Sector/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -116,6 +124,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
                 return View();
             }
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(string id)
         {
             Sector sector = new Sector();

@@ -6,14 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Evaluaciones_Tecnicas.Filter;
 
 namespace Evaluaciones.Controllers
 {
-    //[Authorize(Roles = "Administrador,CreadorPreguntas")]//para entrar en admin debe estar logueado y  asignarle el rol
-
+  
     public class PreguntaCategoriaController : Controller
     {
+
+
+
         // GET: PreguntaCategoria
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Index(string Pregunta, string Categoria, string preguntaParcial)
         {
             
@@ -37,6 +42,8 @@ namespace Evaluaciones.Controllers
           
         }
 
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // GET: PreguntaCategoria/Details/5
         public ActionResult Categoria(Int16 id)
         {
@@ -45,6 +52,9 @@ namespace Evaluaciones.Controllers
             return View(preguntaCategoriaModels.Read(id));
         }
 
+
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // GET: PreguntaCategoria/Create
         public ActionResult Create( int id)
         {
@@ -68,6 +78,8 @@ namespace Evaluaciones.Controllers
             return View(result);
         }
 
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // POST: PreguntaCategoria/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -97,6 +109,9 @@ namespace Evaluaciones.Controllers
             }
         }
 
+
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // GET: PreguntaCategoria/Edit/5
         public ActionResult Edit(int id)
         {
@@ -105,6 +120,8 @@ namespace Evaluaciones.Controllers
             return View();
         }
 
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // POST: PreguntaCategoria/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -121,6 +138,8 @@ namespace Evaluaciones.Controllers
             }
         }
 
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // GET: PreguntaCategoria/Delete/5
         public ActionResult Delete(int Id_categoria, int Id_Pregunta)
         {
@@ -131,6 +150,8 @@ namespace Evaluaciones.Controllers
             return View(preguntaCategoriaComponent.ReadBy(preguntaCategoria));
         }
 
+
+        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         // POST: PreguntaCategoria/Delete/5
         [HttpPost]
         public ActionResult Delete(int Id_categoria, int Id_Pregunta,FormCollection collection)
@@ -148,5 +169,7 @@ namespace Evaluaciones.Controllers
                 return View();
             }
         }
+
+
     }
 }

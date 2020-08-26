@@ -112,5 +112,58 @@ namespace Negocio
 
 
         }
+
+
+
+
+
+
+
+        public  bool VerificarSiTieneElRol(Usuarios usuarios,List<Roles> roles)
+
+
+        {
+
+            Usuarios unUsuario = new Usuarios();
+            UsuarioDac usuarioDac = new UsuarioDac();
+            unUsuario = usuarioDac.ReadByEmail(usuarios.Email);
+            List<UsuarioRoles> usuarioRoles = new List<UsuarioRoles>();
+            usuarioRoles = obtenerRolesDisponiblesDelUsuario(unUsuario.Id);
+            bool aux = false;
+            if (usuarioRoles.Count == 0)
+            {
+                aux = false;
+            }
+            else
+            {
+
+           
+              foreach (Roles item in roles)
+              {
+
+                    if (aux)
+                    {
+                        break;
+                    }
+                foreach (UsuarioRoles subItem in usuarioRoles)
+                {
+                        if (subItem.roles.name==item.name)
+                        {
+                            aux = true;
+                            break;
+                        }
+
+                }
+
+              }
+            }
+
+
+            return aux;
+
+
+        }
+
+
     }
 }

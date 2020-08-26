@@ -119,6 +119,8 @@ namespace Data
             }
             return roles;
         }
+
+
         public Roles ReadBy(string id)
         {
             const string SQL_STATEMENT = "select * from AspNetRoles where activo=1 and id=@Id";
@@ -128,6 +130,25 @@ namespace Data
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.String, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        roles = LoadRoles(dr);
+                    }
+                }
+            }
+            return roles;
+        }
+        public Roles ReadByNombreRol(string nombreRol)
+        {
+            const string SQL_STATEMENT = "select * from AspNetRoles where activo=1 and name=@Id";
+            Roles roles = null;
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.String, nombreRol);
                 using (IDataReader dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read())

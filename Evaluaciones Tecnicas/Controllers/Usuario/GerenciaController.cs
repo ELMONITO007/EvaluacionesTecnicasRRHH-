@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
     public class GerenciaController : Controller
     {
         // GET: Gerencia
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             GerenciaComponent gerenciaComponent = new GerenciaComponent();
@@ -19,18 +21,21 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Gerencia/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Gerencia/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Gerencia/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,6 +63,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Gerencia/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             GerenciaComponent gerenciaComponent = new GerenciaComponent();
@@ -65,6 +71,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Gerencia/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -95,6 +102,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Gerencia/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             GerenciaComponent gerenciaComponent = new GerenciaComponent();
@@ -102,6 +110,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Gerencia/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

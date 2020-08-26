@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 {
     public class JefaturaController : Controller
     {
-        //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+
         // GET: Jefatura
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             JefaturaComponent jefaturaComponent = new JefaturaComponent();
@@ -20,18 +22,21 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Jefatura/Details/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Jefatura/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Jefatura/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -59,6 +64,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Jefatura/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             JefaturaComponent jefaturaComponent = new JefaturaComponent();
@@ -67,6 +73,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Jefatura/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -96,6 +103,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Jefatura/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             JefaturaComponent jefaturaComponent = new JefaturaComponent();
@@ -104,6 +112,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Jefatura/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -119,6 +128,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
                 return View();
             }
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(string id)
         {
             Jefatura jefatura = new Jefatura();

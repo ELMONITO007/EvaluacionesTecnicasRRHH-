@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,11 @@ using System.Web.Mvc;
 
 namespace Evaluaciones.Controllers.Usuario_Examen
 {
-    //[Authorize(Roles = "Administrador")]//para entrar en admin debe estar logueado y  asignarle el rol
+
     public class DireccionController : Controller
     {
         // GET: Direccion
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index()
         {
             DireccionComponent direccionComponent = new DireccionComponent();
@@ -20,12 +22,14 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Direccion/Details/5
+    [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Direccion/Create
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
             return View();
@@ -33,6 +37,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 
         // POST: Direccion/Create
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -58,6 +63,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Direccion/Edit/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id)
         {
             DireccionComponent direccion = new DireccionComponent();
@@ -66,6 +72,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
 
         // POST: Direccion/Edit/5
         [HttpPost]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -93,6 +100,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // GET: Direccion/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Delete(int id)
         {
             DireccionComponent direccion = new DireccionComponent();
@@ -100,6 +108,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
         }
 
         // POST: Direccion/Delete/5
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -115,6 +124,7 @@ namespace Evaluaciones.Controllers.Usuario_Examen
                 return View();
             }
         }
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(string id)
         {
             Direccion direccion = new Direccion();

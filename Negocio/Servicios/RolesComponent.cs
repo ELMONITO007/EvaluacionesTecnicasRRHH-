@@ -42,6 +42,14 @@ namespace Negocio
             result = roles.ReadBy(id.ToString());
             return result;
         }
+        public  Roles ReadByNombreRol(string name)
+        {
+            Roles result = default(Roles);
+            var roles = new RolesDAC();
+
+            result = roles.ReadByNombreRol(name);
+            return result;
+        }
 
         public override void Update(Roles objeto)
         {
