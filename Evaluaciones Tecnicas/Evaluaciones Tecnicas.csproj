@@ -1925,6 +1925,7 @@
     <Compile Include="Controllers\Usuario\SectorController.cs" />
     <Compile Include="Controllers\Usuario\SedeController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
+    <Compile Include="Controllers\Usuario\UsuarioExamenController.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Filter\AuthorizerUser.cs" />
     <Compile Include="Filter\ExceptionFilter.cs" />
@@ -2249,6 +2250,8 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Login\Perfil.cshtml" />
     <Content Include="Views\Bitacora\Index.cshtml" />
+    <Content Include="Views\UsuarioExamen\Index.cshtml" />
+    <Content Include="Views\UsuarioExamen\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2263,6 +2266,10 @@
     <Folder Include="PDF\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{5B65EC81-8C65-4698-9139-36F4AE3BA8AC}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{5d916822-15d2-416b-aa9e-ef123950b0ea}</Project>
       <Name>Entities</Name>

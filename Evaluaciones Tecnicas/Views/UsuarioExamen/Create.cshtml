@@ -1,0 +1,71 @@
+﻿@model Entities.UsuarioParaExamen
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex flex-column  col-lg-6" >
+        <div class="container-fluid"  >
+            <div class="card shadow mb-4" >
+                <div class=" card-header py-3 table-responsive ">
+                    <h6 class="m-0 font-weight-bold text-primary">Crear un usuario de examen</h6>
+
+
+
+                </div>
+                <div class="card-body ">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                    <h5 class="text-justify">Nombre</h5>
+                    @Html.EditorFor(model => model.usuarios.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.usuarios.Nombre, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Apellido</h5>
+                    @Html.EditorFor(model => model.usuarios.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.usuarios.Nombre, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Dirección de Correo Electrónico</h5>
+                    @Html.EditorFor(model => model.usuarios.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.usuarios.Email, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Sede</h5>
+                    @Html.DropDownListFor(model => model.sede.sede, (IEnumerable<SelectListItem>)ViewBag.ListaSedes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sede.sede, "", new { @class = "text-danger" })
+                    <br />
+
+                    <h5 class="text-justify">Direccion</h5>
+                    @Html.DropDownListFor(model => model.direccion.direccion, (IEnumerable<SelectListItem>)ViewBag.ListaDireccion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.direccion.direccion, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Gerencia</h5>
+                    @Html.DropDownListFor(model => model.gerencia.gerencia, (IEnumerable<SelectListItem>)ViewBag.ListaGerencia, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.gerencia.gerencia, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Jefatura</h5>
+                    @Html.DropDownListFor(model => model.jefatura.jefatura, (IEnumerable<SelectListItem>)ViewBag.ListaJefatura, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.jefatura.jefatura, "", new { @class = "text-danger" })
+                    <br />
+                    <h5 class="text-justify">Sector</h5>
+                    @Html.DropDownListFor(model => model.sector.sector, (IEnumerable<SelectListItem>)ViewBag.ListaSector, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sector.sector, "", new { @class = "text-danger" })
+                    <br />
+                </div>
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioExamen")'" />
+
+                <br />
+
+                <input type="submit" value="Crear" class="btn btn-outline-info" />
+
+            </div>
+        </div>
+    </div>
+}

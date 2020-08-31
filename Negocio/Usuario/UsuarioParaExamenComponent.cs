@@ -18,10 +18,10 @@ namespace Negocio
 
             //crear el usuario
             Usuarios usuarios = new Usuarios();
-            usuarios.Bloqueado = objeto.usuarios.Bloqueado;
+            usuarios.Bloqueado = false;
             usuarios.Email = objeto.usuarios.Email;
-            usuarios.UserName = objeto.usuarios.UserName;
-            usuarios.Password = objeto.usuarios.Password;
+            usuarios.UserName = objeto.usuarios.Email;
+            usuarios.Password = CrearContraseña(objeto) ;
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             bool result = usuariosComponent.Crear(usuarios);
 
@@ -39,7 +39,7 @@ namespace Negocio
                 objeto.usuarios = unusuario;
                 UsuarioParaexamenDAC usuarioParaexamenDAC = new UsuarioParaexamenDAC();
                 usuarioParaexamenDAC.Create(objeto);
-                ;
+                
                 PDF pDF = new PDF();
                 pDF.unUsuario = objeto;
                 crearPDF.Create(pDF);
@@ -65,24 +65,122 @@ namespace Negocio
             return objeto;
         }
 
-              
-            
 
-        
+        public string CrearContraseña(UsuarioParaExamen usuarioParaExamen)
+        {
+            string result;
+            var chars = "*/!#$%&/()=";
+            var stringChars = new char[1];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            Sede sede = new Sede();
+            SedeComponent sedeComponent = new SedeComponent();
+            sede = sedeComponent.ReadBy(usuarioParaExamen.sede.Id);
+            EmpresaComponent empresaComponent = new EmpresaComponent();
+            Empresa empresa = new Empresa();
+            empresa = empresaComponent.ReadBy(sede.empresa.Id);
+
+            Gerencia gerencia = new Gerencia();
+            GerenciaComponent gerenciaComponent = new GerenciaComponent();
+            gerencia = gerenciaComponent.ReadBy(usuarioParaExamen.gerencia.Id);
+
+            string finalString = new String(stringChars);
+            result = empresa.empresa + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + gerencia.gerencia + finalString;
+            return result;
+        }
+
+
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            UsuarioParaexamenDAC usuarioParaexamenDAC = new UsuarioParaexamenDAC();
+            usuarioParaexamenDAC.Delete(id);
         }
 
         public override List<UsuarioParaExamen> Read()
         {
-            throw new NotImplementedException();
+            UsuarioParaexamenDAC usuarioParaexamenDAC = new UsuarioParaexamenDAC();
+            List<UsuarioParaExamen> result = new List<UsuarioParaExamen>();
+           
+            foreach (UsuarioParaExamen item in usuarioParaexamenDAC.Read())
+            {
+                UsuarioParaExamen usuarioParaExamen = new UsuarioParaExamen();
+
+                UsuariosComponent usuarios = new UsuariosComponent();
+                usuarioParaExamen.usuarios = usuarios.ReadBy(item.usuarios.Id);
+
+
+                DireccionDAC direccionDAC = new DireccionDAC();
+                Direccion direccion = new Direccion();
+                direccion = direccionDAC.ReadBy(item.direccion.Id);
+                usuarioParaExamen.direccion = direccion;
+
+                SedeDAC sedeDAC = new SedeDAC();
+                Sede sede = new Sede();
+                sede= sedeDAC.ReadBy(item.sede.Id);
+                usuarioParaExamen.sede = sede;
+                    
+                EmpresaDAC empresaDAC = new EmpresaDAC();
+                usuarioParaExamen.sede.empresa = empresaDAC.ReadBy(sede.empresa.Id);
+
+
+             
+                GerenciaDAC gerenciaDAC = new GerenciaDAC();
+                usuarioParaExamen.gerencia = gerenciaDAC.ReadBy(item.gerencia.Id);
+
+                JefaturaDAC jefaturaDAC = new JefaturaDAC();
+                usuarioParaExamen.jefatura = jefaturaDAC.ReadBy(item.jefatura.Id);
+
+                SectorDAC sector = new SectorDAC();
+                usuarioParaExamen.sector = sector.ReadBy(item.sector.Id);
+
+                result.Add(usuarioParaExamen);
+
+
+            }
+            return result;
         }
 
         public override UsuarioParaExamen ReadBy(int id)
         {
-            throw new NotImplementedException();
+            UsuarioParaExamen usuarioParaExamen = new UsuarioParaExamen();
+            UsuarioParaexamenDAC usuarioParaexamenDAC = new UsuarioParaexamenDAC();
+            usuarioParaExamen = usuarioParaexamenDAC.ReadBy(id);
+
+            UsuariosComponent usuarios = new UsuariosComponent();
+            usuarioParaExamen.usuarios = usuarios.ReadBy(usuarioParaExamen.usuarios.Id);
+
+
+            DireccionDAC direccionDAC = new DireccionDAC();
+            Direccion direccion = new Direccion();
+            direccion = direccionDAC.ReadBy(usuarioParaExamen.direccion.Id);
+            usuarioParaExamen.direccion = direccion;
+
+            SedeDAC sedeDAC = new SedeDAC();
+            Sede sede = new Sede();
+            sede = sedeDAC.ReadBy(usuarioParaExamen.sede.Id);
+            usuarioParaExamen.sede = sede;
+
+            EmpresaDAC empresaDAC = new EmpresaDAC();
+            usuarioParaExamen.sede.empresa = empresaDAC.ReadBy(usuarioParaExamen.sede.empresa.Id);
+
+
+
+            GerenciaDAC gerenciaDAC = new GerenciaDAC();
+            usuarioParaExamen.gerencia = gerenciaDAC.ReadBy(usuarioParaExamen.gerencia.Id);
+
+            JefaturaDAC jefaturaDAC = new JefaturaDAC();
+            usuarioParaExamen.jefatura = jefaturaDAC.ReadBy(usuarioParaExamen.jefatura.Id);
+
+            SectorDAC sector = new SectorDAC();
+            usuarioParaExamen.sector = sector.ReadBy(usuarioParaExamen.sector.Id);
+
+            return usuarioParaExamen;
         }
 
         public override void Update(UsuarioParaExamen objeto)

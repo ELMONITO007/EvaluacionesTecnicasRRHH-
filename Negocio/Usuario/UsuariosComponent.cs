@@ -60,22 +60,7 @@ namespace Negocio
                     }
 
         
-        public string CrearContraseña(UsuarioParaExamen usuarioParaExamen)
-        {
-            string result;
-            var chars = "*/!#$%&/()=";
-            var stringChars = new char[1];
-            var random = new Random();
-
-            for (int i = 0; i < stringChars.Length; i++)
-            {
-                stringChars[i] = chars[random.Next(chars.Length)];
-            }
-
-            string finalString = new String(stringChars);
-            result =usuarioParaExamen.sede.empresa.empresa + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()+usuarioParaExamen.gerencia.gerencia + finalString;
-            return result;
-        }
+       
 
         #endregion
 

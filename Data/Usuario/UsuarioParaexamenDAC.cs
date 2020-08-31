@@ -22,8 +22,8 @@ namespace Data
             usuarioParaExamen.sector.Id = GetDataValue<int>(dr, "Id_sector");
 
 
-            usuarioParaExamen.nombre = GetDataValue<string>(dr, "nombre");
-            usuarioParaExamen.apellido = GetDataValue<string>(dr, "apellido");
+            usuarioParaExamen.nombre = GetDataValue<string>(dr, "Tipo");
+          
             return usuarioParaExamen;
         }
         public UsuarioParaExamen Create(UsuarioParaExamen entity)

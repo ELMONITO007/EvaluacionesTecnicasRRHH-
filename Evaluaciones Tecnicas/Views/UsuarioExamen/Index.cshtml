@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Entities.UsuarioParaExamen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de Usuario para examen</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+
+
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Email</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Nombre</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Apellido</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Sede</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Empresa</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Dirección</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Gerencia</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Jefatura</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Sector</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.usuarios.Email)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.usuarios.Nombre)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.usuarios.Apellido)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.sede.sede)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.sede.empresa.empresa)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.direccion.direccion)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.gerencia.gerencia)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.jefatura.jefatura)
+                                            </td>
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.sector.sector)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
+                                                @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)
+                                                @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)
+                                            </td>
+
+
+                                        </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-outline-primary " style="float:right" value="Crear" onclick="location.href='@Url.Action("create", "usuarioexamen")'" />
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+
+</div>

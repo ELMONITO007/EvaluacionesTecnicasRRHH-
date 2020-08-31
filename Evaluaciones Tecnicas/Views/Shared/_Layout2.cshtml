@@ -203,9 +203,13 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     @{  Usuarios usuario = new Usuarios();
                                         usuario = (Usuarios)Session["UserName"];
+                                        string user="";
+                                        if (usuario.Email != "")
+                                        {
+                                             user = usuario.Email;
+                                        }
 
-                                        string user = usuario.Email;
-                            @user }
+                                        @user }
                                 </span>
 
 

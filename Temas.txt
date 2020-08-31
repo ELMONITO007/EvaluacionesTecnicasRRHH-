@@ -1,0 +1,6 @@
+quitar nombre y apellido usuario examen
+Generar tipo segun email
+correcion logueo
+error al entrar director create
+
+error al abrir PDF
