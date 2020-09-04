@@ -15,6 +15,7 @@ namespace Data.Examen
         private Entities.Examen.Examen LoadCategoria(IDataReader dr)
         {
             Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            examen.Categoria.Id = GetDataValue<int>(dr, "ID_Categoria");
             examen.Id = GetDataValue<int>(dr, "ID_Examen");
             examen.Fecha = GetDataValue<DateTime>(dr, "Fecha");
             examen.Resultado = GetDataValue<int>(dr, "Resultado");
@@ -90,7 +91,25 @@ namespace Data.Examen
             }
             return examen;
         }
+        public Entities.Examen.Examen ReadBy(DateTime  Fecha)
+        {
+            const string SQL_STATEMENT = "select * from examen where activo=1 and Fecha=@Id";
+            Entities.Examen.Examen examen = null;
 
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.DateTime, Fecha);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        examen = LoadCategoria(dr);
+                    }
+                }
+            }
+            return examen;
+        }
         public void Update(Entities.Examen.Examen entity)
         {
             const string SQL_STATEMENT = "update Examen set Fecha=@Fecha, Estado=@Estado, , Resultado=@Resultado , Aprobado=@Aprobado   where ID_examen=@Id ";
