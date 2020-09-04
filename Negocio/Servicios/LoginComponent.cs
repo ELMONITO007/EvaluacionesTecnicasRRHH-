@@ -184,8 +184,7 @@ namespace Negocio
             else
             {
                 loginError.error = "Usuario o Contraseña Invalido";
-                bitacora.eventoBitacora.Id = 4;
-                bitacoraComponent.Create(bitacora);
+                
             }
 
             return loginError;

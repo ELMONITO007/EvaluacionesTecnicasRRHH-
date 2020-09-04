@@ -34,8 +34,8 @@ namespace Evaluaciones_Tecnicas.Controllers.Usuario
             usuarioParaExamen.ListaSedes.Select(y =>
                                 new
                                 {
-                                    Id = y.Id,
-                                    sede = y.sede
+                                    y.Id,
+                                    y.sede
                                 });
 
             ViewBag.ListaSedes = new SelectList(usuarioParaExamen.ListaSedes, "Id", "sede");
@@ -109,15 +109,15 @@ namespace Evaluaciones_Tecnicas.Controllers.Usuario
             {
                 UsuarioParaExamen usuarioParaExamen = new UsuarioParaExamen();
                 UsuarioParaExamenComponent usuarioParaexamenDAC = new UsuarioParaExamenComponent();
-                usuarioParaExamen.nombre = collection.Get("usuarios.Nombre");
+                usuarioParaExamen.usuarios.Nombre = collection.Get("usuarios.Nombre");
                 usuarioParaExamen.usuarios.Email = collection.Get("usuarios.Email");
-                usuarioParaExamen.apellido= collection.Get("usuarios.Apellido");
+                usuarioParaExamen.usuarios.Apellido = collection.Get("usuarios.Apellido");
                 usuarioParaExamen.sede.Id =int.Parse( collection.Get("sede.sede"));
 
                 usuarioParaExamen.direccion.Id = int.Parse(collection.Get("direccion.direccion"));
                 usuarioParaExamen.gerencia.Id = int.Parse(collection.Get("gerencia.gerencia"));
                 usuarioParaExamen.jefatura.Id = int.Parse(collection.Get("jefatura.jefatura"));
-                usuarioParaExamen.direccion.Id = int.Parse(collection.Get("sector.sector"));
+                usuarioParaExamen.sector.Id = int.Parse(collection.Get("sector.sector"));
                 // TODO: Add insert logic here
                 usuarioParaexamenDAC.Create(usuarioParaExamen);
                 return RedirectToAction("Index");

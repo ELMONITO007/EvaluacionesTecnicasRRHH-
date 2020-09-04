@@ -40,6 +40,7 @@ namespace Negocio
                         usuariosFormateado.Email = objeto.Email;
                         usuariosFormateado.UserName = objeto.UserName;
                         usuariosFormateado.Password = objeto.Password;
+
                          if (Verificar(objeto.UserName))
                              {
                             usuarios = objeto;

@@ -25,11 +25,12 @@ namespace Data
             usuarios.Bloqueado = GetDataValue<bool>(dr, "Bloqueado");
             usuarios.CantidadIntentos = GetDataValue<int>(dr, "CantidadIntentos");
             usuarios.Password = GetDataValue<string>(dr, "Password");
+            usuarios.Tipo = GetDataValue<string>(dr, "Tipo");
             return usuarios;
         }
         public Usuarios Create(Usuarios entity)
         {
-            const string SQL_STATEMENT = "insert into Usuario(UserName,Email,Password,Bloqueado,CantidadIntentos,Activo,DVH,Nombre,Apellido)values(@UserName,@Email,@Password,0,0,1,@DVH,@Nombre,@Apellido)";
+            const string SQL_STATEMENT = "insert into Usuario(UserName,Email,Password,Bloqueado,CantidadIntentos,Activo,DVH,Nombre,Apellido,Tipo)values(@UserName,@Email,@Password,0,0,1,@DVH,@Nombre,@Apellido,@Tipo)";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -39,6 +40,7 @@ namespace Data
                 db.AddInParameter(cmd, "@Nombre", DbType.String, entity.Nombre);
                 db.AddInParameter(cmd, "@Apellido", DbType.String, entity.Apellido);
                 db.AddInParameter(cmd, "@DVH", DbType.String, entity.DVH.DVH);
+                db.AddInParameter(cmd, "@tipo", DbType.String, entity.Tipo);
                 db.ExecuteNonQuery(cmd);
             }
             return ReadByEmail(entity.Email);

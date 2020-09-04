@@ -20,7 +20,8 @@ namespace Entities
         [DisplayName("Nombre")]
         public string Nombre { get; set; }
 
-
+        [DisplayName("¿Es un Colaborador?")]
+        public string Tipo { get; set; }
         [DisplayName("Nombre de usuario")]
         public string UserName { get; set; }
 

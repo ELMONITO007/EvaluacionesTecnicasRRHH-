@@ -81,34 +81,34 @@ namespace Negocio
 
             List<UsuarioRoles> usuarioRoles = new List<UsuarioRoles>();
             usuarioRoles = ReadByUsuario(id_Usuario);
-            List<UsuarioRoles> result = new List<UsuarioRoles>();
+            //List<UsuarioRoles> result = new List<UsuarioRoles>();
 
 
-            foreach (Roles item in roles)
-            {
-                int aux = 0;
+            //foreach (Roles item in roles)
+            //{
+            //    int aux = 0;
 
-                foreach (UsuarioRoles itemRoles in usuarioRoles)
-                {
-                    if (item.id==itemRoles.roles.id)
-                    {
-                        aux = 1;
-                        break;
-                    }
+            //    foreach (UsuarioRoles itemRoles in usuarioRoles)
+            //    {
+            //        if (item.id==itemRoles.roles.id)
+            //        {
+            //            aux = 1;
+            //            break;
+            //        }
 
-                }
-                if (aux==0)
-                {
-                    UsuarioRoles usuario = new UsuarioRoles();
-                    usuario.roles = item;
-                    result.Add(usuario);
-                }
-
-
-            }
+            //    }
+            //    if (aux==0)
+            //    {
+            //        UsuarioRoles usuario = new UsuarioRoles();
+            //        usuario.roles = item;
+            //        result.Add(usuario);
+            //    }
 
 
-            return result;
+            //}
+
+
+            return usuarioRoles;
 
 
         }
@@ -123,40 +123,49 @@ namespace Negocio
 
 
         {
-
-            Usuarios unUsuario = new Usuarios();
-            UsuarioDac usuarioDac = new UsuarioDac();
-            unUsuario = usuarioDac.ReadByEmail(usuarios.Email);
-            List<UsuarioRoles> usuarioRoles = new List<UsuarioRoles>();
-            usuarioRoles = obtenerRolesDisponiblesDelUsuario(unUsuario.Id);
             bool aux = false;
-            if (usuarioRoles.Count == 0)
+            if (usuarios is null)
             {
                 aux = false;
             }
             else
             {
+                Usuarios unUsuario = new Usuarios();
+                UsuarioDac usuarioDac = new UsuarioDac();
+                unUsuario = usuarioDac.ReadByEmail(usuarios.Email);
+                List<UsuarioRoles> usuarioRoles = new List<UsuarioRoles>();
+                usuarioRoles = obtenerRolesDisponiblesDelUsuario(unUsuario.Id);
 
-           
-              foreach (Roles item in roles)
-              {
-
-                    if (aux)
-                    {
-                        break;
-                    }
-                foreach (UsuarioRoles subItem in usuarioRoles)
+                if (usuarioRoles.Count == 0)
                 {
-                        if (subItem.roles.name==item.name)
+                    aux = false;
+                }
+                else
+                {
+
+
+                    foreach (Roles item in roles)
+                    {
+
+                        if (aux)
                         {
-                            aux = true;
                             break;
                         }
+                        foreach (UsuarioRoles subItem in usuarioRoles)
+                        {
+                            if (subItem.roles.name == item.name)
+                            {
+                                aux = true;
+                                break;
+                            }
 
+                        }
+
+                    }
                 }
-
-              }
             }
+
+          
 
 
             return aux;

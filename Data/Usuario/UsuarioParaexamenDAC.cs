@@ -22,13 +22,13 @@ namespace Data
             usuarioParaExamen.sector.Id = GetDataValue<int>(dr, "Id_sector");
 
 
-            usuarioParaExamen.nombre = GetDataValue<string>(dr, "Tipo");
+            
           
             return usuarioParaExamen;
         }
         public UsuarioParaExamen Create(UsuarioParaExamen entity)
         {
-            const string SQL_STATEMENT = "insert into UsuarioParaExamen(Id,Id_Sede,Id_Direccion,Id_Gerencia,Id_Jefatura,Id_Sector,Nombre,Apellido,activo)values(@Id,@Id_Sede,@Id_Direccion,@Id_Gerencia,@Id_Jefatura,@Id_Sector,@Nombre,@Apellido,1)";
+            const string SQL_STATEMENT = "insert into UsuarioParaExamen(Id,Id_Sede,Id_Direccion,Id_Gerencia,Id_Jefatura,Id_Sector,activo)values(@Id,@Id_Sede,@Id_Direccion,@Id_Gerencia,@Id_Jefatura,@Id_Sector,1)";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -38,8 +38,7 @@ namespace Data
                 db.AddInParameter(cmd, "@Id_gerencia", DbType.Int32, entity.gerencia.Id);
                 db.AddInParameter(cmd, "@Id_jefatura", DbType.Int32, entity.jefatura.Id);
                 db.AddInParameter(cmd, "@Id_sector", DbType.Int32, entity.sector.Id);
-                db.AddInParameter(cmd, "@nombre", DbType.String, entity.nombre);
-                db.AddInParameter(cmd, "@apellido", DbType.String, entity.apellido);
+           
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
 
@@ -122,7 +121,7 @@ namespace Data
 
         public void Update(UsuarioParaExamen entity)
         {
-            const string SQL_STATEMENT = "update UsuarioParaExamen set Id_Sede=@Id_Sede,Id_Direccion=@Id_Direccion,Id_Gerencia=@Id_Gerencia,Id_Jefatura=@Id_Jefatura,Id_Sector=@Id_Sector,Nombre=@Nombre,Apellido=@Apellido where id=@Id";
+            const string SQL_STATEMENT = "update UsuarioParaExamen set Id_Sede=@Id_Sede,Id_Direccion=@Id_Direccion,Id_Gerencia=@Id_Gerencia,Id_Jefatura=@Id_Jefatura,Id_Sector=@Id_Sector where id=@Id";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -133,8 +132,7 @@ namespace Data
                 db.AddInParameter(cmd, "@Id_gerencia", DbType.Int32, entity.gerencia.Id);
                 db.AddInParameter(cmd, "@Id_jefatura", DbType.Int32, entity.jefatura.Id);
                 db.AddInParameter(cmd, "@Id_sector", DbType.Int32, entity.sector.Id);
-                db.AddInParameter(cmd, "@nombre", DbType.String, entity.nombre);
-                db.AddInParameter(cmd, "@apellido", DbType.String, entity.apellido);
+         
                 db.ExecuteNonQuery(cmd);
             }
         }

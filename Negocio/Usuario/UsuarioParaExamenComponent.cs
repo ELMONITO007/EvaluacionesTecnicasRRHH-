@@ -13,6 +13,22 @@ namespace Negocio
 {
     public class UsuarioParaExamenComponent : Component<UsuarioParaExamen>
     {
+
+        public string EmailEmpresarial(string email)
+        {
+            string[] separadas;
+
+            separadas = email.Split('@');
+            if (separadas[1]=="@transener.com.ar" || separadas[1] == "@transba.com.ar")
+            {
+                return "Interno";
+            }
+            else
+            {
+                return "Externo";
+            }
+        }
+
         public override UsuarioParaExamen Create(UsuarioParaExamen objeto)
         {
 
@@ -21,7 +37,9 @@ namespace Negocio
             usuarios.Bloqueado = false;
             usuarios.Email = objeto.usuarios.Email;
             usuarios.UserName = objeto.usuarios.Email;
+            usuarios.Tipo = EmailEmpresarial(objeto.usuarios.Email);
             usuarios.Password = CrearContraseña(objeto) ;
+            string _heather = CrearContraseña(objeto);
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             bool result = usuariosComponent.Crear(usuarios);
 
@@ -41,6 +59,7 @@ namespace Negocio
                 usuarioParaexamenDAC.Create(objeto);
                 
                 PDF pDF = new PDF();
+                objeto.usuarios.Password = _heather;
                 pDF.unUsuario = objeto;
                 crearPDF.Create(pDF);
 

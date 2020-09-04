@@ -80,9 +80,10 @@
                                             <td>
                                                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                                                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
-                                                @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)
-                                                @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)
-                                            </td>
+                                                @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
+                                                @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
+                                                @Html.ActionLink("Abrir PDF", "Abrir", "PDF", new { email = item.usuarios.Email }, null)
+                                            </td> 
 
 
                                         </tr>

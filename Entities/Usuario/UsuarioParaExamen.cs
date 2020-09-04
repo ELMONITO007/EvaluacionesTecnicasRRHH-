@@ -20,9 +20,7 @@ namespace Entities
         public List<Jefatura> ListaJefatura = new List<Jefatura>();
         public Sector sector { get; set; }
         public List<Sector> ListaSector = new List<Sector>();
-        public string tipo { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; } 
+ 
         public override int Id { get; set; }
 
         public UsuarioParaExamen()
