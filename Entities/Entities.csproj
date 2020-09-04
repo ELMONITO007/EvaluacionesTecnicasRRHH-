@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityBase.cs" />
+    <Compile Include="Examen\Examen.cs" />
+    <Compile Include="Examen\ExamenPregunta.cs" />
     <Compile Include="Preguntas y Respuestas\Categoria.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoice.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoiceCompuesto.cs" />
@@ -83,7 +85,6 @@
     <Compile Include="Usuario\Usuarios.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Examen\" />
     <Folder Include="Informes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

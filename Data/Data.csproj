@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessComponent.cs" />
+    <Compile Include="Examen\ExamenDAC.cs" />
+    <Compile Include="Examen\ExamenPreguntaDAC.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Preguntas y Respuestas\CategoriaDAC.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoiceCompuestoDAC.cs" />
