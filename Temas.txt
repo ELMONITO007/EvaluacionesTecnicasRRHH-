@@ -1,6 +1,3 @@
-quitar nombre y apellido usuario examen
-Generar tipo segun email
-correcion logueo
-error al entrar director create
-
-error al abrir PDF
+verificar si existe usuario
+Crear Backend examen
+crear fornt examen
