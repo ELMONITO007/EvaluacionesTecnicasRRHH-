@@ -9,6 +9,7 @@ namespace Entities.Examen
 {
     public class Examen : EntityBase
     {
+        public string error { get; set; }
         public List<Pregunta> listaPregunta { get; set; }
         public Categoria Categoria { get; set; }
         public override int Id { get; set; }

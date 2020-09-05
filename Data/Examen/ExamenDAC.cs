@@ -91,6 +91,29 @@ namespace Data.Examen
             }
             return examen;
         }
+
+
+
+        public Entities.Examen.Examen ReadByEstado(int id)
+        {
+            const string SQL_STATEMENT = "select * from examen where activo=1 and ID=@Id and estado='Realizado'";
+            Entities.Examen.Examen examen = null;
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        examen = LoadCategoria(dr);
+                    }
+                }
+            }
+            return examen;
+        }
+
         public Entities.Examen.Examen ReadBy(DateTime  Fecha)
         {
             const string SQL_STATEMENT = "select * from examen where activo=1 and Fecha=@Id";

@@ -1901,6 +1901,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Examen\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\CategoriaController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceCompuestoController.cs" />
@@ -2262,9 +2263,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Examen\" />
     <Folder Include="Controllers\Informes\" />
     <Folder Include="PDF\" />
+    <Folder Include="Views\Examen\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
