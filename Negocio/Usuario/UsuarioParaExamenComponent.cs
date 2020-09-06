@@ -37,6 +37,8 @@ namespace Negocio
             usuarios.Bloqueado = false;
             usuarios.Email = objeto.usuarios.Email;
             usuarios.UserName = objeto.usuarios.Email;
+            usuarios.Nombre = objeto.usuarios.Nombre;
+            usuarios.Apellido = objeto.usuarios.Apellido;
             usuarios.Tipo = EmailEmpresarial(objeto.usuarios.Email);
             usuarios.Password = CrearContraseña(objeto) ;
             string _heather = CrearContraseña(objeto);
@@ -48,6 +50,15 @@ namespace Negocio
             Usuarios unusuario = new Usuarios();
             unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
             unusuario.Password = usuarios.Password;
+
+            //Agregar el permiso Examen
+
+            UsuarioRoles usuarioRoles = new UsuarioRoles();
+            UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
+            usuarioRoles.usuarios.Id = unusuario.Id;
+            usuarioRoles.roles.id = "3";
+            usuarioRolesComponent.Create(usuarioRoles);
+
 
             //Inicializar la clase CrearPDF 
             CrearPDF crearPDF = new CrearPDF();

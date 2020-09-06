@@ -61,13 +61,13 @@ namespace Negocio.Examen
                     enviar.categoria.Id = entity.Categoria.Id;
                     entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, 20);
                     //Completo los datos del examen
-                    entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy hh:mm"));
+                    entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
                     entity.Resultado = 0;
                     entity.Aprobado = false;
                     entity.Estado = "A realizar";
 
                     //Creo el examen
-                    ExamenComponent examenComponent = new ExamenComponent();
+                    ExamenDAC examenComponent = new ExamenDAC();
                     examenComponent.Create(entity);
                     //Obtengo el ID del examen creado
 
@@ -81,7 +81,8 @@ namespace Negocio.Examen
                     {
                         ExamenPregunta examenPregunta = new ExamenPregunta();
                         ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
-                        examenPregunta.examen.Id = Id;
+                       
+                        examenPregunta.examen.Id = examen.Id;
                         examenPregunta.pregunta.Id = item.Id;
                         examenPregunta.correcta = false;
                         examenPreguntaComponent.Create(examenPregunta);
@@ -108,14 +109,44 @@ namespace Negocio.Examen
 
         public List<Entities.Examen.Examen> Read()
         {
-            ExamenComponent examenComponent = new ExamenComponent();
-            return examenComponent.Read();
+            ExamenDAC examenComponent = new ExamenDAC();
+          List<  Entities.Examen.Examen> examen = new List<Entities.Examen.Examen>();
+            List<Entities.Examen.Examen> Result = new List<Entities.Examen.Examen>();
+
+            examen =  examenComponent.Read();
+
+            foreach (Entities.Examen.Examen item in examen)
+            {
+                UsuariosComponent usuarios = new UsuariosComponent();
+                CategoriaComponent categoriaComponent = new CategoriaComponent();
+                Entities.Examen.Examen unExamen = new Entities.Examen.Examen();
+                unExamen = item;
+                unExamen.usuario = usuarios.ReadBy(item.usuario.Id);
+                unExamen.Categoria = categoriaComponent.ReadBy(item.Categoria.Id);
+                Result.Add(unExamen);
+            }
+            return Result;
         }
 
         public Entities.Examen.Examen ReadBy(int id)
         {
+
+            ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+            List<ExamenPregunta> ListaPreguntasExamen = new List<ExamenPregunta>();
+            ListaPreguntasExamen = examenPreguntaComponent.ReadByExamen(id);
+
+
             ExamenDAC examenDAC = new ExamenDAC();
-            return examenDAC.ReadBy(id);
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            UsuariosComponent usuarios=new UsuariosComponent();
+                examen= examenDAC.ReadBy(id);
+            int a = examen.usuario.Id;
+            examen.listaExamenPregunta = ListaPreguntasExamen;
+            examen.usuario = usuarios.ReadBy(a);
+
+
+           
+            return examen;
         }
         public Entities.Examen.Examen ReadBy(DateTime Fecha)
         {

@@ -41,6 +41,7 @@ namespace Entities
         public Categoria categoria { get; set; }
         public List< Categoria> ListaCategoria { get; set; }
         public List<MultipleChoice> ListaMC { get; set; }
+        public List<Orden> ListaOrden { get; set; }
         public Pregunta ()
         {
             ListaRespuesta = new List<Respuesta>();
@@ -53,6 +54,7 @@ namespace Entities
             ListaRespuesta = new List<Respuesta>();
             ListaMC = new List<MultipleChoice>();
             ListaPregunta = new List<Pregunta>();
+            ListaOrden = new List<Orden>();
         }
 
         public  Pregunta(string _pregunta,int _nivel,int _TipoPregunta,int _categoria,string laImagen)

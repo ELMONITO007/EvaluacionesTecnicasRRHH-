@@ -1,0 +1,46 @@
+﻿@model Entities.Examen.Examen
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class=" card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Crear un Sector</h6>
+
+
+
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(model => model.usuario.Id)
+
+                    <h5 class="text-justify">Categoria</h5>
+                      @Html.DropDownListFor(model => model.Categoria.LaCategoria, (IEnumerable<SelectListItem>)ViewBag.ListaCategoria, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Categoria.LaCategoria, "", new { @class = "text-danger" })
+
+
+                </div>
+
+
+                <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioExamen")'" />
+
+                <br />
+
+                <input type="submit" value="Crear" class="btn btn-outline-info" />
+
+            </div>
+        </div>
+    </div>
+}

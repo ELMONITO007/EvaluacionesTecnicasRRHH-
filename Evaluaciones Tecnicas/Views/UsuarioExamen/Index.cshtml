@@ -79,11 +79,11 @@
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
-                                                @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
+                                                                                           @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
                                                 @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
                                                 @Html.ActionLink("Abrir PDF", "Abrir", "PDF", new { email = item.usuarios.Email }, null)
-                                            </td> 
+                                                @Html.ActionLink("Crear Examen", "Create", "Examen", new { Id_Usuario = item.usuarios.Id }, null)
+                                            </td>
 
 
                                         </tr>

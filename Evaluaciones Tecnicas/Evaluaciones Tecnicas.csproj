@@ -2254,6 +2254,9 @@
     <Content Include="Views\UsuarioExamen\Index.cshtml" />
     <Content Include="Views\UsuarioExamen\Create.cshtml" />
     <Content Include="Views\Login\Deslogueo.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\VerExamenSistema.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2265,7 +2268,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Informes\" />
     <Folder Include="PDF\" />
-    <Folder Include="Views\Examen\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

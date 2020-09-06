@@ -17,6 +17,11 @@ namespace Entities.Examen
         [DisplayName("¿Respuesta Correcta?")]
         public bool correcta { get; set; }
 
+        public ExamenPregunta()
+        {
+            pregunta = new Pregunta();
+            examen = new Examen();
 
+        }
     }
 }

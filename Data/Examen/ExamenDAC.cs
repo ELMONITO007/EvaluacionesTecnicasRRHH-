@@ -21,12 +21,13 @@ namespace Data.Examen
             examen.Resultado = GetDataValue<int>(dr, "Resultado");
             examen.Aprobado = GetDataValue<bool>(dr, "Aprobado");
             examen.usuario.Id = GetDataValue<int>(dr, "ID");
+            examen.Estado = GetDataValue<string>(dr, "Estado");
             return examen;
         }
         public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
         {
 
-            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,Activo)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,1) ";
+            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,Activo,ID_Categoria)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,@IdCategoria,1) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -35,6 +36,7 @@ namespace Data.Examen
                 db.AddInParameter(cmd, "@Resultado", DbType.Int16, entity.Resultado);
                 db.AddInParameter(cmd, "@Aprobado", DbType.Boolean, entity.Aprobado);
                 db.AddInParameter(cmd, "@Id", DbType.Int16, entity.usuario.Id);
+                db.AddInParameter(cmd, "@IdCategoria", DbType.Int16, entity.Categoria.Id);
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
 

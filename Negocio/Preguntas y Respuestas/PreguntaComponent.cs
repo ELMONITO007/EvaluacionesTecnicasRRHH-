@@ -162,6 +162,12 @@ namespace Negocio
                         MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent();
                         item.ListaPregunta = multipleChoiceCompustoComponent.ReadByPregunta(item.Id).ListaSubPreguntas;
                     }
+
+                    //else if (item.tipoPregunta.TipoDePregunta == "Orden")
+                    //{
+                    //    OrdenComponent ordenComponent = new OrdenComponent();
+                    //    item.ListaOrden(ordenComponent.rea)
+                    //}
                     preguntas.Add(item);
                     contar++;
                 }

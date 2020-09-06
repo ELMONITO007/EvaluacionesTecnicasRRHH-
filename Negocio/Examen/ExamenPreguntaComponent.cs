@@ -25,7 +25,40 @@ namespace Negocio.Examen
         {
             throw new NotImplementedException();
         }
+        public List<ExamenPregunta>  ReadByExamen(int Id_examen)
+        {
+           
+            ExamenPreguntaDAC examenPreguntaDAC = new ExamenPreguntaDAC();
+            List<ExamenPregunta> Lista = new List<ExamenPregunta>();
+            List<ExamenPregunta> result = new List<ExamenPregunta>();
+            result= examenPreguntaDAC.ReadByExamen(Id_examen);
+           
 
+            foreach (ExamenPregunta item in result)
+            {
+                ExamenPregunta examenPregunta = new ExamenPregunta();
+                examenPregunta = item;
+                PreguntaComponent preguntaComponent = new PreguntaComponent();
+                examenPregunta.pregunta = preguntaComponent.ReadBy(item.pregunta.Id);
+                if (examenPregunta.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
+                {
+                    MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
+                    examenPregunta.pregunta.ListaMC = multipleChoiceComponent.listaRespuestaMultipleChoiceAlAzar(examenPregunta.pregunta.Id).ListaMultipleChoice;
+
+                }
+                else if (examenPregunta.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                {
+                    MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent();
+                    examenPregunta.pregunta.ListaPregunta = multipleChoiceCompustoComponent.ReadByPregunta(examenPregunta.pregunta.Id).ListaSubPreguntas;
+                }
+                Lista.Add(examenPregunta);
+
+
+            }
+
+
+            return Lista;
+        }
         public ExamenPregunta ReadBy(int id)
         {
             throw new NotImplementedException();

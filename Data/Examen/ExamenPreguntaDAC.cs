@@ -22,7 +22,7 @@ namespace Data.Examen
         }
         public ExamenPregunta Create(ExamenPregunta entity)
         {
-            const string SQL_STATEMENT = "insert into categoria(ID_pregunta,ID_examen,correcta)values(@ID_pregunta,@ID_examen,@correcta) ";
+            const string SQL_STATEMENT = "insert into examenpregunta(ID_pregunta,ID_examen,correcta)values(@ID_pregunta,@ID_examen,@correcta) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -43,11 +43,34 @@ namespace Data.Examen
         {
             throw new NotImplementedException();
         }
+        public List<ExamenPregunta> ReadByExamen(int Id_Examen)
+        {
 
+
+            const string SQL_STATEMENT = "select * from examenPregunta where Id_Examen=@ID_examen";
+
+            List<ExamenPregunta> result = new List<ExamenPregunta>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@ID_examen", DbType.Int32, Id_Examen);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        ExamenPregunta examen = LoadCategoria(dr);
+                        result.Add(examen);
+                    }
+                }
+            }
+            return result;
+        }
         public ExamenPregunta ReadBy(int id)
         {
             throw new NotImplementedException();
         }
+
+
 
         public void Update(ExamenPregunta entity)
         {

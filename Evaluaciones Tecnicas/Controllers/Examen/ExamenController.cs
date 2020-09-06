@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Negocio;
+using Negocio.Examen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,8 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
         // GET: Examen
         public ActionResult Index()
         {
-            return View();
+            ExamenComponent examenComponent = new ExamenComponent(); 
+            return View(examenComponent.Read());
         }
 
         // GET: Examen/Details/5
@@ -21,9 +24,24 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
         }
 
         // GET: Examen/Create
-        public ActionResult Create()
+        public ActionResult Create(int id_Usuario)
         {
-            return View();
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            examen.usuario = usuariosComponent.ReadBy(id_Usuario);
+            CategoriaComponent categoriaComponent = new CategoriaComponent();
+            examen.listaCategoria = categoriaComponent.Read();
+            examen.listaCategoria.Select(y =>
+                                new
+                                {
+                                    y.Id,
+                                    y.LaCategoria
+                                });
+
+            ViewBag.ListaCategoria = new SelectList(examen.listaCategoria, "Id", "LaCategoria");
+
+
+            return View(examen);
         }
 
         // POST: Examen/Create
@@ -33,7 +51,11 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             try
             {
                 // TODO: Add insert logic here
-
+               Entities.Examen.Examen examen=new Entities.Examen.Examen();
+                ExamenComponent examenComponent = new ExamenComponent();
+                examen.usuario.Id = int.Parse(collection.Get("usuario.Id"));
+                examen.Categoria.Id= int.Parse(collection.Get("Categoria.LaCategoria"));
+                examenComponent.Create(examen);
                 return RedirectToAction("Index");
             }
             catch
@@ -84,6 +106,19 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             {
                 return View();
             }
+        }
+
+        public ActionResult ErrorPage(Entities.Examen.Examen examen)
+        {
+            return View(examen);
+        }
+
+
+        public ActionResult VerExamenSistema(int id)
+        {
+            ExamenComponent examen = new ExamenComponent();
+            return View(examen.ReadBy(id));
+
         }
     }
 }
