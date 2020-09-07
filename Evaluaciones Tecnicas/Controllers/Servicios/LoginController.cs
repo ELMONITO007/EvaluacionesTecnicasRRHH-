@@ -59,10 +59,36 @@ namespace Evaluaciones.Controllers
                     if (loginError.error == "")
                     {
                         Session["UserName"] = usuarios;
-                       
+                    UsuariosComponent usuariosComponent = new UsuariosComponent();
+                    Usuarios unUsuario = new Usuarios();
+                    unUsuario = usuariosComponent.ReadByEmail(usuarios.Email);
+                    UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
+
+                    int aux = 0;
+
+                    foreach (UsuarioRoles item in usuarioRolesComponent.obtenerRolesDisponiblesDelUsuario(unUsuario.Id))
+                    {
+                        if (item.roles.name=="Examen")
+                        {
+                            aux = 1;
+                        }
+
+                    }
 
 
-                        return RedirectToAction("index","admin");
+
+                    if (aux==0)
+                    {
+                        return RedirectToAction("index", "admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("VerExamenUsuario", "Examen");
+                    }
+
+
+
+                      
                     }
 
 

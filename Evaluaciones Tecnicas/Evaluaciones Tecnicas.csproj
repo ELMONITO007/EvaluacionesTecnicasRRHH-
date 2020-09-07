@@ -2257,6 +2257,7 @@
     <Content Include="Views\Examen\Index.cshtml" />
     <Content Include="Views\Examen\Create.cshtml" />
     <Content Include="Views\Examen\VerExamenSistema.cshtml" />
+    <Content Include="Views\Examen\VerExamenUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

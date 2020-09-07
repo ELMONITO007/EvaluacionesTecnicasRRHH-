@@ -148,11 +148,56 @@ namespace Negocio.Examen
            
             return examen;
         }
+
+        public Entities.Examen.Examen VerExamenUsuario(int id)
+        {
+            //obtengo el ultimo examen a realizar
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            ExamenDAC examenComponent = new ExamenDAC();
+            examen = examenComponent.ReadByUsuario(id);
+
+            //obtengo las preguntas y respusta del examen
+
+            ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+            List<ExamenPregunta> ListaPreguntasExamen = new List<ExamenPregunta>();
+            ListaPreguntasExamen = examenPreguntaComponent.ReadByExamen(examen.Id);
+
+
+            //asigno las preguntas al examen
+            examen.listaExamenPregunta = ListaPreguntasExamen;
+
+            //Obtengo los datos del usuario
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            examen.usuario = usuariosComponent.ReadBy(id);
+
+
+            return examen;
+
+
+
+        }
+
+
+
+
+
         public Entities.Examen.Examen ReadBy(DateTime Fecha)
         {
             ExamenDAC examenDAC = new ExamenDAC();
             return examenDAC.ReadBy(Fecha);
         }
+
+
+        public void Terminarexamen(List<Pregunta> preguntas)
+            { //
+
+
+        
+        
+            }
+
+
+
 
         public void Update(Entities.Examen.Examen entity)
         {

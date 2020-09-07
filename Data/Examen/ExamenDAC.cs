@@ -93,7 +93,25 @@ namespace Data.Examen
             }
             return examen;
         }
+        public Entities.Examen.Examen ReadByUsuario(int id)
+        {
+            const string SQL_STATEMENT = "select top 1 *  from examen where ID=@Id and Estado='a Realizar' order by Fecha desc ";
+            Entities.Examen.Examen examen = null;
 
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        examen = LoadCategoria(dr);
+                    }
+                }
+            }
+            return examen;
+        }
 
 
         public Entities.Examen.Examen ReadByEstado(int id)

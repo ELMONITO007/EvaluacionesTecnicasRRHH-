@@ -1,0 +1,309 @@
+﻿@model Entities.Examen.Examen
+
+@{
+    ViewBag.Title = "Examen";
+    Layout = null;
+}
+<title>Vista Examen</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<style>
+    html, body, h1, h2, h3, h4, h5 {
+        font-family: "Open Sans", sans-serif
+    }
+    .myButton {
+        box-shadow: 3px 4px 0px 0px #1564ad;
+        background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+        background-color: #79bbff;
+        border-radius: 5px;
+        border: 1px solid #337bc4;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 17px;
+        font-weight: bold;
+        padding: 12px 44px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #528ecc;
+    }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+            background-color: #378de5;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        
+    .caja {
+        font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        background: #889ccf;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 1em;
+        border-radius: 35px 0px 35px 0px;
+        -moz-border-radius: 35px 0px 35px 0px;
+        -webkit-border-radius: 35px 0px 35px 0px;
+        border: 2px solid #5878ca;
+        width: 100%;
+        float: left;
+        resize: none;
+    }
+    .subCaja {
+        font-family: sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        width: 90%;
+        border: none;
+        height: auto;
+        resize: none;
+     
+   
+       
+    }
+
+    .check {
+        width: 13px;
+        height: 13px;
+        padding: 0;
+        margin: 0;
+        vertical-align:140%;
+        position: relative;
+        top: -1px;
+        *overflow: hidden;
+    }
+    
+</style>
+<body class="w3-theme-l5">
+
+
+    @using (Html.BeginForm("VerExamenUsuario", "Examen", FormMethod.Post))
+    {
+
+        <!-- Page Container -->
+        <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+            <!-- The Grid -->
+            <div class="w3-row">
+                <!-- Left Column -->
+                <div class="w3-col m3">
+                    <!-- Profile -->
+                    <div class="w3-card w3-round w3-white">
+                        <div class="w3-container">
+                            <h4 class="w3-center">Mi Perfil</h4>
+
+                            <p class="w3-center"><img src="~/img/avatar 4.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                            <hr>
+                            <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>@Html.DisplayFor(model => model.usuario.Email)</p>
+                            @{
+                                string nombre = Model.usuario.Nombre + " " + Model.usuario.Apellido;
+                            }
+                            <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>@nombre</p>
+                            <p><i class="fa fa-calendar fa-fw w3-margin-right w3-text-theme"></i>@DateTime.Now</p>
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+
+                <!-- Middle Column -->
+                @using (Html.BeginForm())
+                {
+                    int i = 0;
+                    <div class="w3-col m7">
+                        @{int NumeroPregunta = 1;}
+                        @foreach (Entities.Examen.ExamenPregunta item in Model.listaExamenPregunta)
+                        {
+                            int j = 0;
+                            int k = 0;
+
+                        <div class="w3-container w3-card w3-white w3-round w3-margin">
+                            <br>
+
+                            <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
+                            <br />
+
+                            <hr class="w3-clear">
+                            <h4 style="color:black">
+
+                                @Html.TextArea("listaPregunta[" + @i + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
+                            </h4>
+                            <div class="w3-row-padding" style="margin:0 -16px">
+                                @if (item.pregunta.Imagen != "Sin Imagen")
+                                {
+                                    <div class="w3-half">
+
+                                        @{string Imagen = item.pregunta.Imagen;}
+                                        <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
+                                    </div>
+                                }
+
+
+                            </div>
+
+
+
+
+                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
+                            {
+
+
+                                foreach (var MC in item.pregunta.ListaMC)
+                                {
+
+                                    <h6>
+
+                                        @Html.CheckBox("listaPregunta[" + @i + "].ListaMC[" + @j + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaMC[j].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
+
+
+                                        @Html.TextArea("listaPregunta[" + @i + "].ListaMC[" + @j + "].LaRespuesta", Model.listaExamenPregunta[i].pregunta.ListaMC[j].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
+
+
+
+                                        @{ j++;}
+
+                                    </h6>
+
+                                }
+                                <br />
+                            }
+                            @{int p = 0;
+                            }
+                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                            {
+                                foreach (var SubPregunta in item.pregunta.ListaPregunta)
+
+
+
+
+                                {
+
+                                    @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
+                                    <h5 style="color:black">
+                                        @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].LaPregunta", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
+                                        @{int g = 0;
+                                        }
+
+                                    </h5>
+
+
+                                    foreach (var Respuesta in SubPregunta.ListaMC)
+                                    {
+
+                                        <h6>
+
+
+
+                                            @Html.CheckBox("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
+
+                                            @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
+
+                                        </h6>
+                                        g++;
+                                    }
+                                    <br />
+                                                k++;
+                                            }
+
+
+                                <br />
+                            }
+                        </div>
+
+
+
+                            i++;
+
+                            NumeroPregunta++;
+                            <br />
+
+
+                        }
+
+
+
+
+
+                        <!-- End Middle Column -->
+                    </div>
+
+                }
+                <!-- Right Column -->
+                <div class="w3-col m2">
+
+
+                    <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                        <div class="w3-container">
+                            <h3 style="color:black">¿Necesitas Ayuda?</h3>
+                            <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
+                            <br />
+
+                            <p>   dolores.conde@transener.com.ar</p>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- End Right Column -->
+                </div>
+                <!-- End Grid -->
+            </div>
+            <div style="align-content:center" >
+                <input type="submit" value="Terminar Examen" class="myButton" />
+            </div>
+            <!-- End Page Container -->
+        </div>
+        <br>
+
+
+
+        <!-- Footer -->
+
+        <footer class="w3-container w3-theme-d5" style="text-align:center">
+            <p>Copyright Transener-Transba © 2020. Todos los derechos reservados</p>
+        </footer>
+
+        <script>
+            // Accordion
+            function myFunction(id) {
+                var x = document.getElementById(id);
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                    x.previousElementSibling.className += " w3-theme-d1";
+                } else {
+                    x.className = x.className.replace("w3-show", "");
+                    x.previousElementSibling.className =
+                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                }
+            }
+
+            // Used to toggle the menu on smaller screens when clicking on the menu button
+            function openNav() {
+                var x = document.getElementById("navDemo");
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
+        </script>
+    }
+</body>

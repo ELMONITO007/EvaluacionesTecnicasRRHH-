@@ -9,6 +9,7 @@ namespace Entities.Examen
 {
     public class Examen : EntityBase
     {
+        public Pregunta pregunta { get; set; }
         public List<ExamenPregunta> listaExamenPregunta { get; set; }
         public List<Categoria>listaCategoria { get; set; }
         public string error { get; set; }
@@ -38,6 +39,8 @@ namespace Entities.Examen
             Categoria = new Categoria();
             usuario = new Usuarios();
             listaCategoria = new List<Categoria>();
+            pregunta = new Pregunta();
+           
         }
 
 

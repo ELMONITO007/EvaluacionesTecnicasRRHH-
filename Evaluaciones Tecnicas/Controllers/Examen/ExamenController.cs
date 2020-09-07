@@ -1,4 +1,6 @@
-﻿using Negocio;
+﻿using Entities;
+using Evaluaciones_Tecnicas.Filter;
+using Negocio;
 using Negocio.Examen;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,20 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
 {
     public class ExamenController : Controller
     {
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: Examen
         public ActionResult Index()
         {
             ExamenComponent examenComponent = new ExamenComponent(); 
             return View(examenComponent.Read());
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: Examen/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: Examen/Create
         public ActionResult Create(int id_Usuario)
         {
@@ -43,7 +46,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
 
             return View(examen);
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // POST: Examen/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -63,13 +66,13 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
                 return View();
             }
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: Examen/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // POST: Examen/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -85,13 +88,13 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
                 return View();
             }
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: Examen/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // POST: Examen/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
@@ -107,12 +110,12 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
                 return View();
             }
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult ErrorPage(Entities.Examen.Examen examen)
         {
             return View(examen);
         }
-
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
 
         public ActionResult VerExamenSistema(int id)
         {
@@ -120,5 +123,35 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             return View(examen.ReadBy(id));
 
         }
+
+
+        [AuthorizerUser(_roles: "Examen")]
+        public ActionResult VerExamenUsuario()
+        {
+            Usuarios usuarios = new Usuarios();
+
+            usuarios = (Usuarios)Session["UserName"];
+            string Email = usuarios.Email;
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            usuarios = usuariosComponent.ReadByEmail(Email);
+            ExamenComponent examen = new ExamenComponent();
+            return View(examen.VerExamenUsuario(usuarios.Id));
+
+        }
+
+
+
+        [HttpPost]
+        public ActionResult VerExamenUsuario(List<Pregunta> listaPregunta, FormCollection collection)
+
+
+        {
+            int a=0;
+
+            List<Pregunta> listaPreguntas = new List<Pregunta>();
+            listaPreguntas = listaPregunta;
+            return RedirectToAction("VerExamenUsuario");
+        }
+
     }
 }
