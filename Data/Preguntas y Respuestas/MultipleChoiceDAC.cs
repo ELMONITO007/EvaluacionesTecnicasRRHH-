@@ -150,7 +150,28 @@ namespace Data
             }
             return result;
         }
+        public MultipleChoice ObtenerLaRespuestaCorrecta(int id)
+        {
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1  and ID_Respuesta=@Id and Correcta is not null ";
 
+
+            MultipleChoice result = new MultipleChoice();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        result = LoadMultipleChoice(dr);
+                     
+                    }
+                }
+            }
+            return result;
+        }
 
     }
 }

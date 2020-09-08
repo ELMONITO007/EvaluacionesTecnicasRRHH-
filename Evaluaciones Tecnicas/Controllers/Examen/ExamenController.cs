@@ -135,6 +135,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             usuarios = usuariosComponent.ReadByEmail(Email);
             ExamenComponent examen = new ExamenComponent();
+
             return View(examen.VerExamenUsuario(usuarios.Id));
 
         }
@@ -146,11 +147,17 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
 
 
         {
-            int a=0;
+         
+            
+            ExamenComponent examenComponent = new ExamenComponent();
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            examen.Id =int.Parse( collection.Get("Id"));
+            examen.usuario.Id= int.Parse(collection.Get("usuario.Id"));
+            examen.Categoria.Id = int.Parse(collection.Get("categoria.Id"));
+            examen.pregunta.ListaPregunta = listaPregunta;
+            examenComponent.Terminarexamen(listaPregunta,examen);
 
-            List<Pregunta> listaPreguntas = new List<Pregunta>();
-            listaPreguntas = listaPregunta;
-            return RedirectToAction("VerExamenUsuario");
+            return RedirectToAction("index","Home");
         }
 
     }

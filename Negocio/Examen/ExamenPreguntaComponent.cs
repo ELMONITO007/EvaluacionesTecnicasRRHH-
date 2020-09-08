@@ -66,7 +66,9 @@ namespace Negocio.Examen
 
         public void Update(ExamenPregunta entity)
         {
-            throw new NotImplementedException();
+
+            ExamenPreguntaDAC examenPreguntaDAC=new ExamenPreguntaDAC();
+            examenPreguntaDAC.Update(entity);
         }
     }
 }

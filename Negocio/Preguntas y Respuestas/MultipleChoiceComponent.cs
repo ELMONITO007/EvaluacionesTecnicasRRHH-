@@ -8,7 +8,7 @@ using Entities;
 
 namespace Negocio
 {
-  public  class MultipleChoiceComponent : Component<MultipleChoice>
+    public class MultipleChoiceComponent : Component<MultipleChoice>
     {
         public override MultipleChoice Create(MultipleChoice objeto)
         {
@@ -54,7 +54,7 @@ namespace Negocio
         {
 
             PreguntaComponent preguntaComponent = new PreguntaComponent();
-            MultipleChoice result =new MultipleChoice();
+            MultipleChoice result = new MultipleChoice();
             var multipleChoiceDAC = new MultipleChoiceDAC();
             result.ListaMultipleChoice = multipleChoiceDAC.listaRespuestaMultipleChoiceAlAzar(id_pregunta);
             result.pregunta = preguntaComponent.ReadBy(id_pregunta);
@@ -72,7 +72,15 @@ namespace Negocio
             return result;
         }
 
+        public bool ObtenerLaRespuesta(int id)
+        {
+            MultipleChoice result = default(MultipleChoice);
+            var multipleChoiceDAC = new MultipleChoiceDAC();
+            result = multipleChoiceDAC.ObtenerLaRespuestaCorrecta(id);
+            return result.Correcta;
 
 
+
+        }
     }
 }

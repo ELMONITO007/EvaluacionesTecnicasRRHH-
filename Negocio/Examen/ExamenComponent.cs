@@ -81,7 +81,7 @@ namespace Negocio.Examen
                     {
                         ExamenPregunta examenPregunta = new ExamenPregunta();
                         ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
-                       
+
                         examenPregunta.examen.Id = examen.Id;
                         examenPregunta.pregunta.Id = item.Id;
                         examenPregunta.correcta = false;
@@ -110,10 +110,10 @@ namespace Negocio.Examen
         public List<Entities.Examen.Examen> Read()
         {
             ExamenDAC examenComponent = new ExamenDAC();
-          List<  Entities.Examen.Examen> examen = new List<Entities.Examen.Examen>();
+            List<Entities.Examen.Examen> examen = new List<Entities.Examen.Examen>();
             List<Entities.Examen.Examen> Result = new List<Entities.Examen.Examen>();
 
-            examen =  examenComponent.Read();
+            examen = examenComponent.Read();
 
             foreach (Entities.Examen.Examen item in examen)
             {
@@ -138,14 +138,14 @@ namespace Negocio.Examen
 
             ExamenDAC examenDAC = new ExamenDAC();
             Entities.Examen.Examen examen = new Entities.Examen.Examen();
-            UsuariosComponent usuarios=new UsuariosComponent();
-                examen= examenDAC.ReadBy(id);
+            UsuariosComponent usuarios = new UsuariosComponent();
+            examen = examenDAC.ReadBy(id);
             int a = examen.usuario.Id;
             examen.listaExamenPregunta = ListaPreguntasExamen;
             examen.usuario = usuarios.ReadBy(a);
 
 
-           
+
             return examen;
         }
 
@@ -181,6 +181,7 @@ namespace Negocio.Examen
 
 
 
+
         public Entities.Examen.Examen ReadBy(DateTime Fecha)
         {
             ExamenDAC examenDAC = new ExamenDAC();
@@ -188,16 +189,181 @@ namespace Negocio.Examen
         }
 
 
-        public void Terminarexamen(List<Pregunta> preguntas)
-            { //
 
 
-        
-        
+
+
+        public void Terminarexamen(List<Pregunta> preguntas, Entities.Examen.Examen examen)
+        {
+            List<ExamenPregunta> examenPreguntas = new List<ExamenPregunta>();
+            foreach (Pregunta item in preguntas)
+            { int aux = 0;
+                //obtengo el tipo de pregunta
+                TipoPreguntaComponent tipoPreguntaComponent = new TipoPreguntaComponent();
+                TipoPregunta tipoPregunta = new TipoPregunta();
+                tipoPregunta = tipoPreguntaComponent.ReadBy(item.tipoPregunta.Id);
+                if (tipoPregunta.TipoDePregunta == "MultipleChoice")
+                {
+                    foreach (MultipleChoice mcPrincipal in item.ListaMC)
+                    {
+                        MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
+
+                        if (multipleChoiceComponent.ObtenerLaRespuesta(mcPrincipal.Id) == mcPrincipal.RespuestaObtenida)
+                        {
+
+                        }
+                        else
+                        {
+                            aux = 1;
+                            
+                        }
+
+                    }
+
+                }
+
+                if (tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                {
+                    foreach (Pregunta mccPrincipal in item.ListaPregunta)
+                    {
+                        foreach (MultipleChoice mccSecundario in mccPrincipal.ListaMC)
+                        {
+                            MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
+
+                            if (multipleChoiceComponent.ObtenerLaRespuesta(mccSecundario.Id) == mccSecundario.RespuestaObtenida)
+                            {
+
+                            }
+                            else
+                            {
+                                aux = 1;
+
+                            }
+                        }
+
+                    }
+
+
+                }
+
+
+                ExamenPregunta examenPregunta = new ExamenPregunta();
+                examenPregunta.examen.Id = examen.Id;
+                examenPregunta.pregunta.Id = item.Id;
+                if (aux == 1)
+                {
+                    examenPregunta.correcta = false;
+                }
+                else
+                {
+                    examenPregunta.correcta = true;
+
+                }
+                examenPreguntas.Add(examenPregunta);
+
             }
 
+            //Registrar respuestas correctas
+
+            RegistrarPreguntarCorrectas(examenPreguntas);
+
+            // Obtener resultado
+
+            Entities.Examen.Examen examenTerminado = new Entities.Examen.Examen();
+            examenTerminado = ObtenerResultados(examenPreguntas);
+            examenTerminado.Id = examen.Id;
+            examenTerminado.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+            examenTerminado.Estado = "Realizado";
+            ExamenComponent examenComponent = new ExamenComponent();
+            examenComponent.Update(examenTerminado);
+            //Bloquear usuario
+
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            usuariosComponent.Bloquear(examen.usuario.Id);
+
+        }
 
 
+        public Entities.Examen.Examen ObtenerResultados(List<ExamenPregunta> lista)
+        {
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            int cantidad = lista.Count();
+            examen.RespuestasCorrectas = 0;
+            examen.RespuestasIncorrectas = 0;
+            foreach (ExamenPregunta item in lista)
+            {
+                if (item.correcta)
+                {
+                    examen.RespuestasCorrectas++;
+                }
+                else
+                {
+                    examen.RespuestasIncorrectas++;
+
+                }
+            }
+
+            if (examen.RespuestasCorrectas>14)
+            {
+                examen.Aprobado = true;
+            }
+
+            else
+            {
+                examen.Aprobado = false;
+            }
+
+            examen.Resultado = cantidad - examen.RespuestasIncorrectas;
+
+            return examen;
+
+
+        }
+
+        public void RegistrarPreguntarCorrectas(List<ExamenPregunta> lista)
+        {
+
+            foreach (ExamenPregunta item in lista)
+            {
+
+                ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+                examenPreguntaComponent.Update(item);
+
+            }
+
+        }
+
+
+
+
+
+
+      
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+        public Entities.Examen.Examen ObtenerExamenTerminado(int id_examen)
+        {
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+
+
+            return examen;
+
+
+
+
+        }
 
         public void Update(Entities.Examen.Examen entity)
         {

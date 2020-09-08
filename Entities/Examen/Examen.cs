@@ -9,6 +9,12 @@ namespace Entities.Examen
 {
     public class Examen : EntityBase
     {
+        [DisplayName("Respuestas correctas")]
+        public int RespuestasCorrectas { get; set; }
+
+        [DisplayName("Respuestas Incorrectas")]
+        public int RespuestasIncorrectas { get; set; }
+
         public Pregunta pregunta { get; set; }
         public List<ExamenPregunta> listaExamenPregunta { get; set; }
         public List<Categoria>listaCategoria { get; set; }

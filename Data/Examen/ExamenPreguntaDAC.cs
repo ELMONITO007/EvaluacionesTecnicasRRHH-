@@ -74,7 +74,15 @@ namespace Data.Examen
 
         public void Update(ExamenPregunta entity)
         {
-            throw new NotImplementedException();
+            const string SQL_STATEMENT = "update ExamenPregunta set Correcta=@Correcta where ID_Examen=@ID_Examen and ID_Pregunta=@ID_Pregunta";
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@ID_pregunta", DbType.String, entity.pregunta.Id);
+                db.AddInParameter(cmd, "@ID_examen", DbType.String, entity.examen.Id);
+                db.AddInParameter(cmd, "@correcta", DbType.Boolean, entity.correcta);
+                entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+            }
         }
     }
 }

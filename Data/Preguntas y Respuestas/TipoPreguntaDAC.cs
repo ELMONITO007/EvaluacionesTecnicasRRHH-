@@ -89,6 +89,9 @@ namespace Data
             return tipoPregunta;
         }
 
+
+
+
         public void Update(TipoPregunta entity)
         {
             const string SQL_STATEMENT = "update TipoPregunta set TipoPregunta=@TipoPregunta where ID_TipoPregunta=@Id ";

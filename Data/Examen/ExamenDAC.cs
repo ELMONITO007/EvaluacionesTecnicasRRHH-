@@ -22,12 +22,14 @@ namespace Data.Examen
             examen.Aprobado = GetDataValue<bool>(dr, "Aprobado");
             examen.usuario.Id = GetDataValue<int>(dr, "ID");
             examen.Estado = GetDataValue<string>(dr, "Estado");
+            examen.RespuestasCorrectas = GetDataValue<int>(dr, "RespuestasCorrectas");
+            examen.RespuestasIncorrectas = GetDataValue<int>(dr, "RespuestasIncorrectas");
             return examen;
         }
         public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
         {
 
-            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,Activo,ID_Categoria)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,@IdCategoria,1) ";
+            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,Activo,ID_Categoria,RespuestasCorrectas,RespuestasIncorrectas)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,@IdCategoria,1,0,0) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -155,7 +157,7 @@ namespace Data.Examen
         }
         public void Update(Entities.Examen.Examen entity)
         {
-            const string SQL_STATEMENT = "update Examen set Fecha=@Fecha, Estado=@Estado, , Resultado=@Resultado , Aprobado=@Aprobado   where ID_examen=@Id ";
+            const string SQL_STATEMENT = "update Examen set Fecha=@Fecha, Estado=@Estado, Resultado=@Resultado , Aprobado=@Aprobado,RespuestasCorrectas=@RespuestasCorrectas,RespuestasIncorrectas=@RespuestasIncorrectas   where ID_examen=@Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -165,7 +167,8 @@ namespace Data.Examen
                 db.AddInParameter(cmd, "@Estado", DbType.String, entity.Estado);
                 db.AddInParameter(cmd, "@Resultado", DbType.Int16, entity.Resultado);
                 db.AddInParameter(cmd, "@Aprobado", DbType.Boolean, entity.Aprobado);
-                
+                db.AddInParameter(cmd, "@RespuestasCorrectas", DbType.Int16, entity.RespuestasCorrectas);
+                db.AddInParameter(cmd, "@RespuestasIncorrectas", DbType.Int16, entity.RespuestasIncorrectas);
                 db.ExecuteNonQuery(cmd);
             }
         }
