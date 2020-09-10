@@ -196,6 +196,7 @@ namespace Negocio.Examen
         public void Terminarexamen(List<Pregunta> preguntas, Entities.Examen.Examen examen)
         {
             List<ExamenPregunta> examenPreguntas = new List<ExamenPregunta>();
+            List<ExamenRespuesta> ListaExamenRespuesta = new List<ExamenRespuesta>();
             foreach (Pregunta item in preguntas)
             { int aux = 0;
                 //obtengo el tipo de pregunta
@@ -208,16 +209,25 @@ namespace Negocio.Examen
                     {
                         MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
 
-                        if (multipleChoiceComponent.ObtenerLaRespuesta(mcPrincipal.Id) == mcPrincipal.RespuestaObtenida)
-                        {
+                        ExamenRespuesta respuesta = new ExamenRespuesta();
+                        respuesta.examen.Id = examen.Id;
+                        respuesta.pregunta.Id = item.Id;
+                        respuesta.respuesta.Id = mcPrincipal.Id;
+                        respuesta.respondio = mcPrincipal.RespuestaObtenida;
+                        bool respuestaBase = multipleChoiceComponent.ObtenerLaRespuesta(mcPrincipal.Id);
+                       
 
+                        if (respuestaBase == mcPrincipal.RespuestaObtenida)
+                        {
+                            respuesta.correcta = respuestaBase;
                         }
                         else
                         {
+                            respuesta.correcta = respuestaBase;
                             aux = 1;
                             
                         }
-
+                        ListaExamenRespuesta.Add(respuesta);
                     }
 
                 }
@@ -230,15 +240,25 @@ namespace Negocio.Examen
                         {
                             MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
 
-                            if (multipleChoiceComponent.ObtenerLaRespuesta(mccSecundario.Id) == mccSecundario.RespuestaObtenida)
+                            ExamenRespuesta respuesta = new ExamenRespuesta();
+                            respuesta.examen.Id = examen.Id;
+                            respuesta.pregunta.Id = item.Id;
+                            respuesta.respuesta.Id = mccSecundario.Id;
+                            respuesta.subPregunta.SubPregunta = true;
+                            respuesta.subPregunta.Id = mccPrincipal.Id;
+                            respuesta.respondio = mccSecundario.RespuestaObtenida;
+                            bool respuestaBase = multipleChoiceComponent.ObtenerLaRespuesta(mccSecundario.Id);
+                            if (respuestaBase == mccSecundario.RespuestaObtenida)
                             {
-
+                                respuesta.correcta = respuestaBase;
                             }
                             else
                             {
+                                respuesta.correcta = respuestaBase;
                                 aux = 1;
 
                             }
+                            ListaExamenRespuesta.Add(respuesta);
                         }
 
                     }
@@ -280,6 +300,14 @@ namespace Negocio.Examen
 
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             usuariosComponent.Bloquear(examen.usuario.Id);
+
+            //Registrar las respuestas
+
+            foreach (ExamenRespuesta item in ListaExamenRespuesta)
+            {
+                ExamenRespuestaComponent examenRespuestaComponent = new ExamenRespuestaComponent();
+                examenRespuestaComponent.Create(item);
+            }
 
         }
 

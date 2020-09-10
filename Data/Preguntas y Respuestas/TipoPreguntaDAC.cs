@@ -89,7 +89,25 @@ namespace Data
             return tipoPregunta;
         }
 
+        public TipoPregunta ReadByPregunta(int id)
+        {
+            const string SQL_STATEMENT = "select tp.ID_TipoPregunta,tp.TipoPregunta from TipoPregunta as tp join Pregunta as p on p.ID_TipoPregunta = tp.ID_TipoPregunta where ID_Pregunta=@Id ";
+            TipoPregunta tipoPregunta = null;
 
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        tipoPregunta = LoadCategoria(dr);
+                    }
+                }
+            }
+            return tipoPregunta;
+        }
 
 
         public void Update(TipoPregunta entity)

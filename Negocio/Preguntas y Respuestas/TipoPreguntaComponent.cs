@@ -11,6 +11,14 @@ namespace Negocio
 {
     public class TipoPreguntaComponent : Component<TipoPregunta>
     {
+        public TipoPregunta ReadByPregunta(int id)
+        {
+            TipoPregunta result = default(TipoPregunta);
+            var tipoPreguntaDAC = new TipoPreguntaDAC();
+
+            result = tipoPreguntaDAC.ReadByPregunta(id);
+            return result;
+        }
         public override TipoPregunta Create(TipoPregunta objeto)
         {
             TipoPregunta result = default(TipoPregunta);

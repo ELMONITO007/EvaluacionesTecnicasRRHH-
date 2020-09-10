@@ -156,8 +156,10 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             examen.Categoria.Id = int.Parse(collection.Get("categoria.Id"));
             examen.pregunta.ListaPregunta = listaPregunta;
             examenComponent.Terminarexamen(listaPregunta,examen);
+            Session["UserName"] = null;
+            Session.Abandon();
 
-            return RedirectToAction("index","Home");
+            return RedirectToAction("index", "home");
         }
 
     }

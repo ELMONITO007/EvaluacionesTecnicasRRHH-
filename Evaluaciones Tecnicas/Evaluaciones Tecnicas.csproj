@@ -1902,6 +1902,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Examen\ExamenController.cs" />
+    <Compile Include="Controllers\Examen\ExamenRespuestasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\CategoriaController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceCompuestoController.cs" />
@@ -2140,7 +2141,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
-    <Content Include="Views\Categoria\Details.cshtml" />
     <Content Include="Views\Categoria\Edit.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\SaludTipoPregunta.cshtml" />
@@ -2258,6 +2258,7 @@
     <Content Include="Views\Examen\Create.cshtml" />
     <Content Include="Views\Examen\VerExamenSistema.cshtml" />
     <Content Include="Views\Examen\VerExamenUsuario.cshtml" />
+    <Content Include="Views\ExamenRespuestas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
