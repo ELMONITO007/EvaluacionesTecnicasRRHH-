@@ -99,7 +99,7 @@ namespace Negocio
         public string CrearContraseña(UsuarioParaExamen usuarioParaExamen)
         {
             string result;
-            var chars = "*/!#$%&/()=";
+            var chars = "*/!#$&/()=";
             var stringChars = new char[1];
             var random = new Random();
 
@@ -120,7 +120,7 @@ namespace Negocio
             gerencia = gerenciaComponent.ReadBy(usuarioParaExamen.gerencia.Id);
 
             string finalString = new String(stringChars);
-            result = empresa.empresa + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + gerencia.gerencia + finalString;
+            result = empresa.empresa + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + gerencia.gerencia + finalString;
             return result;
         }
 
