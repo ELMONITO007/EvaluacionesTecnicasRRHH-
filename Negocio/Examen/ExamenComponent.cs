@@ -30,7 +30,7 @@ namespace Negocio.Examen
 
 
 
-        public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
+        public Entities.Examen.Examen Create(Entities.Examen.Examen entity, int cantidad)
         {
 
 
@@ -59,7 +59,7 @@ namespace Negocio.Examen
 
 
                     enviar.categoria.Id = entity.Categoria.Id;
-                    entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, 20);
+                    entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, cantidad);
                     //Completo los datos del examen
                     entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
                     entity.Resultado = 0;
