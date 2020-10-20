@@ -14,6 +14,7 @@ namespace Entities
         public override int Id { get; set; }
 
         [DisplayName("Empresa")]
+
         public string empresa { get; set; }
 
 

@@ -16,14 +16,20 @@ namespace Entities
         [DataMember]
         public override int Id { get; set; }
 
-        [DataMember]
+  
         [DisplayName("Categoria")]
+        [StringLength(30, ErrorMessage = "El maximo de caracteres es de 30")]
+        [MinLength(0, ErrorMessage = "El minimo de caracteres es de 1")]
         [Required]
         public string LaCategoria { get; set; }
 
-        [DataMember]
+  
         [DisplayName("Descripción")]
-        [Required]
+
+        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+", ErrorMessage = "ingresar solo letras")]
+        [StringLength(100, ErrorMessage = "El maximo de caracteres es de 100")]
+        [MinLength(5, ErrorMessage = "El minimo de caracteres es de 5")]
+
         public string Descripcion { get; set; }
 
 

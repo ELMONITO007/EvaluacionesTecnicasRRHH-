@@ -14,12 +14,15 @@ namespace Entities
       
         public HttpPostedFileBase File { get; set; }
 
-        [DataMember]
+
         public override int Id { get; set; }
 
-        [DataMember]
+
         [DisplayName("Pregunta")]
         [Required]
+
+        [StringLength(100, ErrorMessage = "El maximo de caracteres es de 100")]
+        [MinLength(2, ErrorMessage = "El minimo de caracteres es de 2")]
         public string LaPregunta { get; set; }
 
         [DataMember]

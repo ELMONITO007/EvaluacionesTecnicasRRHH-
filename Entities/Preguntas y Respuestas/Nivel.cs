@@ -18,6 +18,8 @@ namespace Entities
 
         [DataMember]
         [DisplayName("Nivel")]
+        [StringLength(20, ErrorMessage = "El maximo de caracteres es de 20")]
+        [MinLength(1, ErrorMessage = "El minimo de caracteres es de 1")]
         [Required]
         public string ElNivel { get; set; }
 
