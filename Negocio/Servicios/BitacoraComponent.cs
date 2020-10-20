@@ -20,6 +20,7 @@ namespace Negocio.Servicios
             bitacora.hora = DateTime.Now.ToString("HH:mm");
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             Usuarios usuarios = new Usuarios();
+       
             usuarios = usuariosComponent.ReadByEmail(entity.usuarios.Email);
             bitacora.usuarios = usuarios;
             BitacoraDAC bitacoraDAC = new BitacoraDAC();

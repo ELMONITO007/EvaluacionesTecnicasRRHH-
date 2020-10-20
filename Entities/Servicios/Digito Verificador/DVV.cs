@@ -11,5 +11,6 @@ namespace Entities
         public override int Id { get; set; }
         public string dvv { get; set; }
         public string tabla { get; set; }
+        public bool estado { get; set; }
     }
 }

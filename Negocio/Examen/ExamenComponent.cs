@@ -400,5 +400,10 @@ namespace Negocio.Examen
 
             examenDAC.Update(entity);
         }
+
+        public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

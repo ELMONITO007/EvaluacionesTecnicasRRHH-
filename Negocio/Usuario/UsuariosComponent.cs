@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Data;
 using Entities;
+using Entities.Servicios.Bitacora;
+using Negocio.Servicios;
 
 namespace Negocio
 {
@@ -48,9 +50,25 @@ namespace Negocio
                             EncriptarSHA256 encriptarSHA256 = new EncriptarSHA256(objeto.Password);
                             usuarios.Password = encriptarSHA256.Hashear();
                             UsuarioDac usuarioDac = new UsuarioDac();
+                    
                             usuarioDac.Create(usuarios);
+
+                            UsuarioRoles unUsuario = new UsuarioRoles();
+                unUsuario.usuarios = usuarioDac.ReadByEmail(objeto.Email);
+                unUsuario.roles = objeto.unRol;
+
+                UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
+                usuarioRolesComponent.Create(unUsuario);
+
+
                             DVVComponent dVVComponent = new DVVComponent();
                             dVVComponent.CrearDVV(ListaDVH(), "Usuario");
+
+                Bitacora bitacora = new Bitacora();
+                BitacoraComponent bitacoraComponent = new BitacoraComponent();
+                bitacora.usuarios = unUsuario.usuarios;
+                bitacora.eventoBitacora.Id =8;
+                bitacoraComponent.Create(bitacora);
 
                             return true;
                             }

@@ -18,7 +18,7 @@ namespace Evaluaciones.Controllers
 
         // GET: PreguntaCategoria
 
-        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Index(string Pregunta, string Categoria, string preguntaParcial)
         {
             
@@ -43,7 +43,7 @@ namespace Evaluaciones.Controllers
         }
 
 
-        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
         // GET: PreguntaCategoria/Details/5
         public ActionResult Categoria(Int16 id)
         {

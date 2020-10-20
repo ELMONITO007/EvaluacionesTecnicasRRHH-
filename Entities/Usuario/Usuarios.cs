@@ -43,12 +43,15 @@ namespace Entities
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
+        public List<Roles> roles { get; set; }
+        public Roles unRol { get; set; }
         public Usuarios(int _Id, string _NombreUsuario, string _email, string _Password)
         {
             Id = _Id;
             UserName = _NombreUsuario;
             Email = _email;
             Password = _Password;
+            roles = new List<Roles>();
         }
 
         public DigitoVerificadorH DVH { get; set; }
@@ -56,6 +59,11 @@ namespace Entities
         {
             loginError = new LoginError();
             DVH = new DigitoVerificadorH();
+            roles = new List<Roles>();
+            unRol = new Roles();
         }
+
+
+    
     }
 }

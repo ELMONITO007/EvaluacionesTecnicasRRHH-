@@ -1,0 +1,54 @@
+﻿@model Entities.Pregunta
+
+@{
+    ViewBag.Title = "DetailsSubPregunta";
+    Layout = "~/Views/Shared/_LayoutCreador.cshtml";
+}
+
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+
+            <div class=" card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles de La Pregunta  @Html.DisplayFor(model => model.LaPregunta)</h6>
+
+            </div>
+
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+
+
+
+
+
+                <h5 class="text-justify">Pregunta</h5>
+                @Html.DisplayFor(model => model.LaPregunta)
+
+                <br />
+                <br />
+                <h5 class="text-justify">Imagen</h5>
+                @Html.DisplayFor(model => model.Imagen)
+                <br />   <br />
+                <h5 class="text-justify">Nivel</h5>
+
+                @Html.DisplayFor(model => model.nivel.ElNivel)
+
+                <br />   <br />
+                <h5 class="text-justify">Tipo de pregunta</h5>
+                @Html.DisplayFor(model => model.tipoPregunta.TipoDePregunta)
+                <br />
+            </div>
+
+
+
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+            <input type="button" class="btn btn-outline-primary " style="float:left" value="Editar" onclick="location.href='@Url.Action("edit", "Preguntas",new { id = Model.Id })'" />
+            <br />
+        </div>
+    </div>
+</div>

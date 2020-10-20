@@ -9,6 +9,7 @@ using Entities;
 using System.Web.UI.WebControls;
 using Negocio.Servicios;
 using Evaluaciones_Tecnicas.Filter;
+using System.Linq;
 
 namespace Evaluaciones.Controllers
 {
@@ -33,9 +34,19 @@ namespace Evaluaciones.Controllers
         [AuthorizerUser(_roles: "Administrador,RRHH")]
         public ActionResult Create()
         {
+            Usuarios usuarios = new Usuarios();
+            RolesComponent rolesComponent = new RolesComponent();
+            usuarios.roles = rolesComponent.Read();
+            usuarios.roles.Select(y =>
+                                  new
+                                  {
+                                      y.Id,
+                                    y.name
+                                  });
 
+            ViewBag.categoriaLista = new SelectList(usuarios.roles, "Id", "name");
 
-            return View();
+            return View(usuarios);
         }
         // Post: Usuario/Create
         [AuthorizerUser(_roles: "Administrador,RRHH")]
@@ -50,6 +61,7 @@ namespace Evaluaciones.Controllers
                 usuario.UserName = collection.Get("Email");
                 usuario.Nombre= collection.Get("Nombre");
                 usuario.Apellido = collection.Get("Apellido");
+                usuario.unRol.id = collection.Get("unRol.name");
                 UsuariosComponent usuariosComponent = new UsuariosComponent();
                 
               bool result = usuariosComponent.Crear(usuario);

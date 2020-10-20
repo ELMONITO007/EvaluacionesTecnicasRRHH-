@@ -64,6 +64,7 @@
     <Compile Include="Preguntas y Respuestas\SubPreguntaDAC.cs" />
     <Compile Include="Preguntas y Respuestas\TipoPreguntaDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\BackupDAC.cs" />
     <Compile Include="Servicios\BitacoraDAC.cs" />
     <Compile Include="Servicios\DVVDac.cs" />
     <Compile Include="Servicios\EventoBitacoraDAC.cs" />

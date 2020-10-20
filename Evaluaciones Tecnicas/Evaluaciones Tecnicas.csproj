@@ -1905,6 +1905,7 @@
     <Compile Include="Controllers\Examen\ExamenRespuestasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\CategoriaController.cs" />
+    <Compile Include="Controllers\Preguntas y Respuestas\CreadorPreguntasController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceCompuestoController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\MultipleChoiceController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\NivelController.cs" />
@@ -1915,6 +1916,7 @@
     <Compile Include="Controllers\Preguntas y Respuestas\SaludPreguntaController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\SubPreguntaController.cs" />
     <Compile Include="Controllers\Preguntas y Respuestas\TipoPreguntaController.cs" />
+    <Compile Include="Controllers\Servicios\BackupsController.cs" />
     <Compile Include="Controllers\Servicios\BitacoraController.cs" />
     <Compile Include="Controllers\Servicios\LoginController.cs" />
     <Compile Include="Controllers\Servicios\PDFController.cs" />
@@ -2138,7 +2140,7 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Administrador.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\Categoria\Edit.cshtml" />
@@ -2259,6 +2261,27 @@
     <Content Include="Views\Examen\VerExamenSistema.cshtml" />
     <Content Include="Views\Examen\VerExamenUsuario.cshtml" />
     <Content Include="Views\ExamenRespuestas\Index.cshtml" />
+    <Content Include="Views\Backups\ConsistenciaBD.cshtml" />
+    <Content Include="Views\Backups\Delete.cshtml" />
+    <Content Include="Views\Backups\Index.cshtml" />
+    <Content Include="Views\Backups\Restore.cshtml" />
+    <Content Include="Views\Shared\_LayoutRRHH.cshtml" />
+    <Content Include="Views\Shared\_LayoutCreador.cshtml" />
+    <Content Include="Views\Admin\RRHH.cshtml" />
+    <Content Include="Views\Admin\CrearPregunta.cshtml" />
+    <Content Include="Views\Admin\Examen.cshtml" />
+    <Content Include="Views\CreadorPreguntas\Create.cshtml" />
+    <Content Include="Views\CreadorPreguntas\Delete.cshtml" />
+    <Content Include="Views\CreadorPreguntas\Details.cshtml" />
+    <Content Include="Views\CreadorPreguntas\DetailsSubPregunta.cshtml" />
+    <Content Include="Views\CreadorPreguntas\Edit.cshtml" />
+    <Content Include="Views\CreadorPreguntas\ErrorPage.cshtml" />
+    <Content Include="Views\CreadorPreguntas\TipoPregunta.cshtml" />
+    <Content Include="Views\CreadorPreguntas\NivelPregunta.cshtml" />
+    <Content Include="Views\CreadorPreguntas\CategoriaPregunta.cshtml" />
+    <Content Include="Views\CreadorPreguntas\Categoria.cshtml" />
+    <Content Include="Views\CreadorPreguntas\AgregarCategoria.cshtml" />
+    <Content Include="Views\CreadorPreguntas\QuitarCategoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2268,6 +2291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Backup\" />
     <Folder Include="Controllers\Informes\" />
     <Folder Include="PDF\" />
   </ItemGroup>

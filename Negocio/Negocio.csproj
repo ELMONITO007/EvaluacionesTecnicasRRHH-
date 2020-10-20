@@ -67,6 +67,7 @@
     <Compile Include="Preguntas y Respuestas\SubPreguntaComponent.cs" />
     <Compile Include="Preguntas y Respuestas\TipoPreguntaComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\BackupComponent.cs" />
     <Compile Include="Servicios\BitacoraComponent.cs" />
     <Compile Include="Servicios\CrearPDF.cs" />
     <Compile Include="Servicios\DVVComponent.cs" />

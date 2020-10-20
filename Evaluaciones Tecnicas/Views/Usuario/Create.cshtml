@@ -49,6 +49,12 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
 
+                <br />
+                <h5 class="text-justify">Categoria</h5>
+
+                @Html.DropDownListFor(model => model.unRol.name, (SelectList)ViewBag.categoriaLista as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.unRol.name, "", new { @class = "text-danger" })
+                <br />
 
                 <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Usuario")'" />
 
