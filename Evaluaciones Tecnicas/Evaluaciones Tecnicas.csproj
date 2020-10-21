@@ -2282,6 +2282,7 @@
     <Content Include="Views\CreadorPreguntas\Categoria.cshtml" />
     <Content Include="Views\CreadorPreguntas\AgregarCategoria.cshtml" />
     <Content Include="Views\CreadorPreguntas\QuitarCategoria.cshtml" />
+    <Content Include="Views\CreadorPreguntas\PreguntaCategoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

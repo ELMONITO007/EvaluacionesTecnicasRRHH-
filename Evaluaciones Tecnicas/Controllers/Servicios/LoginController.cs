@@ -50,8 +50,7 @@ namespace Evaluaciones.Controllers
         {
             //if (this.IsCaptchaValid("Ingrese las letras correctamente"))
             //{
-            if (ModelState.IsValid)
-            {
+            
 
                 LoginComponent loginComponent = new LoginComponent();
                 LoginError loginError = new LoginError();
@@ -112,12 +111,8 @@ namespace Evaluaciones.Controllers
                 //    return View("index");
                 //}
 
-            }
-            else
-            {
-                ViewBag.ErrorLogin = "Error en el usuario o contraseña";
-                return View("index");
-            }
+            
+          
         }
 
         // GET: Login/Details/5

@@ -40,11 +40,11 @@ namespace Evaluaciones.Controllers
             usuarios.roles.Select(y =>
                                   new
                                   {
-                                      y.Id,
+                                      y.id,
                                     y.name
                                   });
 
-            ViewBag.categoriaLista = new SelectList(usuarios.roles, "Id", "name");
+            ViewBag.categoriaLista = new SelectList(usuarios.roles, "name", "name");
 
             return View(usuarios);
         }
@@ -61,7 +61,7 @@ namespace Evaluaciones.Controllers
                 usuario.UserName = collection.Get("Email");
                 usuario.Nombre= collection.Get("Nombre");
                 usuario.Apellido = collection.Get("Apellido");
-                usuario.unRol.id = collection.Get("unRol.name");
+                usuario.unRol.name = collection.Get("unRol.name");
                 UsuariosComponent usuariosComponent = new UsuariosComponent();
                 
               bool result = usuariosComponent.Crear(usuario);

@@ -12,6 +12,14 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
 {
     public class CreadorPreguntasController : Controller
     {
+        // GET: Preguntas/Details/5
+        [AuthorizerUser(_roles: "CrearPregunta")]
+        public ActionResult Details(int id)
+        {
+            PreguntaComponent pregunta = new PreguntaComponent();
+            return View(pregunta.ReadBy(id));
+        }
+
         // GET: Preguntas
         [AuthorizerUser(_roles: "CrearPregunta")]
         public ActionResult Index()
@@ -25,14 +33,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
 
         }
 
-        // GET: Preguntas/Details/5
-        [AuthorizerUser(_roles: "CrearPregunta")]
-        public ActionResult Details(int id)
-        {
-            PreguntaComponent pregunta = new PreguntaComponent();
-            return View(pregunta.ReadBy(id));
-        }
-
+     
         // GET: Preguntas/Create
         [AuthorizerUser(_roles: "CrearPregunta")]
         public ActionResult Create()
@@ -86,16 +87,11 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
 
             return View();
         }
-        [AuthorizerUser(_roles: "CrearPregunta")]
-        public ActionResult ErrorPage(string pregunta)
-        {
-            Pregunta preguntaError = new Pregunta();
-            preguntaError.LaPregunta = pregunta;
-            return View(preguntaError);
-        }
 
-        [HttpPost]
+
         [AuthorizerUser(_roles: "CrearPregunta")]
+        [HttpPost]
+       
         public ActionResult Create(FormCollection formCollection, Pregunta _pregunta, HttpPostedFileBase file)
         {
             Pregunta pregunta = new Pregunta();
@@ -119,9 +115,16 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
             }
             else
             {
-                return RedirectToAction("index", "preguntacategoria");
+                return RedirectToAction("index");
             }
 
+        }
+        [AuthorizerUser(_roles: "CrearPregunta")]
+        public ActionResult ErrorPage(string pregunta)
+        {
+            Pregunta preguntaError = new Pregunta();
+            preguntaError.LaPregunta = pregunta;
+            return View(preguntaError);
         }
 
         // GET: Preguntas/Edit/5
@@ -167,10 +170,12 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
         }
 
         // POST: Preguntas/Edit/5
-        [HttpPost]
         [AuthorizerUser(_roles: "CrearPregunta")]
-        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string Nivel)
+        [HttpPost]
+    
+        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Nivel,FormCollection collection)
         {
+
             try
             {
                 // TODO: Add update logic here
@@ -196,17 +201,18 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
                 pregunta.Id = id;
                 pregunta.LaPregunta = LaPregunta;
 
-                pregunta.nivel.Id = int.Parse(Nivel);
+                pregunta.nivel.Id = int.Parse(collection.Get("nivel.id"));
                 pregunta.tipoPregunta.Id = preguntaAntesDeModificar.tipoPregunta.Id;
                 preguntaComponent2.Update(pregunta);
 
-                return RedirectToAction("Index", "PreguntaCategoria");
+                return RedirectToAction("PreguntaCategoria", "CreadorPreguntas");
             }
             catch (Exception e)
             {
                 return View(e.Message);
             }
         }
+    
 
         // GET: Preguntas/Delete/5
         [AuthorizerUser(_roles: "CrearPregunta")]
@@ -226,7 +232,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
                 // TODO: Add delete logic here
                 PreguntaComponent pregunta = new PreguntaComponent();
                 pregunta.Delete(id);
-                return RedirectToAction("Index", "PreguntaCategoria");
+                return RedirectToAction("PreguntaCategoria", "creadorPreguntas");
             }
             catch
             {
@@ -320,8 +326,8 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
         }
 
 
-        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
-        // GET: PreguntaCategoria/Create
+        [AuthorizerUser(_roles: "CrearPregunta")]
+        
         public ActionResult AgregarCategoria(int id)
         {
             PreguntaCategoriaModels preguntaCategoriaModels = new PreguntaCategoriaModels();
@@ -346,7 +352,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
 
 
         [AuthorizerUser(_roles: "CrearPregunta")]
-        // POST: PreguntaCategoria/Create
+
         [HttpPost]
         public ActionResult AgregarCategoria(FormCollection collection)
         {
@@ -400,7 +406,7 @@ namespace Evaluaciones_Tecnicas.Controllers.Preguntas_y_Respuestas
                 PreguntaCategoria preguntaCategoria = new PreguntaCategoria(Id_categoria, Id_Pregunta);
                 PreguntaCategoriaComponent preguntaCategoriaComponent = new PreguntaCategoriaComponent();
                 preguntaCategoriaComponent.Delete(preguntaCategoria);
-                return RedirectToAction("Index");
+                return RedirectToAction("PreguntaCategoria");
             }
             catch
             {

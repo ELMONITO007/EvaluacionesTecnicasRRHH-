@@ -55,9 +55,11 @@ namespace Negocio
 
                             UsuarioRoles unUsuario = new UsuarioRoles();
                 unUsuario.usuarios = usuarioDac.ReadByEmail(objeto.Email);
-                unUsuario.roles = objeto.unRol;
+
+                RolesComponent rolesComponent = new RolesComponent();
 
                 UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
+                unUsuario.roles = rolesComponent.ReadByNombreRol(objeto.unRol.name);
                 usuarioRolesComponent.Create(unUsuario);
 
 

@@ -21,7 +21,7 @@ namespace Entities
         [DisplayName("Pregunta")]
         [Required]
 
-        [StringLength(100, ErrorMessage = "El maximo de caracteres es de 100")]
+        [StringLength(250, ErrorMessage = "El maximo de caracteres es de 250")]
         [MinLength(2, ErrorMessage = "El minimo de caracteres es de 2")]
         public string LaPregunta { get; set; }
 
