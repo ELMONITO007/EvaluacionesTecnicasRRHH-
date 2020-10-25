@@ -56,8 +56,9 @@ namespace Evaluaciones.Controllers
                 LoginError loginError = new LoginError();
                 loginError = loginComponent.VerificarLogin(usuarios);
                 if (loginError.error == "")
-                {
-                    Session["UserName"] = usuarios;
+            {
+                
+                Session["UserName"] = usuarios;
                     UsuariosComponent usuariosComponent = new UsuariosComponent();
                     Usuarios unUsuario = new Usuarios();
                     unUsuario = usuariosComponent.ReadByEmail(usuarios.Email);
@@ -70,13 +71,26 @@ namespace Evaluaciones.Controllers
                         pagina = item.roles.name;
                         break;
 
-                    }
+               
+
+                      }
+
+                if (pagina=="Administrador")
+                {
+                    Session["Layout"] = "_Layout2";
+                }
+                if (pagina=="RRHH")
+                {
+                    Session["Layout"] = "_LayoutRRHH";
+                }
+                if (pagina == "CrearPregunta")
+                {
+                    Session["Layout"] = "_LayoutCreador";
+                }
 
 
 
-
-
-                    ViewBag.ErrorLogin = loginError.error;
+                ViewBag.ErrorLogin = loginError.error;
                     return RedirectToAction( pagina, "Admin");
                 }
                 else
@@ -84,35 +98,37 @@ namespace Evaluaciones.Controllers
                     ViewBag.ErrorLogin = "Error en el usuario o contraseña";
                     return View("index");
                 }
-               
 
-                //}
-                //else
-                //{
-                //    BitacoraComponent bitacoraComponent = new BitacoraComponent();
-                //    Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
+            #region Captchap
+            //}
+            //else
+            //{
+            //    BitacoraComponent bitacoraComponent = new BitacoraComponent();
+            //    Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
 
-                //    UsuariosComponent usuariosComponent = new UsuariosComponent();
-                //    Usuarios unusuario = new Usuarios();
-                //    unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
-                //    if ( unusuario is null)
-                //    {
+            //    UsuariosComponent usuariosComponent = new UsuariosComponent();
+            //    Usuarios unusuario = new Usuarios();
+            //    unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
+            //    if ( unusuario is null)
+            //    {
 
-                //    }
-                //    else
-                //    {
-                //        bitacora.usuarios = unusuario;
-                //        bitacora.eventoBitacora.Id = 8;
-                //        bitacoraComponent.Create(bitacora);
-                //    }
+            //    }
+            //    else
+            //    {
+            //        bitacora.usuarios = unusuario;
+            //        bitacora.eventoBitacora.Id = 8;
+            //        bitacoraComponent.Create(bitacora);
+            //    }
 
 
-                //    ViewBag.ErrorLogin = "Error en el Captcha";
-                //    return View("index");
-                //}
+            //    ViewBag.ErrorLogin = "Error en el Captcha";
+            //    return View("index");
+            //}
+            #endregion
 
-            
-          
+
+
+
         }
 
         // GET: Login/Details/5

@@ -47,7 +47,7 @@
                                                     @Html.ActionLink("Detalles Pregunta", "Details", "CreadorPreguntas", new { id = item.ID_Pregunta }, null)|
                                                     @Html.ActionLink("Eliminar Pregunta", "Delete", "CreadorPreguntas", new { id = item.ID_Pregunta }, null)|
                                                     @Html.ActionLink("Ver Categorias", "Categoria", new { id = item.ID_Pregunta })|
-                                                    @Html.ActionLink("Ver Respuestas", "Respuesta", "Respuest as", new { Id_Pregunta = item.ID_Pregunta }, null)|
+                                                    @Html.ActionLink("Ver Respuestas", "Respuesta", "Respuestas", new { Id_Pregunta = item.ID_Pregunta }, null)|
 
                                                     @if (item.TipoPregunta == "MultipleChoice")
                                                     {

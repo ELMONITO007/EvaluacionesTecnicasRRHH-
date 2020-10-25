@@ -1,8 +1,9 @@
 ﻿@model Entities.MultipleChoiceCompuesto
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Index";
+    string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
+    Layout = layout;
 }
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
