@@ -16,7 +16,7 @@ namespace Negocio.Servicios
             Entities.Backups backupRestore = new Entities.Backups();
             BackupDAC backupDAC = new BackupDAC();
             backupRestore = backup;
-            backupRestore.Path = HostingEnvironment.MapPath("~/Backup/" + @backup.Nombre + ".bak");
+            backupRestore.Path = @"C:\Auxiliar\" + @backup.Nombre + ".bak";
             BitacoraComponent bitacoraComponent = new BitacoraComponent();
             Bitacora bitacora = new Bitacora();
             bitacora.eventoBitacora.Id = 7;
@@ -34,7 +34,7 @@ namespace Negocio.Servicios
             Entities.Backups backupRestore = new Entities.Backups();
             BackupDAC backupDAC = new BackupDAC();
             backupRestore = backupDAC.ReadBy();
-            backupRestore.Path = HostingEnvironment.MapPath("~/Backup/" + backupRestore.Nombre + ".bak");
+            backupRestore.Path = @"C:\Auxiliar\" + backupRestore.Nombre + ".bak";
 
 
             UsuariosComponent usuariosComponent = new UsuariosComponent();
