@@ -2262,10 +2262,6 @@
     <Content Include="Views\Examen\VerExamenSistema.cshtml" />
     <Content Include="Views\Examen\VerExamenUsuario.cshtml" />
     <Content Include="Views\ExamenRespuestas\Index.cshtml" />
-    <Content Include="Views\Backups\ConsistenciaBD.cshtml" />
-    <Content Include="Views\Backups\Delete.cshtml" />
-    <Content Include="Views\Backups\Index.cshtml" />
-    <Content Include="Views\Backups\Restore.cshtml" />
     <Content Include="Views\Shared\_LayoutRRHH.cshtml" />
     <Content Include="Views\Shared\_LayoutCreador.cshtml" />
     <Content Include="Views\Admin\RRHH.cshtml" />
@@ -2284,6 +2280,10 @@
     <Content Include="Views\CreadorPreguntas\AgregarCategoria.cshtml" />
     <Content Include="Views\CreadorPreguntas\QuitarCategoria.cshtml" />
     <Content Include="Views\CreadorPreguntas\PreguntaCategoria.cshtml" />
+    <Content Include="Views\Backups\Index.cshtml" />
+    <Content Include="Views\Backups\ConsistenciaBD.cshtml" />
+    <Content Include="Views\Backups\Create.cshtml" />
+    <Content Include="Views\Backups\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2338,7 +2338,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
