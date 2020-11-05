@@ -48,15 +48,15 @@ namespace Negocio
                 {
                     string filename = Path.GetFileNameWithoutExtension(objeto.File.FileName);
                     string FileExtension = Path.GetExtension(objeto.File.FileName);
-                    string ruta = HostingEnvironment.MapPath("~/imagenes/" + filename + FileExtension);
-
+                    string ruta = "C:/imagenes/" + filename + FileExtension;
+                    objeto.Imagen = filename + FileExtension;
                     if (VerificarExisteArchivo(ruta))
                     {
-                        objeto.Imagen = "~/imagenes/" + filename + FileExtension;
+                        objeto.Imagen = "C:/imagenes/" + filename + FileExtension;
                     }
                     else
                     {
-                        objeto.Imagen = "~/imagenes/" + filename + FileExtension;
+                        objeto.Imagen = "C:/imagenes/" + filename + FileExtension;
                         objeto.File.SaveAs(ruta);
                     }
                 }

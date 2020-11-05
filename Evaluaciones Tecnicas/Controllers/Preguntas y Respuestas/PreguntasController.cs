@@ -106,15 +106,25 @@ namespace Evaluaciones.Controllers
             Pregunta result = new Pregunta();
             PreguntaComponent preguntaComponent = new PreguntaComponent();
 
-            if (pregunta.File!=null)
+            if (file is null)
             {
-                pregunta.File = _pregunta.File;
+                
             }
-            
+            else
+            {
+                string ruta;
+                ruta = @"C:\Imagenes\";
+                ruta += file.FileName;
+                file.SaveAs(ruta);
+                pregunta.Imagen = ruta;
+              
+            }
             pregunta.LaPregunta = formCollection.Get("LaPregunta");
-            pregunta.categoria.Id = int.Parse(formCollection.Get("categoria.Id"));
-            pregunta.tipoPregunta.Id = int.Parse(formCollection.Get("tipoPregunta.Id"));
+            pregunta.File = file;
+  
             pregunta.nivel.Id = int.Parse(formCollection.Get("nivel.Id"));
+            pregunta.categoria.Id = _pregunta.categoria.Id;
+            pregunta.tipoPregunta.Id = _pregunta.tipoPregunta.Id;
             result= preguntaComponent.Create(pregunta);
 
             if (result is null)
@@ -173,7 +183,7 @@ namespace Evaluaciones.Controllers
         // POST: Preguntas/Edit/5
         [HttpPost]
         [AuthorizerUser(_roles: "Administrador,RRHH")]
-        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string Nivel)
+        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string Nivel,FormCollection collection)
         {
             try
             {
@@ -200,7 +210,7 @@ namespace Evaluaciones.Controllers
                 pregunta.Id = id;
                 pregunta.LaPregunta = LaPregunta;
             
-                pregunta.nivel.Id = int.Parse(Nivel);
+                pregunta.nivel.Id = int.Parse(collection.Get("nivel.Id"));
                 pregunta.tipoPregunta.Id = preguntaAntesDeModificar.tipoPregunta.Id;
                 preguntaComponent2.Update(pregunta);
 
