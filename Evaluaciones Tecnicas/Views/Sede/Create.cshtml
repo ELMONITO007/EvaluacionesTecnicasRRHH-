@@ -1,8 +1,9 @@
-﻿@model Entities.Sede
+﻿ @model Entities.Sede
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
+    Layout = layout;
 }
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />

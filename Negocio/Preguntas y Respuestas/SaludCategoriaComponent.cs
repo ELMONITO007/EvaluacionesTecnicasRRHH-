@@ -172,7 +172,30 @@ namespace Negocio
             result.nivelBajo = facil;
             result.nivelMedio = medio;
             result.nivelAlto = dificil;
+       
             return result;
+        }
+
+
+
+        public int CantidadPreguntaConBuenaSalud()
+        {
+            int cantidad = 0;
+            SaludCategoria result = new SaludCategoria();
+            result = verificarSaludTipoPregunta();
+            foreach (SaludCategoria item in result.ListaPreguntasTotal)
+            {
+                if (item.saludPregunta.SaludDeLaPregunta)
+                {
+                    cantidad++;
+                }
+            }
+
+
+
+            return cantidad;        
+        
+        
         }
 
 

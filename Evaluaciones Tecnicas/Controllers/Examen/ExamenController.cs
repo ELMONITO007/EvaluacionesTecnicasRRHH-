@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Examen;
 using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using Negocio.Examen;
@@ -60,14 +61,29 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
              examen.cantidadPreguntas= int.Parse(collection.Get("CantidadPreguntas"));
                 examen.Categoria.Id= int.Parse(collection.Get("Categoria.LaCategoria"));
                 examenComponent.Create(examen);
-                return RedirectToAction("Index");
+                if (examen.error=="Salud")
+                {
+                  
+                    return RedirectToAction("ErrorPage", new { cantidas = examen.cantidadPreguntas });
+                }
+                else if (examen.error == "Creado")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception e)
             {
                 return View();
             }
         }
-        [AuthorizerUser(_roles: "Administrador,RRHH")]
+           [AuthorizerUser(_roles: "Administrador,RRHH")]
+
+
+    
         // GET: Examen/Edit/5
         public ActionResult Edit(int id)
         {
@@ -112,8 +128,11 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
             }
         }
         [AuthorizerUser(_roles: "Administrador,RRHH")]
-        public ActionResult ErrorPage(Entities.Examen.Examen examen)
+        public ActionResult ErrorPage(int cantidas)
         {
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            examen.cantidadPreguntas = cantidas;
+      
             return View(examen);
         }
         [AuthorizerUser(_roles: "Administrador,RRHH")]

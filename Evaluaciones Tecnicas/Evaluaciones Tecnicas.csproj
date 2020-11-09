@@ -2284,6 +2284,7 @@
     <Content Include="Views\Backups\ConsistenciaBD.cshtml" />
     <Content Include="Views\Backups\Create.cshtml" />
     <Content Include="Views\Backups\Delete.cshtml" />
+    <Content Include="Views\Examen\ErrorPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

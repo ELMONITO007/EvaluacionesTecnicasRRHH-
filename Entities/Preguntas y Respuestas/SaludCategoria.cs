@@ -29,8 +29,10 @@ namespace Entities
 
         [DisplayName("¿Tiene mas de 20 preguntas que se puedan usar?")]
         public bool TieneMasDe20PreguntasConBuenaSalud { get; set; }
-        [DisplayName("¿Cantidad de preguntas que tiene la categoria?")]
+        [DisplayName("Cantidad de preguntas que tiene la categoria")]
         public int CantidadDePreguntas { get; set; }
+        [DisplayName("Cantidad de preguntas con buena salud")]
+        public int CantidadDePreguntasBuenaSalud { get; set; }
         public bool SaludRespuesta { get; set; }
         public Pregunta Pregunta { get; set; }
         public SaludPregunta saludPregunta { get; set; }

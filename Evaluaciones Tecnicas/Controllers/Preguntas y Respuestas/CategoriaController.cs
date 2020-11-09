@@ -17,8 +17,10 @@ namespace Evaluaciones.Controllers
         public ActionResult SaludTipoPregunta(int id)
         {
             SaludCategoriaComponent saludCategoriaComponent = new SaludCategoriaComponent(id);
-
-            return View(saludCategoriaComponent.verificarSaludTipoPregunta());
+            SaludCategoria salud = new SaludCategoria();
+            salud = saludCategoriaComponent.verificarSaludTipoPregunta();
+            salud.CantidadDePreguntasBuenaSalud = saludCategoriaComponent.CantidadPreguntaConBuenaSalud();
+            return View(salud);
 
 
         }

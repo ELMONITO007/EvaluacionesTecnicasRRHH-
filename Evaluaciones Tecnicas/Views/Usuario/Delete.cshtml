@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
+    Layout = layout;
+}
 }
 
 
@@ -13,15 +15,15 @@
     <hr />
 
 
-   
+
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Eliminar" class="btn btn-outline-info" />
-    <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Usuario")'" />
-</div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Usuario")'" />
+        </div>
     }
 </div>

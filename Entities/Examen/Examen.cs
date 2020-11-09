@@ -27,7 +27,7 @@ namespace Entities.Examen
 
         [Required]
         [DisplayName("Preguntas")]
-        [Range(10, 30, ErrorMessage = "Ingrese un numero entre 10 y 30")]
+        [Range(10, 99, ErrorMessage = "Ingrese un numero entre 10 y 99")]
         public int cantidadPreguntas { get; set; }
 
         [DisplayName("Fecha examen")]
@@ -55,8 +55,7 @@ namespace Entities.Examen
             pregunta = new Pregunta();
            
         }
-
-
+    
 
 
     }

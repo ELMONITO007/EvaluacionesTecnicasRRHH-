@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    string ly = (string)Session["Layout"];
+    Layout = "~/Views/Shared/" + ly + ".cshtml";
 }
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
@@ -19,7 +20,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Lista de roles</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de examenes</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -46,52 +47,52 @@
 
                                         {
                                             string nombre = item.usuario.Nombre + " " + item.usuario.Apellido;
-                                        <tr role="row" class="odd">
+                                            <tr role="row" class="odd">
 
-                                            <td class="sorting_1">
-                                                @nombre
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.usuario.Email)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Estado)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Fecha)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Resultado)
-                                            </td>
-                                            <td class="sorting_1 align-content-center">
-                                                @if (item.Aprobado == true)
-                                                {
-                                                    <a href="#" class="btn btn-success btn-circle">
-                                                        <i class="fas fa-check"></i>
-                                                    </a>
-                                                }
-                                                @if (item.Aprobado == false)
-                                                {
-                                                    <a href="#" class="btn btn-danger btn-circle">
-                                                        <i class="fas fa-cross"></i>
-                                                    </a>
-                                                }
-                                               
-                                               
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Categoria.LaCategoria)
-                                            </td>
-                                            <td>
+                                                <td class="sorting_1">
+                                                    @nombre
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.usuario.Email)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Estado)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Resultado)
+                                                </td>
+                                                <td class="sorting_1 align-content-center">
+                                                    @if (item.Aprobado == true)
+                                                    {
+                                                        <a href="#" class="btn btn-success btn-circle">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                    }
+                                                    @if (item.Aprobado == false)
+                                                    {
+                                                        <a href="#" class="btn btn-danger btn-circle">
+                                                            <i class="fas fa-arrow-down"></i>
+                                                        </a>
+                                                    }
 
 
-                                                @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
-                                                @Html.ActionLink("Ver examen", "VerExamenSistema", new { id = int.Parse(item.Id.ToString()) }) |
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Categoria.LaCategoria)
+                                                </td>
+                                                <td>
 
-                                            </td>
+
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
+                                                    @Html.ActionLink("Ver examen", "VerExamenSistema", new { id = int.Parse(item.Id.ToString()) }) |
+
+                                                </td>
 
 
-                                        </tr>
+                                            </tr>
                                         }
 
 
@@ -99,7 +100,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                          
+
                         </div>
                     </div>
                 </div>

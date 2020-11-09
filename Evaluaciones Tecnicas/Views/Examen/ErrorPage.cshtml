@@ -1,12 +1,14 @@
-﻿@model Entities.Gerencia
+﻿@model Entities.Examen.Examen
 
 @{
     ViewBag.Title = "ErrorPage";
-    string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
-    Layout = layout;
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
+
 <link href="~/Content/modern-business.css" rel="stylesheet" />
+
+
 
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -21,9 +23,9 @@
             <!-- 404 Error Text -->
             <div class="text-center">
                 <div class="error mx-auto" data-text="Error">Error</div>
-                <p class="lead text-gray-800 mb-5">No se puede crear o actualizar la gerencia <i>"@Html.DisplayFor(model => model.gerencia) "</i>.Ya existe  </h4></p>
+                <p class="lead text-gray-800 mb-5">no se puede crear el examen con @Model.cantidadPreguntas preguntas, no hay la suficiente cantidad de preguntas, ingresa a categoria de preguntas para ver la cantidad maxima </p>
                 <p class="text-gray-500 mb-0">Por favor colocar otro nombre</p>
-                <a href="@Url.Action("Index", "gerencia")">← volver al inicio</a>
+                <a href="@Url.Action("Index", "PreguntaCategoria")">← volver al inicio</a>
             </div>
 
         </div>

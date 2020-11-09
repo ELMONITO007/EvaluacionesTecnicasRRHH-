@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
+    Layout = layout;
+}
 }
 
 
@@ -20,7 +22,8 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Lista de Usuario para examen</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de Usuario para el examen</h6>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,8 +37,7 @@
 
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Nombre</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Apellido</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Sede</th>
+
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Empresa</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Dirección</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Gerencia</th>
@@ -49,44 +51,40 @@
 
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.usuarios.Email)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.usuarios.Nombre)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.usuarios.Apellido)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.sede.sede)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.sede.empresa.empresa)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.direccion.direccion)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.gerencia.gerencia)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.jefatura.jefatura)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.sector.sector)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                                                                                           @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
-                                                @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
-                                                @Html.ActionLink("Abrir PDF", "Abrir", "PDF", new { email = item.usuarios.Email }, null)
-                                                @Html.ActionLink("Crear Examen", "Create", "Examen", new { Id_Usuario = item.usuarios.Id }, null)
-                                            </td>
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.usuarios.Email)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.usuarios.Nombre)  @Html.DisplayFor(modelItem => item.usuarios.Apellido)
+                                                </td>
 
 
-                                        </tr>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.sede.empresa.empresa)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.direccion.direccion)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.gerencia.gerencia)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.jefatura.jefatura)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.sector.sector)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                                                    @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
+                                                    @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
+                                                    @Html.ActionLink("Abrir PDF", "Abrir", "PDF", new { email = item.usuarios.Email }, null)
+                                                    @Html.ActionLink("Crear Examen", "Create", "Examen", new { Id_Usuario = item.usuarios.Id }, null)
+                                                </td>
+
+
+                                            </tr>
                                         }
 
 

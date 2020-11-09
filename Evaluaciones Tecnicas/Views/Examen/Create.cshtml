@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    string ly =(string) Session["Layout"];
+    Layout = "~/Views/Shared/"+ ly+".cshtml";
 }
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
