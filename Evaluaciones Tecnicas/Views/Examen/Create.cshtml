@@ -27,9 +27,13 @@
                     @Html.HiddenFor(model => model.usuario.Id)
 
                     <h5 class="text-justify">Categoria</h5>
-                      @Html.DropDownListFor(model => model.Categoria.LaCategoria, (IEnumerable<SelectListItem>)ViewBag.ListaCategoria, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Categoria.LaCategoria, (IEnumerable<SelectListItem>)ViewBag.ListaCategoria, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Categoria.LaCategoria, "", new { @class = "text-danger" })
+                    <br />
 
+                    <h5 class="text-justify">Cantidad Preguntas</h5>
+                    @Html.EditorFor(model => model.cantidadPreguntas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cantidadPreguntas, "", new { @class = "text-danger" })
 
                 </div>
 

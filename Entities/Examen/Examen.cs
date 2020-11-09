@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,12 @@ namespace Entities.Examen
         public List<Pregunta> listaPregunta { get; set; }
         public Categoria Categoria { get; set; }
         public override int Id { get; set; }
+
+
+        [Required]
+        [DisplayName("Preguntas")]
+        [Range(10, 30, ErrorMessage = "Ingrese un numero entre 10 y 30")]
+        public int cantidadPreguntas { get; set; }
 
         [DisplayName("Fecha examen")]
         public DateTime Fecha { get; set; }

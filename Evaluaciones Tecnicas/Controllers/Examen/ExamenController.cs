@@ -57,11 +57,12 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
                Entities.Examen.Examen examen=new Entities.Examen.Examen();
                 ExamenComponent examenComponent = new ExamenComponent();
                 examen.usuario.Id = int.Parse(collection.Get("usuario.Id"));
+             examen.cantidadPreguntas= int.Parse(collection.Get("CantidadPreguntas"));
                 examen.Categoria.Id= int.Parse(collection.Get("Categoria.LaCategoria"));
                 examenComponent.Create(examen);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }

@@ -19,6 +19,7 @@ namespace Data.Examen
             examen.Id = GetDataValue<int>(dr, "ID_Examen");
             examen.Fecha = GetDataValue<DateTime>(dr, "Fecha");
             examen.Resultado = GetDataValue<int>(dr, "Resultado");
+            examen.cantidadPreguntas = GetDataValue<int>(dr, "Cantidad");
             examen.Aprobado = GetDataValue<bool>(dr, "Aprobado");
             examen.usuario.Id = GetDataValue<int>(dr, "ID");
             examen.Estado = GetDataValue<string>(dr, "Estado");
@@ -29,10 +30,11 @@ namespace Data.Examen
         public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
         {
 
-            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,Activo,ID_Categoria,RespuestasCorrectas,RespuestasIncorrectas)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,@IdCategoria,1,0,0) ";
+            const string SQL_STATEMENT = "insert into Examen(Fecha,Estado,Resultado,Aprobado,Id,ID_Categoria,Activo,RespuestasCorrectas,RespuestasIncorrectas,Cantidad)values(@Fecha,@Estado,@Resultado,@Aprobado,@Id,@IdCategoria,1,0,0,@Cantidad) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
+                db.AddInParameter(cmd, "@Cantidad", DbType.Int32, entity.cantidadPreguntas);
                 db.AddInParameter(cmd, "@Fecha", DbType.DateTime, entity.Fecha);
                 db.AddInParameter(cmd, "@Estado", DbType.String, entity.Estado);
                 db.AddInParameter(cmd, "@Resultado", DbType.Int16, entity.Resultado);

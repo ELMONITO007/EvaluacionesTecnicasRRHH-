@@ -41,14 +41,14 @@ namespace Negocio.Servicios
 
         public void AbrirPDF(string email)
         {
-            Process.Start(HostingEnvironment.MapPath("~/PDF/" + email + ".pdf"));
+            Process.Start(@"C:\PDF\" + email + ".pdf");
 
         }
 
         public PDF Create(PDF entity)
         {
-            string ruta = HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + "2.pdf");
-            string rutaConPass = HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + ".pdf");
+            string ruta = @"C:\PDF\" + entity.unUsuario.usuarios.Email + "2.pdf";
+            string rutaConPass = @"C:\PDF\" + entity.unUsuario.usuarios.Email + ".pdf";
             PDF pDF = new PDF();
             if (VerificarExisteArchivo(rutaConPass))
             {
@@ -60,7 +60,7 @@ namespace Negocio.Servicios
                 Document doc = new Document(PageSize.LETTER);
                 // Indicamos donde vamos a guardar el documento
                 PdfWriter writer = PdfWriter.GetInstance(doc,
-                                new FileStream(HostingEnvironment.MapPath("~/PDF/" + entity.unUsuario.usuarios.Email + "2.pdf"), FileMode.Create));
+                                new FileStream(@"C:\PDF\" + entity.unUsuario.usuarios.Email + "2.pdf", FileMode.Create));
 
 
                 // Se le coloca el título y el autor

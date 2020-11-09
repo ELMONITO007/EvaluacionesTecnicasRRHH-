@@ -59,7 +59,7 @@ namespace Negocio.Examen
 
 
                     enviar.categoria.Id = entity.Categoria.Id;
-                    entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, cantidad);
+                    entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, entity.cantidadPreguntas);
                     //Completo los datos del examen
                     entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
                     entity.Resultado = 0;
@@ -403,7 +403,72 @@ namespace Negocio.Examen
 
         public Entities.Examen.Examen Create(Entities.Examen.Examen entity)
         {
-            throw new NotImplementedException();
+
+            //Veriificar si el usuario tiene examenes activos
+            if (VerificarSiRieneExamenActivo(entity))
+            {
+                entity.error = "Activo";
+            }
+            else
+            {
+
+                //Verifico la salud del examen
+                SaludCategoria saludCategoria = new SaludCategoria();
+                SaludCategoriaComponent saludCategoriaComponent = new SaludCategoriaComponent(entity.Categoria.Id);
+
+                saludCategoria = saludCategoriaComponent.verificarSaludTipoPregunta();
+                if (saludCategoria.TieneMasDe20PreguntasConBuenaSalud)
+                {
+
+
+
+                    //obtengo 20 pregunta al azar
+                    PreguntaComponent preguntaComponent = new PreguntaComponent();
+                    Pregunta pregunta = new Pregunta();
+                    Pregunta enviar = new Pregunta();
+
+
+                    enviar.categoria.Id = entity.Categoria.Id;
+                    entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, entity.cantidadPreguntas);
+                    //Completo los datos del examen
+                    entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                    entity.Resultado = 0;
+                    entity.Aprobado = false;
+                    entity.Estado = "A realizar";
+
+                    //Creo el examen
+                    ExamenDAC examenComponent = new ExamenDAC();
+                    examenComponent.Create(entity);
+                    //Obtengo el ID del examen creado
+
+                    Entities.Examen.Examen examen = new Entities.Examen.Examen();
+                    examen = examenComponent.ReadBy(entity.Fecha);
+                    int Id = examen.Id;
+
+                    //guardo las preguntas en la Base
+
+                    foreach (Pregunta item in entity.listaPregunta)
+                    {
+                        ExamenPregunta examenPregunta = new ExamenPregunta();
+                        ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+
+                        examenPregunta.examen.Id = examen.Id;
+                        examenPregunta.pregunta.Id = item.Id;
+                        examenPregunta.correcta = false;
+                        examenPreguntaComponent.Create(examenPregunta);
+                    }
+                    entity.error = "Creado";
+
+                }
+                else
+                {
+                    entity.error = "Salud";
+                }
+            }
+
+
+
+            return entity;
         }
     }
 }

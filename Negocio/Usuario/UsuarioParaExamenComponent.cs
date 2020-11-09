@@ -43,6 +43,7 @@ namespace Negocio
             usuarios.Password = CrearContraseña(objeto) ;
             string _heather = CrearContraseña(objeto);
             UsuariosComponent usuariosComponent = new UsuariosComponent();
+            usuarios.unRol.name = "Examen";
             bool result = usuariosComponent.Crear(usuarios);
 
 
@@ -51,13 +52,13 @@ namespace Negocio
             unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
             unusuario.Password = usuarios.Password;
 
-            //Agregar el permiso Examen
+            ////Agregar el permiso Examen
 
-            UsuarioRoles usuarioRoles = new UsuarioRoles();
-            UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
-            usuarioRoles.usuarios.Id = unusuario.Id;
-            usuarioRoles.roles.id = "3";
-            usuarioRolesComponent.Create(usuarioRoles);
+            //UsuarioRoles usuarioRoles = new UsuarioRoles();
+            //UsuarioRolesComponent usuarioRolesComponent = new UsuarioRolesComponent();
+            //usuarioRoles.usuarios.Id = unusuario.Id;
+            //usuarioRoles.roles.id = "2";
+            //usuarioRolesComponent.Create(usuarioRoles);
 
 
             //Inicializar la clase CrearPDF 
