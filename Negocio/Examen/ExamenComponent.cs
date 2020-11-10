@@ -146,11 +146,11 @@ namespace Negocio.Examen
                         respuesta.respuesta.Id = mcPrincipal.Id;
                         respuesta.respondio = mcPrincipal.RespuestaObtenida;
                         bool respuestaBase = multipleChoiceComponent.ObtenerLaRespuesta(mcPrincipal.Id);
-                       
+                        ExamenRespuestaComponent examenRespuestaComponent = new ExamenRespuestaComponent();
 
                         if (respuestaBase == mcPrincipal.RespuestaObtenida)
                         {
-                            respuesta.correcta = respuestaBase;
+                            respuesta.correcta = true;
                         }
                         else
                         {
@@ -158,6 +158,7 @@ namespace Negocio.Examen
                             aux = 1;
                             
                         }
+                        examenRespuestaComponent.Create(respuesta);
                         ListaExamenRespuesta.Add(respuesta);
                     }
 
@@ -170,7 +171,7 @@ namespace Negocio.Examen
                         foreach (MultipleChoice mccSecundario in mccPrincipal.ListaMC)
                         {
                             MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
-
+                            ExamenRespuestaComponent examenRespuestaComponent = new ExamenRespuestaComponent();
                             ExamenRespuesta respuesta = new ExamenRespuesta();
                             respuesta.examen.Id = examen.Id;
                             respuesta.pregunta.Id = item.Id;
@@ -179,16 +180,18 @@ namespace Negocio.Examen
                             respuesta.subPregunta.Id = mccPrincipal.Id;
                             respuesta.respondio = mccSecundario.RespuestaObtenida;
                             bool respuestaBase = multipleChoiceComponent.ObtenerLaRespuesta(mccSecundario.Id);
+
                             if (respuestaBase == mccSecundario.RespuestaObtenida)
                             {
-                                respuesta.correcta = respuestaBase;
+                                respuesta.correcta = true;
                             }
                             else
                             {
-                                respuesta.correcta = respuestaBase;
+                                respuesta.correcta = false;
                                 aux = 1;
 
                             }
+                            examenRespuestaComponent.Create(respuesta);
                             ListaExamenRespuesta.Add(respuesta);
                         }
 
@@ -210,13 +213,13 @@ namespace Negocio.Examen
                     examenPregunta.correcta = true;
 
                 }
+                ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+                examenPreguntaComponent.Update(examenPregunta);
                 examenPreguntas.Add(examenPregunta);
 
             }
 
-            //Registrar respuestas correctas
 
-            RegistrarPreguntarCorrectas(examenPreguntas);
 
             // Obtener resultado
 
@@ -230,16 +233,9 @@ namespace Negocio.Examen
             //Bloquear usuario
 
             UsuariosComponent usuariosComponent = new UsuariosComponent();
-            usuariosComponent.Bloquear(examen.usuario.Id);
+           usuariosComponent.Bloquear(examen.usuario.Id);
 
-            //Registrar las respuestas
-
-            foreach (ExamenRespuesta item in ListaExamenRespuesta)
-            {
-                ExamenRespuestaComponent examenRespuestaComponent = new ExamenRespuestaComponent();
-                examenRespuestaComponent.Create(item);
-            }
-
+          
         }
 
 
@@ -261,8 +257,8 @@ namespace Negocio.Examen
 
                 }
             }
-
-            if (examen.RespuestasCorrectas>14)
+            int ap = lista.Count * 70 / 100;
+            if (examen.RespuestasCorrectas> ap)
             {
                 examen.Aprobado = true;
             }

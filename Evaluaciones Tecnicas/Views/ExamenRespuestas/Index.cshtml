@@ -156,20 +156,23 @@
                         <br />
 
                         <hr class="w3-clear">
+                     
                         <h4 style="color:black">
                             @Html.DisplayFor(model => item.pregunta.LaPregunta)
                         </h4>
                         <div class="w3-row-padding" style="margin:0 -16px">
-                            @if (item.pregunta.Imagen != "Sin Imagen")
+                            @if (item.pregunta.Imagen != "Sin imagen")
                             {
                                 <div class="w3-half">
 
-                                    @{string Imagen = item.pregunta.Imagen;}
+                                    @{string Imagen = item.pregunta.Imagen.Substring(2);
+
+
+                                    }
                                     <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
                                 </div>
                             }
-
-
+                                      
                         </div>
 
                         @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
@@ -177,7 +180,7 @@
 
                             foreach (var MC in item.pregunta.ListaMC)
                             {
-                                if (MC.Correcta == MC.RespuestaObtenida)
+                                if (MC.Correcta)
                                 {
                                     <h6 style="color:green">    @Html.CheckBoxFor(m => MC.RespuestaObtenida, new { @disabled = "disabled" }) @MC.LaRespuesta   </h6>
                                 }
@@ -197,9 +200,14 @@
                                 <h5 style="color:black">  @SubPregunta.LaPregunta</h5>
                                 foreach (var Respuesta in SubPregunta.ListaMC)
                                 {
-                                    if (Respuesta.Correcta == Respuesta.RespuestaObtenida)
+                                    if (Respuesta.Correcta)
                                     {
                                         <h6>   @Html.CheckBoxFor(m => Respuesta.RespuestaObtenida, new { @disabled = "disabled", @style = "color:green" }) @Respuesta.LaRespuesta </h6>
+                                    }
+
+                                    else
+                                    {
+                                        <h6 style="color:red">    @Html.CheckBoxFor(m => Respuesta.RespuestaObtenida, new { @disabled = "disabled" })@Respuesta.LaRespuesta  </h6>
                                     }
 
 

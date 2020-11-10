@@ -253,12 +253,14 @@
                     <h3 style="color:black">Reglas del examen</h3>
                    
                     <br />
-
-                    <p>- Son 20 Preguntas</p>
+                    @{decimal aprobado=Model.cantidadPreguntas*70/100;
+                        int res = Convert.ToInt32(aprobado);
+                    }
+                    <p>- Son @Model.cantidadPreguntas Preguntas</p>
                     <p>- Cada Pregunta puede tener más de una respuesta</p>
                     <p>- Cada Pregunta tiene por lo menos una respuesta</p>
-                    <p>- Si no sabes la respuesta no selecciones ninguna opción</p>
-                    <p>- Para estar aprobado se debes responder 14 preguntas correctamente</p>
+                    <p>- Si no sabes la respuesta Seleccionar NS/NC</p>
+                    <p>- Para estar aprobado se debes responder @res preguntas correctamente</p>
 
                 </div>
             </div>
