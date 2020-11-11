@@ -83,5 +83,10 @@ namespace Negocio
             MultipleChoiceCompuestoDAC multipleChoiceCompuestoDAC = new MultipleChoiceCompuestoDAC() ;
             multipleChoiceCompuestoDAC.Update(objeto);
         }
+       public Respuesta ReadyRespuesta(int id)
+        {
+            MultipleChoiceCompuestoDAC multipleChoiceCompuestoDAC = new MultipleChoiceCompuestoDAC();
+          return  multipleChoiceCompuestoDAC.ReadByRespuesta(id);
+        }
     }
 }

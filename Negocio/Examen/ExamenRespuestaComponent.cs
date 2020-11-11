@@ -37,86 +37,135 @@ namespace Negocio.Examen
             throw new NotImplementedException();
         }
 
+        public List<ExamenRespuesta> ReadByPregunta(int id)
 
-        public List<ExamenRespuesta> ReadByExamen(int id)
+
         {
 
-            //Obtener las respuestas realizadas
+            ExamenRespuestaDAC examen = new ExamenRespuestaDAC();
+            return examen.ReadByPregunta(id);
+        }
+
+
+        public List<ExamenRespuesta> ObtenerRespuestasDeUnaPregunta(ExamenPregunta examenPreguntas,int id_Examen)
+        {
             List<ExamenRespuesta> examenRespuestas = new List<ExamenRespuesta>();
-            ExamenRespuestaDAC examenRespuestaDAC = new ExamenRespuestaDAC();
-            examenRespuestas = examenRespuestaDAC.ReadByExamen(id);
-            //obtengo una copia para comprarar
-            List<ExamenRespuesta> examenRespuestasCopia = new List<ExamenRespuesta>();
+            List<ExamenRespuesta> result = new List<ExamenRespuesta>();
+            if (examenPreguntas.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
 
-            examenRespuestasCopia = examenRespuestas;
+            {
+                examenRespuestas = ReadByPregunta(examenPreguntas.pregunta.Id);
+            
 
-            //inicializo las variables
-            List<ExamenRespuesta> preguntas = new List<ExamenRespuesta>();
-            ExamenRespuesta respuestas = new ExamenRespuesta();
-       
-            //recorro la primer lista
             foreach (ExamenRespuesta item in examenRespuestas)
             {
-                TipoPregunta tipoPregunta = new TipoPregunta();
-                TipoPreguntaComponent tipoPreguntaComponent = new TipoPreguntaComponent();
-                tipoPregunta = tipoPreguntaComponent.ReadByPregunta(item.pregunta.Id);
-                
-                if (tipoPregunta.TipoDePregunta== "MultipleChoice")
-                {
-                    foreach (ExamenRespuesta subItem in examenRespuestas)
-                    {
-
-                   
-                        if (subItem.pregunta.Id==item.pregunta.Id)
-                        {
-                           
-                            respuestas.pregunta.Id = item.pregunta.Id;
-                            respuestas.examen.Id = item.examen.Id;
-                            respuestas.correcta = subItem.correcta;
-                            MultipleChoice multipleChoice = new MultipleChoice();
-                            multipleChoice.Id = subItem.respuesta.Id;
-                            multipleChoice.Correcta = subItem.correcta;
-                            multipleChoice.RespuestaObtenida = subItem.respondio;
-                            respuestas.pregunta.ListaMC.Add(multipleChoice);
-                           
-                        }
-                        else
-                        {
-                            preguntas.Add(respuestas);
-                            respuestas = new ExamenRespuesta();
-                           
-                        }
-                    }
-
-                }
-
+                ExamenRespuesta examen = new ExamenRespuesta();
               
 
+                examen = item;
+               
 
-            }
-
-            List<ExamenRespuesta> resultDuplicado = new List<ExamenRespuesta>();
-            List<ExamenRespuesta> result = new List<ExamenRespuesta>();
-
-            foreach (var item in preguntas)
-            {
-                if (item.pregunta.Id!=0)
-                {
-                    resultDuplicado.Add(item);
-
+                    MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
+                
+                    examen.respuesta = multipleChoiceComponent.ReadBy(item.respuesta.Id);
+                   
+                    result.Add(examen);
                 }
+             
+              
             }
 
-            int v = 0;
-            int cont = 1;
-            while (resultDuplicado.Count>cont)
+
+            if (examenPreguntas.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
             {
-                int cantidadRespuesta = resultDuplicado[cont].pregunta.ListaMC.Count();
-                result.Add(resultDuplicado[cont]);
-                cont = cont + cantidadRespuesta;
+                List<ExamenPregunta> listaSubpreguntas = new List<ExamenPregunta>();
+                ExamenPreguntaComponent examen = new ExamenPreguntaComponent();
+                listaSubpreguntas = examen.ReadBySubPregunta(examenPreguntas.pregunta.Id);
+                ExamenRespuesta unExamen = new ExamenRespuesta();
+
+                foreach (ExamenPregunta item in listaSubpreguntas)
+                {
+                    ExamenPregunta examenPreguntaMCC = new ExamenPregunta();
+                    PreguntaComponent preguntaComponent = new PreguntaComponent();
+                    ExamenRespuestaDAC examenRespuesta = new ExamenRespuestaDAC();
+                 
+                    List<ExamenRespuesta> respuestas = new List<ExamenRespuesta>();
+                    examenPreguntaMCC.pregunta = preguntaComponent.ReadBySubPregunta(item.Id);
+                    examenPreguntaMCC.listaExamenRespuesta.Clear();
+                    respuestas = examenRespuesta.ReadBySubPregunta(item.Id,id_Examen);
+                    foreach (ExamenRespuesta subItem in respuestas)
+                    {
+                        ExamenRespuesta respuesta = new ExamenRespuesta();
+                        MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent(); 
+                        respuesta = subItem;
+
+                        respuesta.respuesta = multipleChoiceCompustoComponent.ReadyRespuesta(subItem.respuesta.Id);
+                        examenPreguntaMCC.listaExamenRespuesta.Add(respuesta);
+                        
+                    }
+                    unExamen.examenPregunta = examenPreguntaMCC;
+                    result.Add(unExamen);
+                }
+
+
+
+
             }
-          
             return result;
+
+        }
+
+
+
+
+        public Entities.Examen.Examen ReadByExamen(int id)
+        {
+
+            //Obtener datos examen 
+
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            ExamenComponent examenComponent = new ExamenComponent();
+            examen = examenComponent.ReadBy(id);
+
+            //obtener las preguntas
+            ExamenPreguntaComponent examenPreguntaComponent = new ExamenPreguntaComponent();
+            List<ExamenPregunta> LisEP= new List<ExamenPregunta>();
+            LisEP = examenPreguntaComponent.ReadByExamen(id);
+            examen.listaExamenPregunta.Clear();
+            List<ExamenPregunta> ListaPreguntas = new List<ExamenPregunta>();
+
+            //Obtengo los datos de la pregunta
+            for (int item = 0; item < LisEP.Count; item++)
+            {
+                ExamenPregunta unExamePregunta = new ExamenPregunta();
+                PreguntaComponent preguntaComponent = new PreguntaComponent();
+                unExamePregunta = LisEP[item];
+                unExamePregunta.pregunta = preguntaComponent.ReadBy(unExamePregunta.pregunta.Id);
+                ListaPreguntas.Add(unExamePregunta);
+            }
+
+
+
+            //Obtengo las respuesta
+
+            foreach (ExamenPregunta item in ListaPreguntas)
+            {
+
+                ExamenPregunta unExamePregunta = new ExamenPregunta();
+
+                unExamePregunta = item;
+                unExamePregunta.listaExamenRespuesta = ObtenerRespuestasDeUnaPregunta(item,id);
+
+
+                examen.listaExamenPregunta.Add(unExamePregunta);
+
+            }
+
+
+
+           
+          
+            return examen;
 
 
 

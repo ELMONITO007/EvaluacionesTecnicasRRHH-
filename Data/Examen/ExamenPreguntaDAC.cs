@@ -84,5 +84,28 @@ namespace Data.Examen
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
         }
+        public List<ExamenPregunta> ReadBySubPregunta(int Id_Examen)
+        {
+
+
+            const string SQL_STATEMENT = "select DISTINCT(Id_SubPregunta)from ExamenRespuestas   where Id_Pregunta=@ID_examen";
+
+            List<ExamenPregunta> result = new List<ExamenPregunta>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@ID_examen", DbType.Int32, Id_Examen);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        ExamenPregunta examen =new ExamenPregunta();
+                        examen.Id=  GetDataValue<int>(dr, "ID_Subpregunta");
+                        result.Add(examen);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

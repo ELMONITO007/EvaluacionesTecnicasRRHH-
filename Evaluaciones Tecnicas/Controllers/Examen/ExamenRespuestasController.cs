@@ -14,26 +14,22 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
         public ActionResult Index(int id)
         {
             ExamenRespuestaComponent examenRespuestaComponent = new ExamenRespuestaComponent();
-            List<ExamenRespuesta> examenRespuestas = new List<ExamenRespuesta>();
-
-
-            examenRespuestas= examenRespuestaComponent.ReadByExamen(id);
-
-            ExamenRespuestaComponent examen = new ExamenRespuestaComponent();
-            List<ExamenRespuesta> examenRespuestasResult = new List<ExamenRespuesta>();
-            examenRespuestasResult = examen.ObtenerRespuestas(examenRespuestas);
-
-            ExamenRespuesta examenRespuesta = new ExamenRespuesta();
-            examenRespuesta.examenRespuestas = examenRespuestasResult;
-
-
             ExamenComponent examenComponent = new ExamenComponent();
-            examenRespuesta.examen = examenComponent.ReadBy(id);
+            Entities.Examen.Examen examenRespuestas = new Entities.Examen.Examen();
+            examenRespuestas = examenComponent.ReadBy(id);
+
+            examenRespuestas = examenRespuestaComponent.ReadByExamen(id);
+
+           
+
+
+           
+         
 
 
 
 
-            return View(examenRespuesta);
+            return View(examenRespuestas);
         }
 
         // GET: ExamenRespuestas/Details/5

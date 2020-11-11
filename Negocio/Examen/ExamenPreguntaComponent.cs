@@ -10,7 +10,12 @@ namespace Negocio.Examen
 {
     public class ExamenPreguntaComponent : IRepository<ExamenPregunta>
     {
-        public ExamenPregunta Create(ExamenPregunta entity)
+        public List<ExamenPregunta> ReadBySubPregunta(int Id_Examen)
+        {
+            ExamenPreguntaDAC examenPreguntaDAC = new ExamenPreguntaDAC();
+            return examenPreguntaDAC.ReadBySubPregunta(Id_Examen);
+        }
+            public ExamenPregunta Create(ExamenPregunta entity)
         {
             ExamenPreguntaDAC examenPreguntaDAC = new ExamenPreguntaDAC();
             return examenPreguntaDAC.Create(entity);

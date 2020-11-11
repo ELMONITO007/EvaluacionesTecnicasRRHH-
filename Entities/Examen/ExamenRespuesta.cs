@@ -15,10 +15,10 @@ namespace Entities.Examen
         public Examen examen { get; set; }
         public Pregunta pregunta { get; set; }
         public bool respondio { get; set; }
-        public MultipleChoice respuesta { get; set; }
+        public Respuesta respuesta { get; set; }
         public bool correcta { get; set; }
         public Pregunta  subPregunta { get; set; }
-
+        public ExamenPregunta examenPregunta { get; set; }
 
         public ExamenRespuesta()
         {
@@ -27,6 +27,7 @@ namespace Entities.Examen
             pregunta = new Pregunta();
             respuesta = new MultipleChoice();
             examenRespuestas = new List<ExamenRespuesta>();
+            examenPregunta = new ExamenPregunta();
         }
 
     }
