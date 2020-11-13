@@ -120,7 +120,7 @@ namespace Data.Examen
 
         public Entities.Examen.Examen ReadByEstado(int id)
         {
-            const string SQL_STATEMENT = "select * from examen where activo=1 and ID=@Id and estado='Realizado'";
+            const string SQL_STATEMENT = "select * from examen where activo=1 and ID=@Id and estado='A Realizar'";
             Entities.Examen.Examen examen = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

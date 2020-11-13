@@ -248,8 +248,7 @@
                         @{int NumeroPregunta = 1;}
                         @foreach (Entities.Examen.ExamenPregunta item in Model.listaExamenPregunta)
                         {
-                            int j = 0;
-                            int k = 0;
+                           
 
                             <div class="w3-container w3-card w3-white w3-round w3-margin">
                                 <br>
@@ -302,16 +301,25 @@
                             <h6>
 
                                 @Html.CheckBoxFor(model => MC.respondio, new { @readonly = "readonly", @class = "check" })
-                                @if (MC.correcta)
+                                @if (MC.correcta && MC.respondio == true)
                                 {
                                     @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
                                 }
-                                @if (!MC.correcta)
+
+                                @if (!MC.correcta && MC.respondio)
                                 {
                                     @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
                                 }
-
-
+                                @if (MC.correcta && MC.respondio == false)
+                                {
+                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                                }
+                                @if (!MC.correcta && !MC.respondio)
+                                {
+                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+                              
+                                    
+                                }
 
 
 
@@ -324,7 +332,7 @@
                                 }
                                 @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
                                 {
-                                    foreach (var SubPregunta in item.pregunta.ListaPregunta)
+                                    foreach (var SubPregunta in item.listaExamenRespuesta)
 
 
 
@@ -332,32 +340,44 @@
                                     {
 
                                         @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
-                                        <h5 style="color:black">
-                                            @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].LaPregunta", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
+                                        <h4 style="color:black">
+                                            @Html.DisplayFor(model =>SubPregunta.examenPregunta.pregunta.LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
 
-                                            @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].Id", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].Id)
-                                            @{int g = 0;
-                                            }
+                                          
+                                                                                        
 
-                                        </h5>
+                                        </h4>
 
 
-                                                foreach (var Respuesta in SubPregunta.ListaMC)
+                                                foreach (var Respuesta in SubPregunta.examenPregunta.listaExamenRespuesta)
                                                 {
 
-                                            <h6>
+                            <h6>
 
 
 
-                                                @Html.CheckBox("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
+                                @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
 
-                                                @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
-                                                @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].Id", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].Id)
-                                            </h6>
-                                                    g++;
+                                @if (!Respuesta.correcta&& Respuesta.respondio)
+                                {
+                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+                                }
+                                @if (Respuesta.correcta && Respuesta.respondio == false)
+                                {
+                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                                }
+                                @if (!Respuesta.correcta && !Respuesta.respondio)
+                                {
+                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+
+
+                                }
+                             
+                            </h6>
+                                                  
                                                 }
                                         <br />
-                                                    k++;
+                                                  
                                                 }
 
 

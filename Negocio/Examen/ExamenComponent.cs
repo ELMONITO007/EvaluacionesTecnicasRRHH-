@@ -3,6 +3,7 @@ using Entities;
 using Entities.Examen;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,7 @@ namespace Negocio.Examen
                         }
                         else
                         {
-                            respuesta.correcta = respuestaBase;
+                            respuesta.correcta = false;
                             aux = 1;
                             
                         }
@@ -350,16 +351,18 @@ namespace Negocio.Examen
 
 
 
-                    //obtengo 20 pregunta al azar
+                    //obtengo  pregunta al azar
                     PreguntaComponent preguntaComponent = new PreguntaComponent();
                     Pregunta pregunta = new Pregunta();
                     Pregunta enviar = new Pregunta();
-
+                    UsuariosComponent usuariosComponent = new UsuariosComponent();
+                    usuariosComponent.Desloquear(entity.usuario.Id);
 
                     enviar.categoria.Id = entity.Categoria.Id;
                     entity.listaPregunta = preguntaComponent.ObtenerPreguntasAlAzar(enviar, entity.cantidadPreguntas);
                     //Completo los datos del examen
-                    entity.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                    string dia = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+                    entity.Fecha = DateTime.ParseExact(dia, "dd-MM-yyyy HH:mm:ss", CultureInfo.CurrentUICulture);
                     entity.Resultado = 0;
                     entity.Aprobado = false;
                     entity.Estado = "A realizar";

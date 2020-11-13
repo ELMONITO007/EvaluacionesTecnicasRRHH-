@@ -78,13 +78,16 @@ namespace Negocio.Examen
 
             if (examenPreguntas.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
             {
+
+                //obtengos los id de las subpregunta
                 List<ExamenPregunta> listaSubpreguntas = new List<ExamenPregunta>();
                 ExamenPreguntaComponent examen = new ExamenPreguntaComponent();
                 listaSubpreguntas = examen.ReadBySubPregunta(examenPreguntas.pregunta.Id);
-                ExamenRespuesta unExamen = new ExamenRespuesta();
-
+                
+                //recorro la lista
                 foreach (ExamenPregunta item in listaSubpreguntas)
                 {
+                    ExamenRespuesta unExamen = new ExamenRespuesta();
                     ExamenPregunta examenPreguntaMCC = new ExamenPregunta();
                     PreguntaComponent preguntaComponent = new PreguntaComponent();
                     ExamenRespuestaDAC examenRespuesta = new ExamenRespuestaDAC();
