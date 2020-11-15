@@ -33,11 +33,13 @@
                     @Html.EditorFor(model => model.pregunta.LaPregunta, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.pregunta.LaPregunta, "", new { @class = "text-danger" })
 
-             
+
 
                 </div>
 
-
+          
+             
+            
 
                 <input type="button" class="btn btn-outline-primary " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto", new { id = Model.Id })'" />
                 <br />

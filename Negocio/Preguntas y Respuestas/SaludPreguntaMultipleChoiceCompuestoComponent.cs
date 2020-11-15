@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Data;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace Negocio
 {
   public  class SaludPreguntaMultipleChoiceCompuestoComponent
     {
+        public MultipleChoiceCompuesto ObtenerPreguntaaDeUnaSubpregunta(int Id)
+        {
+            MultipleChoiceCompuestoDAC multipleChoiceCompuesto = new MultipleChoiceCompuestoDAC();
+            return multipleChoiceCompuesto.ObtenerPreguntaaDeUnaSubpregunta(Id);
+        }
         public bool VerificarMasDeDosSubpregunta(Pregunta preguntas)
         {
             MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent();

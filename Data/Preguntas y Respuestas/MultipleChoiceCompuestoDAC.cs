@@ -120,7 +120,26 @@ namespace Data
             return categoria;
 
         }
+        public MultipleChoiceCompuesto ObtenerPreguntaaDeUnaSubpregunta(int Id)
+        {
+            const string SQL_STATEMENT = "select sp.ID_Pregunta,sp.ID_SubPregunta from SubPregunta as sp inner join pregunta as p on p.ID_Pregunta = sp.ID_SubPregunta where   Activo=1 and sp.ID_SubPregunta=@Id";
+            MultipleChoiceCompuesto categoria = null;
 
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, Id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        categoria = LoadMultipleChoice(dr);
+                    }
+                }
+            }
+            return categoria;
+
+        }
         public void Update(MultipleChoiceCompuesto entity)
         {
             const string SQL_STATEMENT = "update Respuesta set Respuesta=@Respuesta,Correcta=@Correcta where ID_Respuesta=@Id ";

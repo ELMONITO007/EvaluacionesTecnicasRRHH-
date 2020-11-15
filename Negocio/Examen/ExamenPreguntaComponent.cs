@@ -1,4 +1,5 @@
 ﻿using Data.Examen;
+using Entities;
 using Entities.Examen;
 using System;
 using System.Collections.Generic;
@@ -48,13 +49,58 @@ namespace Negocio.Examen
                 if (examenPregunta.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
                 {
                     MultipleChoiceComponent multipleChoiceComponent = new MultipleChoiceComponent();
+                    List<MultipleChoice> multipleChoices = new List<MultipleChoice>();
                     examenPregunta.pregunta.ListaMC = multipleChoiceComponent.listaRespuestaMultipleChoiceAlAzar(examenPregunta.pregunta.Id).ListaMultipleChoice;
+                    int a = 0;
+                    for (int i = 0; i < examenPregunta.pregunta.ListaMC.Count(); i++)
+                    {
+                        if (examenPregunta.pregunta.ListaMC[i].LaRespuesta == "NS/NC")
+                        {
+                            MultipleChoice multipleChoice = new MultipleChoice();
+                            multipleChoice = examenPregunta.pregunta.ListaMC[i];
+                            MultipleChoice nuevo = new MultipleChoice();
+                            nuevo = examenPregunta.pregunta.ListaMC[i];
+                            examenPregunta.pregunta.ListaMC.Remove(multipleChoice);
+                            examenPregunta.pregunta.ListaMC.Add(nuevo);
+                            
+
+                        }
+                      
+                    }
+                    
+
+
+
+
+
 
                 }
                 else if (examenPregunta.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
                 {
                     MultipleChoiceCompustoComponent multipleChoiceCompustoComponent = new MultipleChoiceCompustoComponent();
                     examenPregunta.pregunta.ListaPregunta = multipleChoiceCompustoComponent.ReadByPregunta(examenPregunta.pregunta.Id).ListaSubPreguntas;
+
+                    foreach (Pregunta MCCprincipal in examenPregunta.pregunta.ListaPregunta)
+                    {
+                        for (int i = 0; i < MCCprincipal.ListaMC.Count(); i++)
+                        {
+                            if (MCCprincipal.ListaMC[i].LaRespuesta == "NS/NC")
+                            {
+                                MultipleChoice multipleChoice = new MultipleChoice();
+                                multipleChoice = MCCprincipal.ListaMC[i];
+                                MultipleChoice nuevo = new MultipleChoice();
+                                nuevo = MCCprincipal.ListaMC[i];
+                                MCCprincipal.ListaMC.Remove(multipleChoice);
+                                MCCprincipal.ListaMC.Add(nuevo);
+
+
+                            }
+
+                        }
+                    }
+
+
+
                 }
                 Lista.Add(examenPregunta);
 

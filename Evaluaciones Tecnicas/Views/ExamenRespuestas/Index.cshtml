@@ -358,7 +358,7 @@
 
                                 @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
 
-                                @if (!Respuesta.correcta&& Respuesta.respondio)
+                                @if (!Respuesta.correcta && Respuesta.respondio)
                                 {
                                     @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
                                 }
@@ -366,7 +366,7 @@
                                 {
                                     @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
                                 }
-                                @if (!Respuesta.correcta && !Respuesta.respondio)
+                                @if (Respuesta.correcta && Respuesta.respondio)
                                 {
                                     @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
 

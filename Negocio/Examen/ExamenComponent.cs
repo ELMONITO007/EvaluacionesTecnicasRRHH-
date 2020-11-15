@@ -94,6 +94,12 @@ namespace Negocio.Examen
             List<ExamenPregunta> ListaPreguntasExamen = new List<ExamenPregunta>();
             ListaPreguntasExamen = examenPreguntaComponent.ReadByExamen(examen.Id);
 
+     
+
+
+
+
+
 
             //asigno las preguntas al examen
             examen.listaExamenPregunta = ListaPreguntasExamen;

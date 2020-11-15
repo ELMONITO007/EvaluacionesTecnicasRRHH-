@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Data;
+using Entities;
 using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using System;
@@ -103,14 +104,16 @@ namespace Evaluaciones.Controllers
             {
                 SubPreguntaComponent subPreguntaComponent = new SubPreguntaComponent();
                 SubPregunta subPregunta = new SubPregunta();
+                MultipleChoiceCompuestoDAC multipleChoiceCompuesto = new MultipleChoiceCompuestoDAC();
                 subPregunta.pregunta.Id = int.Parse(collection.Get("pregunta.Id"));
                
                 subPregunta.pregunta.LaPregunta = collection.Get("pregunta.LaPregunta");
                 subPreguntaComponent.Update(subPregunta);
-
+                MultipleChoiceCompuesto mcc = new MultipleChoiceCompuesto();
+                mcc = multipleChoiceCompuesto.ObtenerPreguntaaDeUnaSubpregunta(int.Parse(collection.Get("Id")));
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index", "MultipleChoiceCompuesto",new { id=int.Parse(collection.Get("pregunta.Id")) });
+                return RedirectToAction("Index", "MultipleChoiceCompuesto",new { id=mcc.Id});
             }
             catch(Exception e)
             {

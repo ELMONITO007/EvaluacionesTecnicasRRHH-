@@ -68,15 +68,16 @@ namespace Data.Examen
             }
             return result;
         }
-        public List<ExamenRespuesta> ReadByPregunta(int id)
+        public List<ExamenRespuesta> ReadByPregunta(int id,int id_examen)
         {
-            const string SQL_STATEMENT = "select * from examenRespuestas where Id_Pregunta=@Id";
+            const string SQL_STATEMENT = "select * from examenRespuestas where Id_Pregunta=@Id and id_examen=@id_examen";
 
             List<Entities.Examen.ExamenRespuesta> result = new List<Entities.Examen.ExamenRespuesta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.AddInParameter(cmd, "@id_examen", DbType.Int32, id_examen);
                 using (IDataReader dr = db.ExecuteReader(cmd))
                 {
                     while (dr.Read())

@@ -37,13 +37,13 @@ namespace Negocio.Examen
             throw new NotImplementedException();
         }
 
-        public List<ExamenRespuesta> ReadByPregunta(int id)
+        public List<ExamenRespuesta> ReadByPregunta(int id,int id_examen)
 
 
         {
 
             ExamenRespuestaDAC examen = new ExamenRespuestaDAC();
-            return examen.ReadByPregunta(id);
+            return examen.ReadByPregunta(id, id_examen);
         }
 
 
@@ -54,7 +54,7 @@ namespace Negocio.Examen
             if (examenPreguntas.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
 
             {
-                examenRespuestas = ReadByPregunta(examenPreguntas.pregunta.Id);
+                examenRespuestas = ReadByPregunta(examenPreguntas.pregunta.Id,id_Examen);
             
 
             foreach (ExamenRespuesta item in examenRespuestas)
