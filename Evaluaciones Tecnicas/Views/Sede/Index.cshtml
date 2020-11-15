@@ -41,25 +41,25 @@
 
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.sede)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.codigo)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.empresa.empresa)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Editar", "Edit", new { id = int.Parse(item.Id.ToString()) }) |
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.sede)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.codigo)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.empresa.empresa)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Editar", "Edit", new { id = int.Parse(item.Id.ToString()) }) |
 
-                                                @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
 
-                                            </td>
+                                                </td>
 
 
-                                        </tr>
+                                            </tr>
                                         }
 
 
@@ -81,3 +81,6 @@
 
 
 </div>
+@section scripts
+{
+}

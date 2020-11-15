@@ -153,10 +153,10 @@
 
                         <p class="w3-center"><img src="~/img/avatar 4.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                         <hr>
-                        <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>@Html.DisplayFor(model=>model.usuario.Email)</p>
+                        <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>@Html.DisplayFor(model => model.usuario.Email)</p>
                         @{
                             string nombre = Model.usuario.Nombre + " " + Model.usuario.Apellido;
-                         }
+                        }
                         <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>@nombre</p>
                         <p><i class="fa fa-calendar fa-fw w3-margin-right w3-text-theme"></i>@DateTime.Now</p>
                     </div>
@@ -188,9 +188,9 @@
                                     <div class="w3-half">
 
                                         @{string Imagen = item.pregunta.Imagen.Substring(2);
-                                            
-                                            
-                                            }
+
+
+                                        }
                                         <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
                                     </div>
                                 }
@@ -246,50 +246,50 @@
 
             }
             <!-- Right Column -->
-        <div class="w3-col m2">
+            <div class="w3-col m2">
 
-            <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                <div class="w3-container">
-                    <h3 style="color:black">Reglas del examen</h3>
-                   
-                    <br />
-                    @{decimal aprobado=Model.cantidadPreguntas*70/100;
-                        int res = Convert.ToInt32(aprobado);
-                    }
-                    <p>- Son @Model.cantidadPreguntas Preguntas</p>
-                    <p>- Cada Pregunta puede tener más de una respuesta</p>
-                    <p>- Cada Pregunta tiene por lo menos una respuesta</p>
-                    <p>- Si no sabes la respuesta Seleccionar NS/NC</p>
-                    <p>- Para estar aprobado se debes responder @res preguntas correctamente</p>
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <h3 style="color:black">Reglas del examen</h3>
 
-                </div>
-            </div>
-            <br />  
-            <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                <div class="w3-container">
-                    <h3 style="color:black">¿Necesitas Ayuda?</h3>
-                    <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
-                    <br />
+                        <br />
+                        @{decimal aprobado = Model.cantidadPreguntas * 70 / 100;
+                            int res = Convert.ToInt32(aprobado);
+                        }
+                        <p>- Son @Model.cantidadPreguntas Preguntas</p>
+                        <p>- Cada Pregunta puede tener más de una respuesta</p>
+                        <p>- Cada Pregunta tiene por lo menos una respuesta</p>
+                        <p>- Si no sabes la respuesta Seleccionar NS/NC</p>
+                        <p>- Para estar aprobado se debes responder @res preguntas correctamente</p>
 
-                    <p>   dolores.conde@transener.com.ar</p>
-
-                    @*<div class="w3-row w3-opacity">
-                    <div class="w3-half">
-                        <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
                     </div>
-                    <div class="w3-half">
-                        <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></bu
-                        <br>tton>
-                    </div>
-                </div>*@
                 </div>
+                <br />
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <h3 style="color:black">¿Necesitas Ayuda?</h3>
+                        <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
+                        <br />
+
+                        <p>   dolores.conde@transener.com.ar</p>
+
+                        @*<div class="w3-row w3-opacity">
+                                <div class="w3-half">
+                                    <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+                                </div>
+                                <div class="w3-half">
+                                    <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></bu
+                                    <br>tton>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+
+
+
+
+                <!-- End Right Column -->
             </div>
-
-
-
-
-            <!-- End Right Column -->
-        </div>
             <!-- End Grid -->
         </div>
 
@@ -297,8 +297,8 @@
     </div>
     <br>
 
-   
-   
+
+
     <script>
         // Accordion
         function myFunction(id) {
@@ -324,4 +324,7 @@
         }
     </script>
 
+    @section scripts
+{
+    }
 </body>

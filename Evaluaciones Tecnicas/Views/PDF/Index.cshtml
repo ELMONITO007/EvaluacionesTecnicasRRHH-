@@ -42,28 +42,28 @@
 
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Nombre)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Apellido)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Email)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.path)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Abrir", "PDF", new { id = item.unUsuario.usuarios.Email }) 
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Nombre)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Apellido)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.unUsuario.usuarios.Email)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.path)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Abrir", "PDF", new { id = item.unUsuario.usuarios.Email })
 
 
 
-                                            </td>
+                                                </td>
 
 
-                                        </tr>
+                                            </tr>
                                         }
 
 
@@ -71,7 +71,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                 
+
                         </div>
                     </div>
                 </div>
@@ -85,3 +85,7 @@
 
 
 </div>
+
+@section scripts
+{
+}

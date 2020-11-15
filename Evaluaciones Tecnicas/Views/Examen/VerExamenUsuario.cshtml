@@ -251,105 +251,105 @@
                             int j = 0;
                             int k = 0;
 
-                        <div class="w3-container w3-card w3-white w3-round w3-margin">
-                            <br>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin">
+                                <br>
 
-                            <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
-                            <br />
-
-                            <hr class="w3-clear">
-                            <h4 style="color:black">
-                                @Html.Hidden("listaPregunta[" + @i + "].Id", Model.listaExamenPregunta[i].pregunta.Id)
-                                @Html.Hidden("listaPregunta[" + @i + "].tipoPregunta.Id", Model.listaExamenPregunta[i].pregunta.tipoPregunta.Id)
-                                @Html.TextArea("listaPregunta[" + @i + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
-                            </h4>
-                            <div class="w3-row-padding" style="margin:0 -16px">
-                                @if (item.pregunta.Imagen == "Sin imagen")
-                                {
-                                    <div class="w3-half">
-
-                                        @{string Imagen = item.pregunta.Imagen.Substring(2);
-
-
-                                        }
-                                        <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
-                                    </div>
-                                    
-                                }
-
-
-                            </div>
-
-
-
-
-                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
-                            {
-
-
-                                foreach (var MC in item.pregunta.ListaMC)
-                                {
-
-                                    <h6>
-
-                                        @Html.CheckBox("listaPregunta[" + @i + "].ListaMC[" + @j + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaMC[j].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
-                                        @Html.Hidden("listaPregunta[" + @i + "].ListaMC[" + @j + "].Id", Model.listaExamenPregunta[i].pregunta.ListaMC[j].Id)
-
-                                        @Html.TextArea("listaPregunta[" + @i + "].ListaMC[" + @j + "].LaRespuesta", Model.listaExamenPregunta[i].pregunta.ListaMC[j].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
-
-
-
-                                        @{ j++;}
-
-                                    </h6>
-
-                                }
+                                <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
                                 <br />
-                            }
-                            @{int p = 0;
-                            }
-                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
-                            {
-                                foreach (var SubPregunta in item.pregunta.ListaPregunta)
+
+                                <hr class="w3-clear">
+                                <h4 style="color:black">
+                                    @Html.Hidden("listaPregunta[" + @i + "].Id", Model.listaExamenPregunta[i].pregunta.Id)
+                                    @Html.Hidden("listaPregunta[" + @i + "].tipoPregunta.Id", Model.listaExamenPregunta[i].pregunta.tipoPregunta.Id)
+                                    @Html.TextArea("listaPregunta[" + @i + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
+                                </h4>
+                                <div class="w3-row-padding" style="margin:0 -16px">
+                                    @if (item.pregunta.Imagen == "Sin imagen")
+                                    {
+                                        <div class="w3-half">
+
+                                            @{string Imagen = item.pregunta.Imagen.Substring(2);
+
+
+                                            }
+                                            <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
+                                        </div>
+
+                                    }
+
+
+                                </div>
 
 
 
 
+                                @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
                                 {
 
-                                    @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
-                                    <h5 style="color:black">
-                                        @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].LaPregunta", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
 
-                                        @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].Id", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].Id)
-                                        @{int g = 0;
-                                        }
-
-                                    </h5>
-
-
-                                    foreach (var Respuesta in SubPregunta.ListaMC)
+                                    foreach (var MC in item.pregunta.ListaMC)
                                     {
 
                                         <h6>
 
+                                            @Html.CheckBox("listaPregunta[" + @i + "].ListaMC[" + @j + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaMC[j].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
+                                            @Html.Hidden("listaPregunta[" + @i + "].ListaMC[" + @j + "].Id", Model.listaExamenPregunta[i].pregunta.ListaMC[j].Id)
+
+                                            @Html.TextArea("listaPregunta[" + @i + "].ListaMC[" + @j + "].LaRespuesta", Model.listaExamenPregunta[i].pregunta.ListaMC[j].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
 
 
-                                            @Html.CheckBox("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
 
-                                            @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
-                                            @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].Id", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].Id)
+                                            @{ j++;}
+
                                         </h6>
-                                        g++;
+
                                     }
                                     <br />
-                                    k++;
                                 }
+                                @{int p = 0;
+                                }
+                                @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
+                                {
+                                    foreach (var SubPregunta in item.pregunta.ListaPregunta)
 
 
-                                <br />
-                            }
-                        </div>
+
+
+                                    {
+
+                                        @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
+                                        <h5 style="color:black">
+                                            @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].LaPregunta", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
+
+                                            @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].Id", @Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].Id)
+                                            @{int g = 0;
+                                            }
+
+                                        </h5>
+
+
+                                        foreach (var Respuesta in SubPregunta.ListaMC)
+                                        {
+
+                                            <h6>
+
+
+
+                                                @Html.CheckBox("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].RespuestaObtenida", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].RespuestaObtenida, new { @readonly = "readonly", @class = "check" })
+
+                                                @Html.TextArea("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].LaPregunta", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].LaRespuesta, new { @readonly = "readonly", @class = "subCaja" })
+                                                @Html.Hidden("listaPregunta[" + @i + "].ListaPregunta[" + k + "].ListaMC[" + @g + "].Id", Model.listaExamenPregunta[i].pregunta.ListaPregunta[k].ListaMC[g].Id)
+                                            </h6>
+                                            g++;
+                                        }
+                                        <br />
+                                        k++;
+                                    }
+
+
+                                    <br />
+                                }
+                            </div>
 
 
 
@@ -370,42 +370,42 @@
 
                 }
                 <!-- Right Column -->
-            <div class="w3-col m2">
-                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                    <div class="w3-container">
-                        <h3 style="color:black">Reglas del examen</h3>
+                <div class="w3-col m2">
+                    <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                        <div class="w3-container">
+                            <h3 style="color:black">Reglas del examen</h3>
 
-                        <br />
-                        @{decimal aprobado = Model.cantidadPreguntas * 70 / 100;
-                            int res = Convert.ToInt32(aprobado);
-                        }
-                        <p>- Son @Model.cantidadPreguntas Preguntas</p>
-                        <p>- Cada Pregunta puede tener más de una respuesta</p>
-                        <p>- Cada Pregunta tiene por lo menos una respuesta</p>
-                        <p>- Si no sabes la respuesta Seleccionar NS/NC</p>
-                        <p>- Para estar aprobado se debes responder @res preguntas correctamente</p>
+                            <br />
+                            @{decimal aprobado = Model.cantidadPreguntas * 70 / 100;
+                                int res = Convert.ToInt32(aprobado);
+                            }
+                            <p>- Son @Model.cantidadPreguntas Preguntas</p>
+                            <p>- Cada Pregunta puede tener más de una respuesta</p>
+                            <p>- Cada Pregunta tiene por lo menos una respuesta</p>
+                            <p>- Si no sabes la respuesta Seleccionar NS/NC</p>
+                            <p>- Para estar aprobado se debes responder @res preguntas correctamente</p>
 
+                        </div>
                     </div>
-                </div>
-                <br />
+                    <br />
 
-                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                    <div class="w3-container">
-                        <h3 style="color:black">¿Necesitas Ayuda?</h3>
-                        <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
-                        <br />
+                    <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                        <div class="w3-container">
+                            <h3 style="color:black">¿Necesitas Ayuda?</h3>
+                            <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
+                            <br />
 
-                        <p>   dolores.conde@transener.com.ar</p>
+                            <p>   dolores.conde@transener.com.ar</p>
 
 
+                        </div>
                     </div>
+
+
+
+
+                    <!-- End Right Column -->
                 </div>
-
-
-
-
-                <!-- End Right Column -->
-            </div>
                 <!-- End Grid -->
             </div>
             <div style="align-content:center">
@@ -447,5 +447,9 @@
                 }
             }
         </script>
+
+        @section scripts
+{
+        }
     }
 </body>

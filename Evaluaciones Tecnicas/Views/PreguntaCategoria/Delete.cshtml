@@ -8,19 +8,23 @@
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
 
-    <div class="table-responsive">
-        <h3>¿Esta seguro de eliminar la categoria <i>"@Html.DisplayFor(model => model.Categorias.LaCategoria)"</i> de la pregunta <i>"@Html.DisplayFor(model => model.Pregunta.LaPregunta)"</i>?</h3>
-        <hr />
+<div class="table-responsive">
+    <h3>¿Esta seguro de eliminar la categoria <i>"@Html.DisplayFor(model => model.Categorias.LaCategoria)"</i> de la pregunta <i>"@Html.DisplayFor(model => model.Pregunta.LaPregunta)"</i>?</h3>
+    <hr />
 
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
 
-        <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
-    </div>
-        }
-    </div>
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "PreguntaCategoria")'" />
+        </div>
+    }
+</div>
+
+@section scripts
+{
+}

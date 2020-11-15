@@ -49,7 +49,7 @@
     <Compile Include="Examen\ExamenComponent.cs" />
     <Compile Include="Examen\ExamenPreguntaComponent.cs" />
     <Compile Include="Examen\ExamenRespuestaComponent.cs" />
-    <Compile Include="Informes\Informes.cs" />
+    <Compile Include="Informes\InformeComponent.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Preguntas y Respuestas\CategoriaComponent.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoiceComponent.cs" />

@@ -52,6 +52,7 @@
     <Compile Include="Examen\ExamenDAC.cs" />
     <Compile Include="Examen\ExamenPreguntaDAC.cs" />
     <Compile Include="Examen\ExamenRespuestaDAC.cs" />
+    <Compile Include="Examen\InformeDAC.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Preguntas y Respuestas\CategoriaDAC.cs" />
     <Compile Include="Preguntas y Respuestas\MultipleChoiceCompuestoDAC.cs" />

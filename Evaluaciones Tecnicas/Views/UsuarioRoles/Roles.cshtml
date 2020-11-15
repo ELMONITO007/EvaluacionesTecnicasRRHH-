@@ -43,7 +43,7 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Acciones</th>
-                                        
+
 
                                         </tr>
                                     </thead>
@@ -63,7 +63,7 @@
 
                                                     @Html.ActionLink("Eliminar", "Delete", new { id = item.usuarios.Id, idRol = item.roles.id })
                                                 </td>
-                                         
+
 
                                             </tr>
                                         }
@@ -87,3 +87,6 @@
 
 
 </div>
+@section scripts
+{
+}

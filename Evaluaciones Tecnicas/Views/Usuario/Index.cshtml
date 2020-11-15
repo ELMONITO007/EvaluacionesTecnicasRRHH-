@@ -49,32 +49,32 @@
 
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Email)
-                                            </td>
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Email)
+                                                </td>
 
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Nombre)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Apellido)
-                                            </td>
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.Bloqueado)
-                                            </td>
-                                         
-
-                                            <td>
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-
-                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
-                                                @Html.ActionLink("Desbloquear", "Desbloquear", new { id = item.Id })|
-                                                @Html.ActionLink("Ver permisos", "index", "UsuarioRoles", new { id = item.Id }, null)
-                                            </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Apellido)
+                                                </td>
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.Bloqueado)
+                                                </td>
 
 
-                                        </tr>
+                                                <td>
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+
+                                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
+                                                    @Html.ActionLink("Desbloquear", "Desbloquear", new { id = item.Id })|
+                                                    @Html.ActionLink("Ver permisos", "index", "UsuarioRoles", new { id = item.Id }, null)
+                                                </td>
+
+
+                                            </tr>
                                         }
 
 
@@ -96,3 +96,6 @@
 
 
 </div>
+@section scripts
+{
+}

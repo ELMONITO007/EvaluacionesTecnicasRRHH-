@@ -37,7 +37,7 @@
 
                     <h5 class="text-justify">Roles Disponibles</h5>
 
-                    @Html.DropDownListFor(model => model.name, (IEnumerable<SelectListItem>)ViewBag.RolesLista, new  { @class = "form-control"  })
+                    @Html.DropDownListFor(model => model.name, (IEnumerable<SelectListItem>)ViewBag.RolesLista, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
 
 
@@ -54,4 +54,7 @@
             </div>
         </div>
     </div>
+}
+@section scripts
+{
 }

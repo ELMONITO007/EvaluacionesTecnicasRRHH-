@@ -17,11 +17,15 @@
         @Html.AntiForgeryToken()
 
 
-<div class="form-actions no-color">
-    <input type="submit" value="Eliminar" class="btn btn-outline-info" />
-  
-    <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "direccion")'" />
-</div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "direccion")'" />
+        </div>
 
     }
 </div>
+
+@section scripts
+{
+}

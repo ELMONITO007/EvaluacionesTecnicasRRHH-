@@ -5,21 +5,25 @@
     string layout = "~/Views/Shared/" + Session["Layout"] + ".cshtml";
     Layout = layout;
 }
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
-    <div>
-        <h3>¿Esta seguro de eliminar <i>    "@Html.DisplayFor(model => model.LaRespuesta)"</i>?</h3>
-        <hr />
-        @Html.HiddenFor(model => model.Id)
-       
+<link href="~/Content/modern-business.css" rel="stylesheet" />
+<div>
+    <h3>¿Esta seguro de eliminar <i>    "@Html.DisplayFor(model => model.LaRespuesta)"</i>?</h3>
+    <hr />
+    @Html.HiddenFor(model => model.Id)
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.id_SubPregunta})'" />
-    </div>
-        }
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "MultipleChoiceCompuesto",new { id=Model.id_SubPregunta})'" />
+        </div>
+    }
+</div>
+
+@section scripts
+{
+}

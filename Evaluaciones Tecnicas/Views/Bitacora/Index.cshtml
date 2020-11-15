@@ -5,42 +5,42 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
+<link href="~/Content/modern-business.css" rel="stylesheet" />
 
-    <div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
-
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+    <!-- Main Content -->
+    <div id="content">
 
 
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Bitacora</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Usuario</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Evento</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Dia</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Hora</th>
-                                            </tr>
-                                        </thead>
 
-                                        <tbody>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Bitacora</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-                                            @foreach (var item in Model)
-                                            {
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 103px;">Usuario</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Evento</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Dia</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 162px;">Hora</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
                                                     @Html.DisplayFor(modelItem => item.usuarios.Email)
@@ -56,24 +56,28 @@
                                                 </td>
 
                                             </tr>
-                                            }
+                                        }
 
 
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                             
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
-
             </div>
-            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
-
+        <!-- /.container-fluid -->
 
     </div>
+    <!-- End of Main Content -->
+
+
+</div>
+
+@section scripts
+{
+}

@@ -7,7 +7,6 @@
 
 <link href="~/Content/modern-business.css" rel="stylesheet" />
 
-<link href="~/Content/modern-business.css" rel="stylesheet" />
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
@@ -54,7 +53,7 @@
                                                     @Html.ActionLink("Eliminar", "Delete", new { id = int.Parse(item.Id.ToString()) }) |
                                                     @Html.ActionLink("Salud", "SaludTipoPregunta", new { id = int.Parse(item.Id.ToString()) }) |
 
-                                                
+
 
                                                 </td>
 
@@ -82,3 +81,7 @@
 
 </div>
 
+
+@section scripts
+{
+}

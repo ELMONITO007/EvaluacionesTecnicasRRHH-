@@ -211,285 +211,288 @@
 <body class="w3-theme-l5">
 
 
-   
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.usuario.Id)
-        @Html.HiddenFor(model => model.Categoria.Id)
-        <!-- Page Container -->
-        <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-            <!-- The Grid -->
-            <div class="w3-row">
-                <!-- Left Column -->
-                <div class="w3-col m3">
-                    <!-- Profile -->
-                    <div class="w3-card w3-round w3-white">
-                        <div class="w3-container">
-                            <h4 class="w3-center">Mi Perfil</h4>
 
-                            <p class="w3-center"><img src="~/img/avatar 4.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-                            <hr>
-                            <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>@Html.DisplayFor(model => model.usuario.Email)</p>
-                            @{
-                                string nombre = Model.usuario.Nombre + " " + Model.usuario.Apellido;
-                            }
-                            <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>@nombre</p>
-                            <p><i class="fa fa-calendar fa-fw w3-margin-right w3-text-theme"></i>@Model.Fecha</p>
-                        </div>
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.usuario.Id)
+    @Html.HiddenFor(model => model.Categoria.Id)
+    <!-- Page Container -->
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+        <!-- The Grid -->
+        <div class="w3-row">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+                <!-- Profile -->
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <h4 class="w3-center">Mi Perfil</h4>
+
+                        <p class="w3-center"><img src="~/img/avatar 4.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                        <hr>
+                        <p><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i>@Html.DisplayFor(model => model.usuario.Email)</p>
+                        @{
+                            string nombre = Model.usuario.Nombre + " " + Model.usuario.Apellido;
+                        }
+                        <p><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>@nombre</p>
+                        <p><i class="fa fa-calendar fa-fw w3-margin-right w3-text-theme"></i>@Model.Fecha</p>
                     </div>
-                    <br>
-
                 </div>
+                <br>
 
-                <!-- Middle Column -->
-                @using (Html.BeginForm())
-                {
-                    int i = 0;
-                    <div class="w3-col m7">
-                        @{int NumeroPregunta = 1;}
-                        @foreach (Entities.Examen.ExamenPregunta item in Model.listaExamenPregunta)
-                        {
-                           
+            </div>
 
-                            <div class="w3-container w3-card w3-white w3-round w3-margin">
-                                <br>
-
-                                <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
-                                <br />
-
-                                <hr class="w3-clear">
-                                <h4 style="color:black">
-                                    @if (item.correcta)
-                                    {
-                                        @Html.DisplayFor(model => item.pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
-
-                                        <img src="~/img/Uncheck.png" width="40" height="40" />
-                                    }
-                                    @if (!item.correcta)
-                                    {
-                                        @Html.DisplayFor(model => item.pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
-
-                                        <img src="~/img/check.png" width="40" height="40" />
-                                    }
-
-                                </h4>
-                                <div class="w3-row-padding" style="margin:0 -16px">
-                                    @if (item.pregunta.Imagen != "Sin imagen")
-                                    {
-                                        <div class="w3-half">
-
-                                            @{string Imagen = item.pregunta.Imagen.Substring(2);
+            <!-- Middle Column -->
+            @using (Html.BeginForm())
+            {
+                int i = 0;
+                <div class="w3-col m7">
+                    @{int NumeroPregunta = 1;}
+                    @foreach (Entities.Examen.ExamenPregunta item in Model.listaExamenPregunta)
+                    {
 
 
-                                            }
-                                            <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
-                                        </div>
-                                                }
+                        <div class="w3-container w3-card w3-white w3-round w3-margin">
+                            <br>
 
+                            <span class="w3-right w3-opacity">Pregunta Numero: @NumeroPregunta</span>
+                            <br />
 
-                                </div>
-
-
-
-
-                                @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
+                            <hr class="w3-clear">
+                            <h4 style="color:black">
+                                @if (item.correcta)
                                 {
+                                    @Html.DisplayFor(model => item.pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
 
-
-                                    foreach (var MC in item.listaExamenRespuesta)
-                                    {
-
-                            <h6>
-
-                                @Html.CheckBoxFor(model => MC.respondio, new { @readonly = "readonly", @class = "check" })
-                                @if (MC.correcta && MC.respondio == true)
+                                    <img src="~/img/Uncheck.png" width="40" height="40" />
+                                }
+                                @if (!item.correcta)
                                 {
-                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                                    @Html.DisplayFor(model => item.pregunta.LaPregunta, new { @readonly = "readonly", @class = "caja" })
+
+                                    <img src="~/img/check.png" width="40" height="40" />
                                 }
 
-                                @if (!MC.correcta && MC.respondio)
+                            </h4>
+                            <div class="w3-row-padding" style="margin:0 -16px">
+                                @if (item.pregunta.Imagen != "Sin imagen")
                                 {
-                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
-                                }
-                                @if (MC.correcta && MC.respondio == false)
-                                {
-                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
-                                }
-                                @if (!MC.correcta && !MC.respondio)
-                                {
-                                    @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
-                              
-                                    
+                                    <div class="w3-half">
+
+                                        @{string Imagen = item.pregunta.Imagen.Substring(2);
+
+
+                                        }
+                                        <img src=@Imagen style="width:100%" alt="Imagen" class="w3-margin-bottom">
+                                    </div>
                                 }
 
 
-
-                            </h6>
-
-                                    }
-                                    <br />
-                                }
-                                @{int p = 0;
-                                }
-                                @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
-                                {
-                                    foreach (var SubPregunta in item.listaExamenRespuesta)
-
-
-
-
-                                    {
-
-                                        @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
-                                        <h4 style="color:black">
-                                            @Html.DisplayFor(model =>SubPregunta.examenPregunta.pregunta.LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
-
-                                          
-                                                                                        
-
-                                        </h4>
-
-
-                                                foreach (var Respuesta in SubPregunta.examenPregunta.listaExamenRespuesta)
-                                                {
-
-                            <h6>
-
-
-
-                                @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
-
-                                @if (!Respuesta.correcta && Respuesta.respondio)
-                                {
-                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
-                                }
-                                @if (Respuesta.correcta && Respuesta.respondio == false)
-                                {
-                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
-                                }
-                                @if (Respuesta.correcta && Respuesta.respondio)
-                                {
-                                    @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
-
-
-                                }
-                             
-                            </h6>
-                                                  
-                                                }
-                                        <br />
-                                                  
-                                                }
-
-
-                                    <br />
-                                                }
                             </div>
 
 
 
-                                                i++;
 
-                                                NumeroPregunta++;
-                            <br />
-
-
-                                                }
-
-
-
-
-
-                        <!-- End Middle Column -->
-                    </div>
-
-                                                }
-                <!-- Right Column -->
-                <div class="w3-col m2">
-                    <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                        <div class="w3-container">
-                            <h3 style="color:black">Resultado del examen</h3>
-
-                            <br />
-                            @{decimal aprobado = Model.cantidadPreguntas * 70 / 100;
-                                int res = Convert.ToInt32(aprobado);
-                            }
-                            <p>- Son @Model.cantidadPreguntas Preguntas</p>
-                            <p>- Las respuestas correctas son @Model.RespuestasCorrectas</p>
-                            <p>- Las respuestas inccorrectas son @Model.RespuestasIncorrectas</p>
-
-                            @{ string a=null;}
-                            @if (Model.Aprobado)
+                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoice")
                             {
-                                a = "Aprobado";
+
+
+                                foreach (var MC in item.listaExamenRespuesta)
+                                {
+
+                                    <h6>
+
+                                        @Html.CheckBoxFor(model => MC.respondio, new { @readonly = "readonly", @class = "check" })
+                                        @if (MC.correcta && MC.respondio == true)
+                                        {
+                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                                        }
+
+                                        @if (!MC.correcta && MC.respondio)
+                                        {
+                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+                                        }
+                                        @if (MC.correcta && MC.respondio == false)
+                                        {
+                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                                        }
+                                        @if (!MC.correcta && !MC.respondio)
+                                        {
+                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+
+
+                                        }
+
+
+
+                                    </h6>
+
+                                }
+                                <br />
                             }
-                            @if (!Model.Aprobado)
+                            @{int p = 0;
+                            }
+                            @if (item.pregunta.tipoPregunta.TipoDePregunta == "MultipleChoiceCompuesto")
                             {
-                                a = "Deaprobado";
+                                foreach (var SubPregunta in item.listaExamenRespuesta)
+
+
+
+
+                                {
+
+                                    @*<h5 style="color:black">  @SubPregunta.LaPregunta</h5>*@
+                                    <h4 style="color:black">
+                                        @Html.DisplayFor(model => SubPregunta.examenPregunta.pregunta.LaPregunta, new { @readonly = "readonly", @class = "subCaja" })
+
+
+
+
+                                    </h4>
+
+
+                                    foreach (var Respuesta in SubPregunta.examenPregunta.listaExamenRespuesta)
+                                    {
+
+                                        <h6>
+
+
+
+                                            @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
+
+                                            @if (!Respuesta.correcta && Respuesta.respondio)
+                                            {
+                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+                                            }
+                                            @if (Respuesta.correcta && Respuesta.respondio == false)
+                                            {
+                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                                            }
+                                            @if (Respuesta.correcta && Respuesta.respondio)
+                                            {
+                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+
+
+                                            }
+
+                                        </h6>
+
+                                    }
+                                    <br />
+
+                                }
+
+
+                                <br />
                             }
-                            <p>
-                                - El Examen esta @a
-                            </p>
-                            <p>- El minimo de respuestas correctas es @res </p>
-
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
-                        <div class="w3-container">
-                            <h3 style="color:black">¿Necesitas Ayuda?</h3>
-                            <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
-                            <br />
-
-                            <p>   dolores.conde@transener.com.ar</p>
 
 
-                        </div>
-                    </div>
+
+                        i++;
+
+                        NumeroPregunta++;
+                        <br />
+
+
+                    }
 
 
 
 
-                    <!-- End Right Column -->
+
+                    <!-- End Middle Column -->
                 </div>
-                <!-- End Grid -->
+
+            }
+            <!-- Right Column -->
+            <div class="w3-col m2">
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <h3 style="color:black">Resultado del examen</h3>
+
+                        <br />
+                        @{decimal aprobado = Model.cantidadPreguntas * 70 / 100;
+                            int res = Convert.ToInt32(aprobado);
+                        }
+                        <p>- Son @Model.cantidadPreguntas Preguntas</p>
+                        <p>- Las respuestas correctas son @Model.RespuestasCorrectas</p>
+                        <p>- Las respuestas inccorrectas son @Model.RespuestasIncorrectas</p>
+
+                        @{ string a = null;}
+                        @if (Model.Aprobado)
+                        {
+                            a = "Aprobado";
+                        }
+                        @if (!Model.Aprobado)
+                        {
+                            a = "Deaprobado";
+                        }
+                        <p>
+                            - El Examen esta @a
+                        </p>
+                        <p>- El minimo de respuestas correctas es @res </p>
+
+                    </div>
+                </div>
+                <br />
+
+                <div class="w3-card w3-round w3-white w3-center" style="min-width:330px">
+                    <div class="w3-container">
+                        <h3 style="color:black">¿Necesitas Ayuda?</h3>
+                        <img src="https://img.icons8.com/ios/50/000000/help.png/" alt="Avatar" style="width:18%"><br>
+                        <br />
+
+                        <p>   dolores.conde@transener.com.ar</p>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- End Right Column -->
             </div>
-            
-                        <!-- End Page Container -->
+            <!-- End Grid -->
         </div>
-        <br>
+
+        <!-- End Page Container -->
+    </div>
+    <br>
 
 
 
-        <!-- Footer -->
+    <!-- Footer -->
 
-        <footer class="w3-container w3-theme-d5" style="text-align:center">
-            <p>Copyright Transener-Transba © 2020. Todos los derechos reservados</p>
-        </footer>
+    <footer class="w3-container w3-theme-d5" style="text-align:center">
+        <p>Copyright Transener-Transba © 2020. Todos los derechos reservados</p>
+    </footer>
 
-        <script>
-            // Accordion
-            function myFunction(id) {
-                var x = document.getElementById(id);
-                if (x.className.indexOf("w3-show") == -1) {
-                    x.className += " w3-show";
-                    x.previousElementSibling.className += " w3-theme-d1";
-                } else {
-                    x.className = x.className.replace("w3-show", "");
-                    x.previousElementSibling.className =
-                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-                }
+    <script>
+        // Accordion
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
             }
+        }
 
-            // Used to toggle the menu on smaller screens when clicking on the menu button
-            function openNav() {
-                var x = document.getElementById("navDemo");
-                if (x.className.indexOf("w3-show") == -1) {
-                    x.className += " w3-show";
-                } else {
-                    x.className = x.className.replace(" w3-show", "");
-                }
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
             }
-        </script>
-    
+        }
+    </script>
+
+    @section scripts
+{
+    }
 </body>

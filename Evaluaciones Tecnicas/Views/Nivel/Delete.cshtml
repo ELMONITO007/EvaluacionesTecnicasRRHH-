@@ -10,16 +10,20 @@
 <div>
     <h3>¿Esta seguro de eliminar @Html.DisplayFor(model => model.ElNivel)?</h3>
     <hr />
-    
+
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
 
-    <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
-</div>
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
+        </div>
     }
 </div>
+
+@section scripts
+{
+}

@@ -5,26 +5,29 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
-    
-    <div class="table-responsive col-md-12">
-        <h4>Detalles del tipo de pregunta @Html.DisplayFor(model => model.TipoDePregunta)</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            
-            <dt>
-                @Html.DisplayNameFor(model => model.TipoDePregunta)
-            </dt>
+<link href="~/Content/modern-business.css" rel="stylesheet" />
 
-            <dd>
-                @Html.DisplayFor(model => model.TipoDePregunta)
-            </dd>
+<div class="table-responsive col-md-12">
+    <h4>Detalles del tipo de pregunta @Html.DisplayFor(model => model.TipoDePregunta)</h4>
+    <hr />
+    <dl class="dl-horizontal">
 
-        </dl>
-        <div> <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id } )</h5></div>
-        <div>
-          
-            <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "TipoPregunta")'" />
-        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDePregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDePregunta)
+        </dd>
+
+    </dl>
+    <div> <h5> @Html.ActionLink("Editar", "Edit", new { id = Model.Id })</h5></div>
+    <div>
+
+        <input type="button" class="BotonVerde " style="float:left" value="Volver" onclick="location.href='@Url.Action("Index", "TipoPregunta")'" />
     </div>
+</div>
 
+@section scripts
+{
+}

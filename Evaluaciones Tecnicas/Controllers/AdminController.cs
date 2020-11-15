@@ -1,7 +1,9 @@
 ﻿using Entities;
+using Entities.Examen;
 using Evaluaciones_Tecnicas.Filter;
 using Negocio;
 using Negocio.Examen;
+using Negocio.Informes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,10 @@ namespace Evaluaciones.Controllers
         [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
         public ActionResult Administrador()
         {
-            return View();
+            InformeComponent informeComponent = new InformeComponent();
+            Informe informe = new Informe();
+            informe = informeComponent.ObtenerInforme();
+            return View(informe);
         }
 
         [AuthorizerUser(_roles: "RRHH")]

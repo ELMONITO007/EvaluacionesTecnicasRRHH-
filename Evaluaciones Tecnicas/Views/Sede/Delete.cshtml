@@ -12,16 +12,20 @@
 <div>
     <h3>¿Esta seguro de eliminar la Sede  <i>"@Html.DisplayFor(model => model.sede)"</i> de la empresa <i> "@Html.DisplayFor(model => model.empresa.empresa)"</i>?</h3>
     <br />
-   
+
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Eliminar" class="btn btn-outline-info" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-outline-info" />
 
-    <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "sede")'" />
-</div>
+            <input type="button" class="btn btn-outline-primary " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "sede")'" />
+        </div>
     }
 </div>
+
+@section scripts
+{
+}

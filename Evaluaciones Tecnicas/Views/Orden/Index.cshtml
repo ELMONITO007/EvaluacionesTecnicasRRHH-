@@ -23,8 +23,8 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     @foreach (var item2 in Model.listaOrden)
-                    { 
-                    <h6 class="m-0 font-weight-bold text-primary">Lista de respuestas <i> "@Html.DisplayFor(modelItem => item2.pregunta.LaPregunta)"</i> </h6>
+                    {
+                        <h6 class="m-0 font-weight-bold text-primary">Lista de respuestas <i> "@Html.DisplayFor(modelItem => item2.pregunta.LaPregunta)"</i> </h6>
                         break;
                     }
                 </div>
@@ -86,3 +86,6 @@
 
 
 </div>
+@section scripts
+{
+}

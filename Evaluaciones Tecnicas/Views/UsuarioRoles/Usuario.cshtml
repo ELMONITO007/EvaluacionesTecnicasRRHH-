@@ -21,7 +21,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                   
+
 
                         Lista de Roles del Usuario
 
@@ -57,7 +57,7 @@
                                                 </td>
                                                 <td>
                                                     @Html.ActionLink("Editar", "Edit", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
-                                            
+
                                                     @Html.ActionLink("Eliminar", "Delete", new { id_Usuario = item.usuarios.Id, id_Roles = item.roles.id }) |
                                                     @Html.ActionLink("Ver Usuarios", "Roles", new { id = item.roles.id })
                                                 </td>
@@ -79,7 +79,7 @@
                         <input type="button" class="btn btn-outline-primary " style="float:left" value="Agregar Permiso" onclick="location.href='@Url.Action("Create", "UsuarioRoles", new { id = item2.usuarios.Id })'" />
                         <input type="button" class="btn btn-outline-info " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "UsuarioRoles")'" />
                     }
-                    </div>
+                </div>
             </div>
 
         </div>
@@ -90,3 +90,6 @@
 
 
 </div>
+@section scripts
+{
+}

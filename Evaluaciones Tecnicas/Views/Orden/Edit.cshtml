@@ -39,7 +39,7 @@
                     @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
 
-                <h5 class="text-justify">Numero de Pregunta</h5>
+                    <h5 class="text-justify">Numero de Pregunta</h5>
                     @Html.EditorFor(model => model.pregunta.Id, new { htmlAttributes = new { @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pregunta.Id, "", new { @class = "text-danger" })
                 </div>
@@ -52,4 +52,8 @@
             </div>
         </div>
     </div>
+}
+
+@section scripts
+{
 }
