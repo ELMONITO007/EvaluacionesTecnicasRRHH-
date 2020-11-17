@@ -165,7 +165,19 @@ namespace Data
         }
 
 
+        public void AgregarErrorUsryPass(int intentos,int id)
 
+        {
+
+            const string SQL_STATEMENT = "update Usuario set cantidadIntentos=@intentos where id=@Id";
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@intentos", DbType.Int32, intentos);
+                db.AddInParameter(cmd, "@id", DbType.Int32, id);
+                db.ExecuteNonQuery(cmd);
+            }
+        }
        
     }
 }

@@ -79,7 +79,8 @@
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                                                     @Html.ActionLink("Cambiar Contraseña", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
                                                     @Html.ActionLink("Desbloquear", "Roles", "UsuarioRoles", new { id = item.Id }, null)|
-                                                    @Html.ActionLink("Abrir PDF", "Abrir", "PDF", new { email = item.usuarios.Email }, null)
+                                                    <a href="https://drive.google.com/drive/folders/1Y8NIQPFsScVTRKMjP5nlEpYOUvN5J-Y1?usp=sharing"target="_blank">Abrir PDF</a>|
+
                                                     @Html.ActionLink("Crear Examen", "Create", "Examen", new { Id_Usuario = item.usuarios.Id }, null)
                                                 </td>
 

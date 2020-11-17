@@ -10,13 +10,19 @@ using Negocio.Servicios;
 
 namespace Negocio
 {
+   
         public class UsuariosComponent : Component<Usuarios>
+    {
+        public void ResetearIntentos(int id)
         {
+            var usuario = new UsuarioDac();
+            usuario.AgregarErrorUsryPass(0, id);
+        }
 
 
-            #region Crear
-               
-                public bool Verificar(string userName)
+        #region Crear
+
+        public bool Verificar(string userName)
                 {
                     Usuarios usuarios = new Usuarios();
                     UsuarioDac usuarioDac = new UsuarioDac();
@@ -80,12 +86,25 @@ namespace Negocio
                             }
                     }
 
-        
-       
+
+
 
         #endregion
+        public int AgregarErrorUsryPass( int id)
 
-        public  void Bloquear(int id)
+        {
+
+            var usuario = new UsuarioDac();
+            Entities.Usuarios unUsuario = new Usuarios();
+            unUsuario = usuario.ReadBy(id);
+          
+            usuario.AgregarErrorUsryPass(unUsuario.CantidadIntentos +1, id);
+
+
+            return unUsuario.CantidadIntentos + 1;
+
+        }
+            public  void Bloquear(int id)
         {
             var usuario = new UsuarioDac();
             

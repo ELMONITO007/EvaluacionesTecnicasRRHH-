@@ -150,7 +150,7 @@ namespace Negocio
                                 bitacora.eventoBitacora.Id = 5;
                                 bitacoraComponent.Create(bitacora);
                                 loginError.error = "";
-
+                                usuariosComponent.ResetearIntentos(usuarios.Id);
                             }
                             else
                             {
@@ -168,6 +168,8 @@ namespace Negocio
                     }
                     else
                     {
+                        int intentos = usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
+                      
                         loginError.error = "Error Critico H. Envie un email con el error a dolores.conde@transener.com.ar";
                         bitacora.eventoBitacora.Id = 3;
                         bitacoraComponent.Create(bitacora);
@@ -177,6 +179,22 @@ namespace Negocio
                 {
                     loginError.error = "Usuario o Contraseña Invalido";
                     bitacora.eventoBitacora.Id = 4;
+                 
+
+                    int cantidad= usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
+
+                    if (cantidad>4)
+                    {
+                        //usuariosComponent.Bloquear(usuarios.Id);
+                        //loginError.error = "Usuario Bloqueado, alcanzo los tres intentos";
+                        //bitacora.eventoBitacora.Id = 1;
+
+                    }
+                    else
+                    {
+                        loginError.error = "Usuario o Contraseña Invalido";
+                        bitacora.eventoBitacora.Id = 4;
+                    }
                     bitacoraComponent.Create(bitacora);
                 }
             }

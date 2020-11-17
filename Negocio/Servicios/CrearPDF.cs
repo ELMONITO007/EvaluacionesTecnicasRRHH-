@@ -12,6 +12,8 @@ using System.Web.Hosting;
 using System.Diagnostics;
 using Data.Servicios;
 using Data;
+using System.Security;
+using System.ComponentModel;
 
 namespace Negocio.Servicios
 {
@@ -41,7 +43,40 @@ namespace Negocio.Servicios
 
         public void AbrirPDF(string email)
         {
-            Process.Start(@"C:\PDF\" + email + ".pdf");
+            //Process process = new Process();
+            //process.StartInfo.UseShellExecute = true;
+            //process.StartInfo.FileName = @"C:\PDF\" + email + ".pdf";
+            //process.Start();
+
+
+
+            System.Diagnostics.Process command = new System.Diagnostics.Process();
+            command.StartInfo.FileName = @"C:\Program Files (x86)\Foxit Software\Foxit Reader\FoxitReader.exe";
+            command.StartInfo.Arguments = @"C:\PDF\" + email + ".pdf";
+
+            command.StartInfo.UserName = "webconfig";
+            command.StartInfo.Domain = "";
+            System.Security.SecureString pwd = new System.Security.SecureString();
+
+            foreach (char c in "Vale5861!")
+                pwd.AppendChar(c);
+
+            command.StartInfo.Password = pwd;
+            command.StartInfo.CreateNoWindow = false;
+            command.StartInfo.Verb = "open";
+            command.StartInfo.UseShellExecute = false;
+
+            try
+            {
+                command.Start();
+            }
+
+            catch (Win32Exception e11)
+            {
+                
+            }
+            command.WaitForExit();
+            command.Close();
 
         }
 
