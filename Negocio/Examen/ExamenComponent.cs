@@ -75,7 +75,25 @@ namespace Negocio.Examen
             int a = examen.usuario.Id;
             examen.listaExamenPregunta = ListaPreguntasExamen;
             examen.usuario = usuarios.ReadBy(a);
+            examen.facil = 0;
+            examen.medio = 0;
+            examen.dificil = 0;
 
+            foreach (var item in examen.listaExamenPregunta)
+            {
+                if (item.pregunta.nivel.ElNivel=="Medio")
+                {
+                    examen.medio++;
+                }
+                if (item.pregunta.nivel.ElNivel == "Facil")
+                {
+                    examen.facil++;
+                }
+                if (item.pregunta.nivel.ElNivel == "Dificil")
+                {
+                    examen.dificil++;
+                }
+            }
 
 
             return examen;
@@ -116,19 +134,22 @@ namespace Negocio.Examen
         }
 
 
-
-
-
-
         public Entities.Examen.Examen ReadBy(DateTime Fecha)
         {
             ExamenDAC examenDAC = new ExamenDAC();
+
+           
+
+            Entities.Examen.Examen examen = new Entities.Examen.Examen();
+            examen = examenDAC.ReadBy(Fecha);
+
+           
+
+
+
+
             return examenDAC.ReadBy(Fecha);
         }
-
-
-
-
 
 
         public void Terminarexamen(List<Pregunta> preguntas, Entities.Examen.Examen examen)
@@ -296,25 +317,6 @@ namespace Negocio.Examen
         }
 
 
-
-
-
-
-      
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
         public Entities.Examen.Examen ObtenerExamenTerminado(int id_examen)
         {
             Entities.Examen.Examen examen = new Entities.Examen.Examen();
@@ -372,6 +374,29 @@ namespace Negocio.Examen
                     entity.Resultado = 0;
                     entity.Aprobado = false;
                     entity.Estado = "A realizar";
+                    //completo la cantidad por nivel
+                    List<Nivel> niveles = preguntaComponent.ObtenerCantidadDePreguntasParaExamen(enviar, entity.cantidadPreguntas);
+
+
+                    foreach (var item in niveles)
+                    {
+                        if (item.ElNivel == "Facil")
+                        {
+                            entity.facil = item.porcentajePorPregunta;
+                        }
+
+                        else if (item.ElNivel == "Medio")
+
+                        {
+                            entity.medio = item.porcentajePorPregunta;
+                        }
+                        else
+                        {
+                            entity.dificil = item.porcentajePorPregunta;
+                        }
+                    }
+
+
 
                     //Creo el examen
                     ExamenDAC examenComponent = new ExamenDAC();

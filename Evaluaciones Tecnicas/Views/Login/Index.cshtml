@@ -1,5 +1,5 @@
 ﻿@model Entities.Usuarios
-
+@using CaptchaMvc.HtmlHelpers
 @{
     Layout = null;
 }
@@ -111,13 +111,23 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="styles.css">
+
+
+
+
+
+
+
+    }
 </head>
 <body>
+
     @using (Html.BeginForm("Usuarios", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "container" }))
     {
+        <input type="hidden" id="foo" name="foo" />
         <div class="container">
             <div class="d-flex justify-content-center h-100">
-                <div class="card">
+                <div class="card" style="min-height:450px">
                     <div class="card-header">
                         <h3>Ingresar email y contraseña</h3>
 
@@ -152,13 +162,24 @@
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             <h7 style="color:red; font-size:10px">@ViewBag.ErrorLogin</h7>
                             <div class="align-content-md-center" style="color:white">
-                                @*@Html.Captcha(7)*@ <br /><p> @ViewBag.ErrorMessage </p>
+                                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+
+
+
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" style="font-size:16px">Ingresar</button>
+
+
+
+
+
+                            <button class="  btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2
+                                     " type="submit" style="font-size:16px"
+                        >
+                                Ingresar
+                            </button>
                             <br />
-                            @*<div class="col-md-auto">
-            <img src="~/img/TR.png" width="120" height="120" style="margin:15px 30px" /> &nbsp;&nbsp;<img src="~/img/TB.png" width="120" height="120" />
-        </div>*@
+
+
 
                         </form>
                     </div>
@@ -168,10 +189,13 @@
         </div>
     }
 
+
+
 </body>
 </html>
 
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="~/Scripts/jquery-3.4.1.slim.js"></script>
 <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+

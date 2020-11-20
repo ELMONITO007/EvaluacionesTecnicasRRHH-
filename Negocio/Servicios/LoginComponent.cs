@@ -181,20 +181,20 @@ namespace Negocio
                     bitacora.eventoBitacora.Id = 4;
                  
 
-                    int cantidad= usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
+                    //int cantidad= usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
 
-                    if (cantidad>4)
-                    {
-                        //usuariosComponent.Bloquear(usuarios.Id);
+                    //if (cantidad>4)
+                    //{
+                    //    //usuariosComponent.Bloquear(usuarios.Id);
                         //loginError.error = "Usuario Bloqueado, alcanzo los tres intentos";
                         //bitacora.eventoBitacora.Id = 1;
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         loginError.error = "Usuario o Contraseña Invalido";
                         bitacora.eventoBitacora.Id = 4;
-                    }
+                    //}
                     bitacoraComponent.Create(bitacora);
                 }
             }

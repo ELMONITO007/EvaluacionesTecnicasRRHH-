@@ -23,5 +23,7 @@ namespace Entities
         [Required]
         public string ElNivel { get; set; }
 
+        public int porcentajePorPregunta { get; set; }
+
     }
 }

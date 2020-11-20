@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class SaludCategoriaComponent : Component<SaludCategoria>
     {
-        SaludCategoria saludCategoria = new SaludCategoria();
+       public SaludCategoria saludCategoria = new SaludCategoria();
         List<SaludCategoria> ListaSaludPreguntas = new List<SaludCategoria>();
         public SaludCategoriaComponent(int id_TipoPregunta)
         {

@@ -132,6 +132,109 @@ namespace Negocio
 
 
         }
+
+
+     
+
+        public List<Nivel> ObtenerCantidadDePreguntasParaExamen(Pregunta pregunta,int cantidad)
+        {
+            int facil = 0;
+            int medio = 0;
+            int dificil = 0;
+            SaludCategoriaComponent saludCategoriaComponent = new SaludCategoriaComponent(pregunta.categoria.Id);
+            foreach (var item in saludCategoriaComponent.saludCategoria.ListaPreguntasTotal)
+            {
+
+                if (item.Pregunta.nivel.ElNivel == "Facil")
+                {
+                    facil++;
+                }
+
+                else if (item.Pregunta.nivel.ElNivel == "Medio")
+
+                {
+                    medio++;
+                }
+                else
+                {
+                    dificil++;
+                }
+
+                }
+
+
+                List<Nivel> result = new List<Nivel>();
+           
+
+
+
+
+
+            int total = facil + medio + dificil;
+
+            Nivel nivelFacil = new Nivel();
+            nivelFacil.ElNivel = "Facil";
+            double totalFacilD= (100 * facil) / total;
+            int totalFacil = (int)Math.Round(totalFacilD);
+            nivelFacil.porcentajePorPregunta = (cantidad * totalFacil) / 100;
+       
+
+
+            Nivel nivelMedio = new Nivel();
+            nivelMedio.ElNivel = "Medio";
+            double totalMediod= (100 * medio) / total;
+            int totalMedio = (int)Math.Round(totalMediod);
+            nivelMedio.porcentajePorPregunta = (cantidad * totalMedio) / total;
+
+       
+
+
+            Nivel nivelDificil = new Nivel();
+            nivelDificil.ElNivel = "Dificil";
+            double totalDificild = (100 * dificil) / total;
+            int totalDificil = (int)Math.Round(totalDificild);
+            nivelDificil.porcentajePorPregunta =(cantidad*totalDificil)/100;
+
+
+            int totalCalculado = nivelFacil.porcentajePorPregunta + nivelMedio.porcentajePorPregunta + nivelDificil.porcentajePorPregunta;
+            int totalAControlar = totalCalculado - cantidad;
+
+            if (totalCalculado>0)
+            {
+                if (nivelFacil.porcentajePorPregunta > nivelMedio.porcentajePorPregunta)
+                {
+                    nivelFacil.porcentajePorPregunta = nivelFacil.porcentajePorPregunta - totalAControlar;
+                }
+                else
+                {
+                    nivelMedio.porcentajePorPregunta = nivelMedio.porcentajePorPregunta - totalAControlar;
+
+                }
+
+
+               
+            }
+            else if (totalCalculado < 0)
+            {
+                if (nivelFacil.porcentajePorPregunta < nivelMedio.porcentajePorPregunta)
+                {
+                    nivelFacil.porcentajePorPregunta = nivelFacil.porcentajePorPregunta + totalAControlar;
+                }
+                else
+                {
+                    nivelMedio.porcentajePorPregunta = nivelMedio.porcentajePorPregunta + totalAControlar;
+
+                }
+            }
+
+            result.Add(nivelDificil);
+            result.Add(nivelFacil);
+            result.Add(nivelMedio);
+            return result;
+
+        }
+
+
         public List<Pregunta> ObtenerPreguntasAlAzar(Pregunta pregunta,int cantidad)
         {
             int contar = 0;
@@ -139,8 +242,58 @@ namespace Negocio
             List<Pregunta> preguntas = new List<Pregunta>();
             List<Pregunta> result = default(List<Pregunta>);
             var preguntaNivel = new PreguntaDAC();
+            List<Nivel> porcentajePorNivel = new List<Nivel>();
+            porcentajePorNivel = ObtenerCantidadDePreguntasParaExamen(pregunta, cantidad);
+            int facil = 0;
+            int medio = 0;
+            int dificil = 0;
+            foreach (var item in porcentajePorNivel)
+            {
+                if (item.ElNivel == "Facil")
+                {
+                    facil=item.porcentajePorPregunta;
+                }
+
+                else if (item.ElNivel == "Medio")
+
+                {
+                    medio=item.porcentajePorPregunta;
+                }
+                else
+                {
+                    dificil=item.porcentajePorPregunta;
+                }
+
+            }
+        
+
+
+           
+
+
+            preguntas = obtenerRespuestaPorNivelCategoriayCantidad("Facil", pregunta.categoria.Id, facil);
+            preguntas.AddRange(obtenerRespuestaPorNivelCategoriayCantidad("Dificil", pregunta.categoria.Id, dificil));
+            preguntas.AddRange(obtenerRespuestaPorNivelCategoriayCantidad("Medio", pregunta.categoria.Id, medio));
+
+            return preguntas;
+        }
+
+
+
+        public List<Pregunta> obtenerRespuestaPorNivelCategoriayCantidad(string nivel,int categoria, int cantidad)
+
+        {
+            List<Pregunta> preguntas = new List<Pregunta>();
+            List<Pregunta> result = default(List<Pregunta>);
+            var preguntaNivel = new PreguntaDAC();
+
+            Pregunta pregunta = new Pregunta();
+            pregunta.nivel.ElNivel = nivel;
+            pregunta.categoria.Id = categoria;
+
             result = preguntaNivel.ObtenerPreguntarAlAzarPorNivelYCategoria(pregunta);
             //Verificar la salud de las pregunta
+            int contar = 0;
             foreach (Pregunta item in result)
             {
                 SaludPreguntaComponent saludPreguntaComponent = new SaludPreguntaComponent();
@@ -148,7 +301,7 @@ namespace Negocio
                 saludPregunta = saludPreguntaComponent.VerificarSalud(item);
                 if (saludPregunta.SaludDeLaPregunta)
                 {
-                   
+
                     //Obtener respuestas
 
                     if (item.tipoPregunta.TipoDePregunta == "MultipleChoice")
@@ -163,80 +316,22 @@ namespace Negocio
                         item.ListaPregunta = multipleChoiceCompustoComponent.ReadByPregunta(item.Id).ListaSubPreguntas;
                     }
 
-                    //else if (item.tipoPregunta.TipoDePregunta == "Orden")
-                    //{
-                    //    OrdenComponent ordenComponent = new OrdenComponent();
-                    //    item.ListaOrden(ordenComponent.rea)
-                    //}
+
                     preguntas.Add(item);
                     contar++;
                 }
-               
 
-                if (contar==cantidad)
+
+                if (contar == cantidad)
                 {
                     break;
                 }
 
 
             }
-
-
             return preguntas;
+
         }
-
-
-
-        //public List<Pregunta> obtenerpregunta(Nivel nivel, int Cantidad, Categoria categoria)
-        //{
-        //    List<Pregunta> result = default(List<Pregunta>);
-        //    Pregunta temp = new Pregunta();
-        //    temp.nivel = nivel;
-        //    temp.categoria = categoria;
-
-        //    result = ObtenerPreguntasAlAzar(temp, Cantidad);
-
-
-        //    return result;
-        //}
-
-
-        //public List<Pregunta> obtenerLaspreguntas(List<Pregunta> preguntas, int CantidadFacil, int CantidadMedio, int CantidadDificil)
-        //{
-        //    List<Pregunta> result = new List<Pregunta>();
-        //    Pregunta temp = new Pregunta();
-        //    foreach (var item in preguntas)
-        //    {
-        //        List<Pregunta> listaTemp = default(List<Pregunta>);
-        //        if (item.nivel.ElNivel=="Facil")
-        //        {
-        //            listaTemp = obtenerpregunta(item.nivel, CantidadFacil, item.categoria);
-        //            foreach (Pregunta item2 in listaTemp)
-        //            {
-        //                result.Add(item2);
-        //            }
-        //        }
-        //        else if (item.nivel.ElNivel == "Medio")
-        //        {
-
-        //            listaTemp = obtenerpregunta(item.nivel, CantidadMedio, item.categoria);
-        //            foreach (Pregunta item2 in listaTemp)
-        //            {
-        //                result.Add(item2);
-        //            }
-        //        }
-        //        else if (item.nivel.ElNivel == "Dificil")
-        //        {
-        //            listaTemp = obtenerpregunta(item.nivel, CantidadDificil, item.categoria);
-        //            foreach (Pregunta item2 in listaTemp)
-        //            {
-        //                result.Add(item2);
-        //            }
-        //        }
-
-        //    }
-        //    return result;
-        //}
         public List<Pregunta> LeerPorTipoDePregunta(TipoPregunta tipoPregunta)
         {
             List<Pregunta> result = new List<Pregunta>();

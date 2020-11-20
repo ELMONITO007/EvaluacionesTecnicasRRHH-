@@ -200,7 +200,7 @@ namespace Data
         public List<Pregunta> ObtenerPreguntarAlAzarPorNivelYCategoria(Pregunta pregunta)
         {
            
-             string SQL_STATEMENT = "select np.Nivel,  p.ID_Pregunta,SubPregunta,ID_Categoria,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,tp.TipoPregunta  from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on p.ID_Nivel=np.ID_Nivel  where  p.Activo=1 and pc.ID_Categoria=@ID_categoria and Subpregunta=0 order by NEWID()";
+             string SQL_STATEMENT = "select np.Nivel,  p.ID_Pregunta,SubPregunta,ID_Categoria,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,tp.TipoPregunta  from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on p.ID_Nivel=np.ID_Nivel  where  p.Activo=1 and pc.ID_Categoria=@ID_categoria and Subpregunta=0 and np.nivel=@elNivel order by NEWID()";
 
             List<Pregunta> result = new List<Pregunta>();
            
@@ -210,7 +210,7 @@ namespace Data
               
               
                 db.AddInParameter(cmd, "@ID_categoria", DbType.Int32, pregunta.categoria.Id);
-
+                db.AddInParameter(cmd, "@elNivel", DbType.String, pregunta.nivel.ElNivel);
                 using (IDataReader dr = db.ExecuteReader(cmd))
                 {
                     while (dr.Read())
@@ -244,7 +244,28 @@ namespace Data
             }
             return result;
         }
+        public List<Pregunta> LeerPorNivelDePregunta(string nivel,int id_categoria)
+        {
+            const string SQL_STATEMENT = "select Nivel, tp.TipoPregunta, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on np.ID_Nivel = p.ID_Nivel where p.activo=1 and np.Nivel=@Nivel and c.ID_Categoria=@id_categoria";
 
+            List<Pregunta> result = new List<Pregunta>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Nivel", DbType.String, nivel);
+                db.AddInParameter(cmd, "@id_categoria", DbType.String, id_categoria);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+
+                    while (dr.Read())
+                    {
+                        Pregunta pregunta = LoadPregunta(dr);
+                        result.Add(pregunta);
+                    }
+                }
+            }
+            return result;
+        }
         public bool ReadBy(string pregunta)
         {
             const string SQL_STATEMENT = "select *  from Pregunta where Pregunta=@Pregunta";

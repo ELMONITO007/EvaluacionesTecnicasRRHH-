@@ -66,7 +66,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index">
+                <a class="nav-link" href="/Admin/RRHH">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -93,13 +93,13 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ABM de Preguntas</h6>
                         <a class="collapse-item" href="/PreguntaCategoria">Preguntas</a>
-                                          
-                      
+
+
                         <h6 class="collapse-header">Examenes</h6>
                         <a class="collapse-item" href="/examen">Examen</a>
                         <a class="collapse-item" href="/usuario">Usuarios</a>
                         <a class="collapse-item" href="/usuarioexamen">Usuarios examen</a>
-
+                        <a class="collapse-item" href="/categoria/indexRRHH">Categoria de Preguntas</a>
                     </div>
 
                 </div>
@@ -324,14 +324,13 @@
     <script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- Page level custom scripts -->
-    <script src="~/Content/js/demo/chart-area-demo.js"></script>
-    <script src="~/Content/js/demo/chart-pie-demo.js"></script>
+
     <script src="~/Content/js/fileinput.js"></script>
     <script src="~/Content/js/fileinput.min.js"></script>
     <script src="~/Content/js/demo/datatables-demo.js"></script>
 
     </script>
-
+    @RenderSection("scripts")
 </body>
 
 </html>

@@ -52,7 +52,7 @@ namespace Entities
         [DataType(DataType.EmailAddress, ErrorMessage = "Formato invalido")]
         public string Email { get; set; }
 
-
+        public  string GoogleCaptchaToken { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]

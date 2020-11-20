@@ -11,6 +11,10 @@ using CaptchaMvc.HtmlHelpers;
 using Negocio;
 using Negocio.Servicios;
 using Evaluaciones_Tecnicas.Filter;
+using System.Net;
+using System.Net.Http;
+using reCAPTCHA.MVC;
+using Newtonsoft.Json.Linq;
 
 namespace Evaluaciones.Controllers
 {
@@ -43,19 +47,35 @@ namespace Evaluaciones.Controllers
 
             return View();
         }
+        public static bool ReCaptchaPassed(string gRecaptchaResponse)
+        {
+            HttpClient httpClient = new HttpClient();
 
+            var res = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret=y6LdFa-QZAAAAALCpXa0joJ0K0PlCP2m2q_nGNkfr&response={gRecaptchaResponse}").Result;
+
+            if (res.StatusCode != HttpStatusCode.OK)
+                return false;
+
+            string JSONres = res.Content.ReadAsStringAsync().Result;
+            dynamic JSONdata = JObject.Parse(JSONres);
+
+            if (JSONdata.success != "true")
+                return false;
+
+            return true;
+        }
         [HttpPost]
         [AllowAnonymous]
+       
         public ActionResult Usuarios(Usuarios usuarios)
         {
-            //if (this.IsCaptchaValid("Ingrese las letras correctamente"))
-            //{
-            
 
-                LoginComponent loginComponent = new LoginComponent();
+
+            LoginComponent loginComponent = new LoginComponent();
                 LoginError loginError = new LoginError();
                 loginError = loginComponent.VerificarLogin(usuarios);
-                if (loginError.error == "")
+          
+            if (loginError.error == "")
             {
                 
                 Session["UserName"] = usuarios;
@@ -74,12 +94,12 @@ namespace Evaluaciones.Controllers
                
 
                       }
-
-                if (pagina=="Administrador")
+                #region Layout
+                if (pagina == "Administrador")
                 {
                     Session["Layout"] = "_Layout2";
                 }
-                if (pagina=="RRHH")
+                if (pagina == "RRHH")
                 {
                     Session["Layout"] = "_LayoutRRHH";
                 }
@@ -88,49 +108,25 @@ namespace Evaluaciones.Controllers
                     Session["Layout"] = "_LayoutCreador";
                 }
 
-
-
+                #endregion
+                #region Error
                 ViewBag.ErrorLogin = loginError.error;
-                    return RedirectToAction( pagina, "Admin");
-                }
-                else
-                {
-                    ViewBag.ErrorLogin = "Error en el usuario o contraseña";
-                    return View("index");
-                }
-
-            #region Captchap
-            //}
-            //else
-            //{
-            //    BitacoraComponent bitacoraComponent = new BitacoraComponent();
-            //    Entities.Servicios.Bitacora.Bitacora bitacora = new Entities.Servicios.Bitacora.Bitacora();
-
-            //    UsuariosComponent usuariosComponent = new UsuariosComponent();
-            //    Usuarios unusuario = new Usuarios();
-            //    unusuario = usuariosComponent.ReadByEmail(usuarios.Email);
-            //    if ( unusuario is null)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        bitacora.usuarios = unusuario;
-            //        bitacora.eventoBitacora.Id = 8;
-            //        bitacoraComponent.Create(bitacora);
-            //    }
-
-
-            //    ViewBag.ErrorLogin = "Error en el Captcha";
-            //    return View("index");
-            //}
+                return RedirectToAction(pagina, "Admin");
+            }
+            else
+            {
+                ViewBag.ErrorLogin = "Error en el usuario o contraseña";
+                return View("index");
+            }
             #endregion
-
 
 
 
         }
 
+ 
+        
+        
         // GET: Login/Details/5
         public ActionResult Perfil(string email)
         {

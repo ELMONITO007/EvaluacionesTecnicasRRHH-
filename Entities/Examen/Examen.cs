@@ -45,7 +45,9 @@ namespace Entities.Examen
 
         public Usuarios  usuario { get; set; }
 
-
+        public int facil { get; set; }
+        public int medio { get; set; }
+        public int dificil { get; set; }
         public Examen()
         {
             listaPregunta = new List<Pregunta>();

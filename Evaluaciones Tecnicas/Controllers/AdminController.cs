@@ -18,7 +18,7 @@ namespace Evaluaciones.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        [AuthorizerUser(_roles: "Administrador,CrearPregunta,RRHH")]
+        [AuthorizerUser(_roles: "Administrador")]
         public ActionResult Administrador()
         {
             InformeComponent informeComponent = new InformeComponent();
@@ -30,7 +30,10 @@ namespace Evaluaciones.Controllers
         [AuthorizerUser(_roles: "RRHH")]
         public ActionResult RRHH()
         {
-            return View();
+            InformeComponent informeComponent = new InformeComponent();
+            Informe informe = new Informe();
+            informe = informeComponent.ObtenerInforme();
+            return View(informe);
         }
 
         [AuthorizerUser(_roles: "CrearPregunta")]

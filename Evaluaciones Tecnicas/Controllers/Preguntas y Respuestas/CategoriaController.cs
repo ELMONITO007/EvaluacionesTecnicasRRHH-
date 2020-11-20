@@ -32,6 +32,14 @@ namespace Evaluaciones.Controllers
 
             return View(categoriaComponent.Read());
         }
+        // GET: Categoria
+        [AuthorizerUser(_roles: "RRHH")]
+        public ActionResult IndexRRHH()
+        {
+            CategoriaComponent categoriaComponent = new CategoriaComponent();
+
+            return View(categoriaComponent.Read());
+        }
 
         // GET: Categoria/Details/5
         [AuthorizerUser(_roles: "Administrador")]
