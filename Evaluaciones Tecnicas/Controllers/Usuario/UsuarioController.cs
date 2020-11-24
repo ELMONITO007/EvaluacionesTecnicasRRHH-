@@ -160,5 +160,13 @@ namespace Evaluaciones.Controllers
                 return View();
             }
         }
+
+        [AuthorizerUser(_roles: "Administrador,RRHH")]
+        public ActionResult Desbloquear(int id)
+        {
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            usuariosComponent.Desloquear(id);
+            return RedirectToAction("Index");
+        }
     }
 }

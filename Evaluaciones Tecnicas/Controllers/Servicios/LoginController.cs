@@ -47,30 +47,22 @@ namespace Evaluaciones.Controllers
 
             return View();
         }
-        public static bool ReCaptchaPassed(string gRecaptchaResponse)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            var res = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret=y6LdFa-QZAAAAALCpXa0joJ0K0PlCP2m2q_nGNkfr&response={gRecaptchaResponse}").Result;
-
-            if (res.StatusCode != HttpStatusCode.OK)
-                return false;
-
-            string JSONres = res.Content.ReadAsStringAsync().Result;
-            dynamic JSONdata = JObject.Parse(JSONres);
-
-            if (JSONdata.success != "true")
-                return false;
-
-            return true;
-        }
+     
         [HttpPost]
         [AllowAnonymous]
-       
-        public ActionResult Usuarios(Usuarios usuarios)
+        [CaptchaValidator(ErrorMessage = "Validación Captcha incorrecta.",
+                  RequiredMessage = "La validación Captcha es requerida.")]
+        public ActionResult Index(Usuarios usuarios, bool captchaValid)
         {
+            if (!captchaValid)
+            {
+               
+                return View("index");
+            }
+            else
+            {
 
-
+           
             LoginComponent loginComponent = new LoginComponent();
                 LoginError loginError = new LoginError();
                 loginError = loginComponent.VerificarLogin(usuarios);
@@ -115,12 +107,13 @@ namespace Evaluaciones.Controllers
             }
             else
             {
-                ViewBag.ErrorLogin = "Error en el usuario o contraseña";
+                ViewBag.ErrorLogin = loginError.error;
+
                 return View("index");
             }
-            #endregion
+                #endregion
 
-
+            }
 
         }
 

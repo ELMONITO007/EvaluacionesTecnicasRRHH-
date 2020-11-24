@@ -2290,6 +2290,7 @@
     <Content Include="Views\Backups\Delete.cshtml" />
     <Content Include="Views\Examen\ErrorPage.cshtml" />
     <Content Include="Views\Categoria\IndexRRHH.cshtml" />
+    <Content Include="Views\Usuario\Desbloquear.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

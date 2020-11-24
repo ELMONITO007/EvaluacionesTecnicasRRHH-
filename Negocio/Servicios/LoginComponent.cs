@@ -161,16 +161,15 @@ namespace Negocio
                         }
                         else
                         {
-                            loginError.error = "Error Critico V. Envie un email con el error a dolores.conde@transener.com.ar";
+                            loginError.error = "Error interno pruebe nuevamente";
                             bitacora.eventoBitacora.Id = 2;
                             bitacoraComponent.Create(bitacora);
                         }
                     }
                     else
                     {
-                        int intentos = usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
-                      
-                        loginError.error = "Error Critico H. Envie un email con el error a dolores.conde@transener.com.ar";
+                       
+                        loginError.error = "Error interno pruebe nuevamente";
                         bitacora.eventoBitacora.Id = 3;
                         bitacoraComponent.Create(bitacora);
                     }
@@ -181,20 +180,21 @@ namespace Negocio
                     bitacora.eventoBitacora.Id = 4;
                  
 
-                    //int cantidad= usuariosComponent.AgregarErrorUsryPass(usuarios.Id);
+                    int cantidad= usuariosComponent.AgregarErrorUsryPass(usuarioTabla.Id);
 
-                    //if (cantidad>4)
-                    //{
-                    //    //usuariosComponent.Bloquear(usuarios.Id);
-                        //loginError.error = "Usuario Bloqueado, alcanzo los tres intentos";
-                        //bitacora.eventoBitacora.Id = 1;
+                    if (cantidad > 3)
+                    {
+                        usuariosComponent.Bloquear(usuarios.Id);
+                        loginError.error = "Usuario Bloqueado, alcanzo los tres intentos";
+                        bitacora.eventoBitacora.Id = 1;
 
-                    //}
-                    //else
-                    //{
+                    }
+                    else
+                    {
                         loginError.error = "Usuario o Contraseña Invalido";
+
                         bitacora.eventoBitacora.Id = 4;
-                    //}
+                    }
                     bitacoraComponent.Create(bitacora);
                 }
             }
