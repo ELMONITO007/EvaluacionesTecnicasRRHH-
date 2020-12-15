@@ -113,7 +113,9 @@ namespace Negocio
         public void Desloquear(int id)
         {
             var usuario = new UsuarioDac();
+            usuario.AgregarErrorUsryPass(0, id);
             usuario.Desbloquear(id);
+
         }
         public override void Delete(int id)
                 {

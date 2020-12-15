@@ -150,7 +150,7 @@ namespace Negocio
                                 bitacora.eventoBitacora.Id = 5;
                                 bitacoraComponent.Create(bitacora);
                                 loginError.error = "";
-                                usuariosComponent.ResetearIntentos(usuarios.Id);
+                                usuariosComponent.ResetearIntentos(usuarioTabla.Id);
                             }
                             else
                             {

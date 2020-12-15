@@ -174,7 +174,8 @@ namespace Negocio
 
             Nivel nivelFacil = new Nivel();
             nivelFacil.ElNivel = "Facil";
-            double totalFacilD= (100 * facil) / total;
+            //double totalFacilD= (100 * facil) / total;
+            double totalFacilD = 33;
             int totalFacil = (int)Math.Round(totalFacilD);
             nivelFacil.porcentajePorPregunta = (cantidad * totalFacil) / 100;
        
@@ -182,16 +183,19 @@ namespace Negocio
 
             Nivel nivelMedio = new Nivel();
             nivelMedio.ElNivel = "Medio";
-            double totalMediod= (100 * medio) / total;
+            //double totalMediod= (100 * medio) / total
+            double totalMediod = 50;
             int totalMedio = (int)Math.Round(totalMediod);
-            nivelMedio.porcentajePorPregunta = (cantidad * totalMedio) / total;
+            nivelMedio.porcentajePorPregunta = (cantidad * totalMedio) / 100;
 
        
 
 
             Nivel nivelDificil = new Nivel();
             nivelDificil.ElNivel = "Dificil";
-            double totalDificild = (100 * dificil) / total;
+            //double totalDificild = (100 * dificil) / total;
+            double totalDificild = 17;
+
             int totalDificil = (int)Math.Round(totalDificild);
             nivelDificil.porcentajePorPregunta =(cantidad*totalDificil)/100;
 
@@ -207,7 +211,7 @@ namespace Negocio
                 }
                 else
                 {
-                    nivelMedio.porcentajePorPregunta = nivelMedio.porcentajePorPregunta - totalAControlar;
+                    nivelFacil.porcentajePorPregunta = nivelFacil.porcentajePorPregunta - totalAControlar;
 
                 }
 

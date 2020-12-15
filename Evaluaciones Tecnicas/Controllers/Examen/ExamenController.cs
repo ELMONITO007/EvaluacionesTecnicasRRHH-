@@ -72,7 +72,9 @@ namespace Evaluaciones_Tecnicas.Controllers.Examen
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                
+                    return RedirectToAction("ErrorPage", new { cantidas = examen.error });
+                    
                 }
             }
             catch (Exception e)
