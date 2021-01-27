@@ -24,6 +24,8 @@ namespace Negocio
             //Obtener la categoria
             List<PreguntaCategoria> preguntas = new List<PreguntaCategoria>();
             PreguntaCategoriaComponent preguntaCategoriaComponent = new PreguntaCategoriaComponent();
+            PreguntaCategoria preguntaCategoria = new PreguntaCategoria();
+         
             preguntas = preguntaCategoriaComponent.Read(Int16.Parse(objeto.pregunta.Id.ToString()));
             foreach (PreguntaCategoria item in preguntas)
             {

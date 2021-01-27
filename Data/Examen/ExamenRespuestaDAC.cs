@@ -70,7 +70,7 @@ namespace Data.Examen
         }
         public List<ExamenRespuesta> ReadByPregunta(int id,int id_examen)
         {
-            const string SQL_STATEMENT = "select * from examenRespuestas where Id_Pregunta=@Id and id_examen=@id_examen";
+            const string SQL_STATEMENT = "select DISTINCT * from examenRespuestas where Id_Pregunta=@Id and id_examen=@id_examen";
 
             List<Entities.Examen.ExamenRespuesta> result = new List<Entities.Examen.ExamenRespuesta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

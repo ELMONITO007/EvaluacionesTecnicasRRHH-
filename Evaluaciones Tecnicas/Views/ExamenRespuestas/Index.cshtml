@@ -1,4 +1,5 @@
-﻿@model Entities.Examen.Examen
+﻿
+@model Entities.Examen.Examen
 
 @{
     Layout = null;
@@ -17,7 +18,6 @@
 
 
 <style>
-
     html, body, h1, h2, h3, h4, h5 {
         font-family: "Open Sans", sans-serif
     }
@@ -73,7 +73,6 @@
         text-align: center;
         clear: both;
     }
-
     /* para 980px o menos */
     media screen and (max-width:980px) {
         .container
@@ -87,7 +86,6 @@
     }
 
     }
-
     /* para 700px o menos */
     media screen and (max-width:700px) {
         aside,section
@@ -111,7 +109,6 @@
     }
 
     }
-
     /* para 480px o menos */
     media screen and (max-width:480px) {
         aside
@@ -166,7 +163,6 @@
             position: relative;
             top: 1px;
         }
-
 
     .caja {
         font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
@@ -430,7 +426,7 @@
                             - El Examen esta @a
                         </p>
                         <p>- El minimo de respuestas correctas es @res </p>
-                       
+
                         <p>- Hubo @Model.facil preguntas faciles</p>
                         <p>- Hubo @Model.medio preguntas medias</p>
                         <p>- Hubo @Model.dificil preguntas dificiles</p>
@@ -499,3 +495,5 @@
 {
     }
 </body>
+
+About
