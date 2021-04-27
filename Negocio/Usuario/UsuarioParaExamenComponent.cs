@@ -29,6 +29,18 @@ namespace Negocio
             }
         }
 
+        public void CambiarContraseña(UsuarioParaExamen objeto)
+        {
+            UsuariosComponent usuariosComponent = new UsuariosComponent();
+            usuariosComponent.CambiarContraseña(objeto.usuarios);
+            PDF pDF = new PDF();
+            UsuarioParaExamen usuarioParaExamen = new UsuarioParaExamen();
+            usuarioParaExamen.usuarios = usuariosComponent.ReadBy(objeto.usuarios.Id);
+            pDF.unUsuario = usuarioParaExamen;
+            pDF.unUsuario.usuarios.Password = objeto.usuarios.Password;
+            CrearPDF crearPDF = new CrearPDF();
+            crearPDF.Create(pDF);
+        }
         public override UsuarioParaExamen Create(UsuarioParaExamen objeto)
         {
 
@@ -41,7 +53,7 @@ namespace Negocio
             usuarios.Apellido = objeto.usuarios.Apellido;
             usuarios.Tipo = EmailEmpresarial(objeto.usuarios.Email);
             usuarios.Password = CrearContraseña(objeto) ;
-            string _heather = CrearContraseña(objeto);
+            string _heather = usuarios.Password;
             UsuariosComponent usuariosComponent = new UsuariosComponent();
             usuarios.unRol.name = "Examen";
             bool result = usuariosComponent.Crear(usuarios);
@@ -100,7 +112,7 @@ namespace Negocio
         public string CrearContraseña(UsuarioParaExamen usuarioParaExamen)
         {
             string result;
-            var chars = "*/!#$&/()=";
+            var chars = "*#$";
             var stringChars = new char[1];
             var random = new Random();
 

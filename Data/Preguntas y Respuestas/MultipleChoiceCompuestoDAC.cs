@@ -102,7 +102,7 @@ namespace Data
 
       public MultipleChoiceCompuesto ReadByRespuesta(int Id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Respuesta=@id and Correcta is not null";
+            const string SQL_STATEMENT = "select DISTINCT ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Respuesta=@id and Correcta is not null";
             MultipleChoiceCompuesto categoria = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

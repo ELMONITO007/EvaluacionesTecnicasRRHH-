@@ -161,7 +161,16 @@ namespace Data
        
         public void Update(Usuarios entity)
         {
-            throw new NotImplementedException();
+            const string SQL_STATEMENT = "update Usuario set passsword=@passsword and dvh=@DVH  where id=@Id";
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@DVH", DbType.String, entity.DVH);
+                db.AddInParameter(cmd, "@id", DbType.Int32, entity.Id);
+                db.AddInParameter(cmd, "@passsword", DbType.String, entity.Password);
+
+                db.ExecuteNonQuery(cmd);
+            }
         }
 
 

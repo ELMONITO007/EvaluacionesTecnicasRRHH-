@@ -63,7 +63,7 @@ namespace Negocio
         public bool VerificarDVH(int id,Usuarios usuarios)
         {
             UsuarioParcial usuariosFormateado = new UsuarioParcial();
-            usuariosFormateado.Bloqueado = usuarios.Bloqueado;
+            
             usuariosFormateado.Email = usuarios.Email;
             usuariosFormateado.UserName = usuarios.Email;
             usuariosFormateado.Password = usuarios.Password;

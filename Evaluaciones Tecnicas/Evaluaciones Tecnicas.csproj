@@ -1786,6 +1786,7 @@
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Elementos.JPG" />
+    <Content Include="Imagenes\ImagenBalancear.JPG" />
     <Content Include="Imagenes\Leyohm.JPG" />
     <Content Include="Imagenes\pregunta10.jpg" />
     <Content Include="Imagenes\pregunta12.jpg" />

@@ -294,32 +294,37 @@
                                 foreach (var MC in item.listaExamenRespuesta)
                                 {
 
-                                    <h6>
+                        <h6>
 
-                                        @Html.CheckBoxFor(model => MC.respondio, new { @readonly = "readonly", @class = "check" })
-                                        @if (MC.correcta && MC.respondio == true)
-                                        {
-                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
-                                        }
+                            @Html.CheckBoxFor(model => MC.respondio, new { @readonly = "readonly", @class = "check" })
+                            @if (MC.correcta && MC.respondio)
+                            {
+                                @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                            }
 
-                                        @if (!MC.correcta && MC.respondio)
-                                        {
-                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
-                                        }
-                                        @if (MC.correcta && MC.respondio == false)
-                                        {
-                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
-                                        }
-                                        @if (!MC.correcta && !MC.respondio)
-                                        {
-                                            @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
-
-
-                                        }
+                            @if (!MC.correcta && MC.respondio)
+                            {
+                                @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+                            }
+                            @if (MC.correcta && !MC.respondio )
+                            {
+                                @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                            }
+                            @*@if (!MC.correcta && !MC.respondio)
+                            {
+                                @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
 
 
+                            }*@
 
-                                    </h6>
+                            @if (!MC.correcta && !MC.respondio )
+                            {
+                                @Html.TextAreaFor(model => MC.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                            }
+
+
+
+                        </h6>
 
                                 }
                                 <br />
@@ -348,28 +353,52 @@
                                     foreach (var Respuesta in SubPregunta.examenPregunta.listaExamenRespuesta)
                                     {
 
-                                        <h6>
+                        <h6>
 
 
 
-                                            @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
+                            @Html.CheckBoxFor(model => Respuesta.respondio, new { @readonly = "readonly", @class = "check" })
+                            @if (Respuesta.correcta && Respuesta.respondio)
+                            {
+                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                            }
 
-                                            @if (!Respuesta.correcta && Respuesta.respondio)
-                                            {
-                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
-                                            }
-                                            @if (Respuesta.correcta && Respuesta.respondio == false)
-                                            {
-                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
-                                            }
-                                            @if (Respuesta.correcta && Respuesta.respondio)
-                                            {
-                                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+                            @if (!Respuesta.correcta && Respuesta.respondio)
+                            {
+                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+                            }
+                            @if (Respuesta.correcta && !Respuesta.respondio)
+                            {
+                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+                            }
 
 
-                                            }
+                            @if (!Respuesta.correcta && !Respuesta.respondio)
+                            {
+                                @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:green" })
+                            }
 
-                                        </h6>
+
+
+
+
+
+                            @*@if (!Respuesta.correcta && Respuesta.respondio)
+        {
+            @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:red" })
+        }
+        @if (Respuesta.correcta && Respuesta.respondio == false)
+        {
+            @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:black" })
+        }
+        @if (Respuesta.correcta && Respuesta.respondio)
+        {
+            @Html.TextAreaFor(model => Respuesta.respuesta.LaRespuesta, new { @readonly = "readonly", @class = "subCaja", @style = "color:Green" })
+
+
+        }*@
+
+                        </h6>
 
                                     }
                                     <br />

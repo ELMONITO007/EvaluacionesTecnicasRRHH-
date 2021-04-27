@@ -286,7 +286,7 @@ namespace Negocio.Examen
                 }
             }
             int ap = lista.Count * 70 / 100;
-            if (examen.RespuestasCorrectas> ap)
+            if (examen.RespuestasCorrectas>= ap)
             {
                 examen.Aprobado = true;
             }
